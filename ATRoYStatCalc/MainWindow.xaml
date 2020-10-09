@@ -11,6 +11,8 @@
         Height="600"
         Width="800">
     <Grid>
-        <view:MageView/>
+        <ScrollViewer>
+            <view:MageView/>
+        </ScrollViewer>
     </Grid>
 </Window>

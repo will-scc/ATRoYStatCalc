@@ -33,6 +33,8 @@ namespace ATRoYStatCalc.ViewModel
             {
                 skill.PropertyChanged += Base_PropertyChanged;
             }
+
+            Mage.UpdateCharacter();
         }
 
         private void Base_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

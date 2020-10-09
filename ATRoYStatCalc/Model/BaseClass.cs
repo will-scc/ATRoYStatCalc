@@ -17,6 +17,7 @@ namespace ATRoYStatCalc.Model
 
         public Skill Hitpoints { get; set; } = new Skill()
         {
+            DisplayName = "Hitpoints",
             Start = 10,
             Base = 10,
             Mod = 10,
@@ -25,6 +26,7 @@ namespace ATRoYStatCalc.Model
         };
         public Skill Endurance { get; set; } = new Skill()
         {
+            DisplayName = "Endurance",
             Start = 10,
             Base = 10,
             Mod = 10,
@@ -33,6 +35,7 @@ namespace ATRoYStatCalc.Model
         };
         public Skill Mana { get; set; } = new Skill()
         {
+            DisplayName = "Mana",
             Start = 10,
             Base = 10,
             Mod = 10,
@@ -42,6 +45,7 @@ namespace ATRoYStatCalc.Model
 
         public Skill Wisdom { get; set; } = new Skill()
         {
+            DisplayName = "Wisdom",
             Start = 10,
             Base = 10,
             Mod = 10,
@@ -50,6 +54,7 @@ namespace ATRoYStatCalc.Model
         };
         public Skill Intuition { get; set; } = new Skill()
         {
+            DisplayName = "Intuition",
             Start = 10,
             Base = 10,
             Mod = 10,
@@ -58,6 +63,7 @@ namespace ATRoYStatCalc.Model
         };
         public Skill Agility { get; set; } = new Skill()
         {
+            DisplayName = "Agility",
             Start = 10,
             Base = 10,
             Mod = 10,
@@ -66,6 +72,7 @@ namespace ATRoYStatCalc.Model
         };
         public Skill Strength { get; set; } = new Skill()
         {
+            DisplayName = "Strength",
             Start = 10,
             Base = 10,
             Mod = 10,
@@ -75,6 +82,7 @@ namespace ATRoYStatCalc.Model
 
         public Skill Dagger { get; set; } = new Skill()
         {
+            DisplayName = "Dagger",
             Start = 1,
             Base = 1,
             Mod = 1,
@@ -83,6 +91,7 @@ namespace ATRoYStatCalc.Model
         };
         public Skill HandToHand { get; set; } = new Skill()
         {
+            DisplayName = "Hand to Hand",
             Start = 1,
             Base = 1,
             Mod = 1,
@@ -92,6 +101,7 @@ namespace ATRoYStatCalc.Model
 
         public Skill Bartering { get; set; } = new Skill()
         {
+            DisplayName = "Bartering",
             Start = 1,
             Base = 1,
             Mod = 1,
@@ -100,6 +110,7 @@ namespace ATRoYStatCalc.Model
         };
         public Skill Perception { get; set; } = new Skill()
         {
+            DisplayName = "Perception",
             Start = 1,
             Base = 1,
             Mod = 1,
@@ -108,30 +119,17 @@ namespace ATRoYStatCalc.Model
         };
         public Skill Stealth { get; set; } = new Skill()
         {
+            DisplayName = "Stealth",
             Start = 1,
             Base = 1,
             Mod = 1,
             Cost = 1,
             EquipmentBonus = 0
         };
-        public Skill Regenerate { get; set; } = new Skill()
-        {
-            Start = 1,
-            Base = 1,
-            Mod = 1,
-            Cost = 1,
-            EquipmentBonus = 0
-        };
-        public Skill Meditate { get; set; } = new Skill()
-        {
-            Start = 1,
-            Base = 1,
-            Mod = 1,
-            Cost = 1,
-            EquipmentBonus = 0
-        };
+
         public Skill Immunity { get; set; } = new Skill()
         {
+            DisplayName = "Immunity",
             Start = 1,
             Base = 1,
             Mod = 1,
@@ -179,26 +177,26 @@ namespace ATRoYStatCalc.Model
 
         public virtual void CalculateAttributes()
         {
-            Wisdom.Mod = Wisdom.Base.MaxBonus(Wisdom.EquipmentBonus);
-            Intuition.Mod = Intuition.Base.MaxBonus(Intuition.EquipmentBonus);
-            Agility.Mod = Agility.Base.MaxBonus(Agility.EquipmentBonus);
-            Strength.Mod = Strength.Base.MaxBonus(Strength.EquipmentBonus);
+            Wisdom.Mod = Wisdom.Base.MaxMagicalBonus(Wisdom.EquipmentBonus);
+            Intuition.Mod = Intuition.Base.MaxMagicalBonus(Intuition.EquipmentBonus);
+            Agility.Mod = Agility.Base.MaxMagicalBonus(Agility.EquipmentBonus);
+            Strength.Mod = Strength.Base.MaxMagicalBonus(Strength.EquipmentBonus);
         }
 
         public virtual void CalculateStats()
         {
-            Hitpoints.Mod = Hitpoints.Base + Hitpoints.EquipmentBonus;
-            Endurance.Mod = Endurance.Base + Endurance.EquipmentBonus;
-            Mana.Mod = Mana.Base + Mana.EquipmentBonus;
+            Hitpoints.Mod = Hitpoints.Base.MaxMagicalBonus(Hitpoints.EquipmentBonus);
+            Endurance.Mod = Endurance.Base.MaxMagicalBonus(Endurance.EquipmentBonus);
+            Mana.Mod = Mana.Base.MaxMagicalBonus(Mana.EquipmentBonus);
 
-            Dagger.Mod = Dagger.Base.MaxBonus(Dagger.EquipmentBonus + (Agility.Mod + Intuition.Mod + Strength.Mod / 5));
-            HandToHand.Mod = HandToHand.Base.MaxBonus(HandToHand.EquipmentBonus + (Agility.Mod + Strength.Mod + Strength.Mod / 5));
+            Dagger.Mod = Dagger.Base.MaxMagicalBonus(Dagger.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5); 
+            HandToHand.Mod = HandToHand.Base.MaxMagicalBonus(HandToHand.EquipmentBonus) + ((Agility.Mod + Strength.Mod + Strength.Mod) / 5);
 
-            Bartering.Mod = Bartering.Base.MaxBonus(Bartering.EquipmentBonus + (Wisdom.Mod + Intuition.Mod + Intuition.Mod / 5));
-            Perception.Mod = Perception.Base.MaxBonus(Perception.EquipmentBonus + (Wisdom.Mod + Intuition.Mod + Intuition.Mod / 5));
-            Stealth.Mod = Stealth.Base.MaxBonus(Stealth.EquipmentBonus + (Agility.Mod + Agility.Mod + Intuition.Mod / 5));
+            Bartering.Mod = Bartering.Base.MaxMagicalBonus(Bartering.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            Perception.Mod = Perception.Base.MaxMagicalBonus(Perception.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            Stealth.Mod = Stealth.Base.MaxMagicalBonus(Stealth.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Intuition.Mod) / 5);
 
-            Immunity.Mod = Immunity.Base.MaxBonus(Immunity.EquipmentBonus + (Wisdom.Mod + Intuition.Mod + Strength.Mod / 5));
+            Immunity.Mod = Immunity.Base.MaxMagicalBonus(Immunity.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Strength.Mod) / 5);
         }
 
         public virtual int RaiseCost(Skill skill, int nextLevel)

@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="ATRoYStatCalc.View.EquipmentSlot"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ATRoYStatCalc.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="100"
+             d:DesignWidth="200"
+             d:Background="White">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Content="SlotName"
+               Grid.Row="0"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"/>
+
+        <ComboBox x:Name="FirstStatType"
+                  Grid.Row="1"
+                  Grid.Column="0"/>
+
+    </Grid>
+</UserControl>

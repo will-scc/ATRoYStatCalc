@@ -4,6 +4,17 @@ namespace ATRoYStatCalc.Model
 {
     public class Skill : ObservableObject
     {
+        private string _displayName;
+        public string DisplayName
+        {
+            get => _displayName;
+            set
+            {
+                _displayName = value;
+                RaisePropertyChanged("DisplayName");
+            }
+        }
+
         private int _start;
         public int Start
         {

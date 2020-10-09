@@ -5,205 +5,500 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ATRoYStatCalc.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="600" d:DesignWidth="800"
              d:Background="White"
              DataContext="{Binding MageControl, Source={StaticResource ViewModelLocator}}">
-    <Grid HorizontalAlignment="Stretch"
-          VerticalAlignment="Stretch"
-          Margin="15">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Stat"
+        <Grid x:Name="Equipment">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="1st Stat"
+                   Grid.Row="1"
+                   Grid.Column="0"/>
+            <Label Content="Ring 1"
+                   Grid.Row="0"
+                   Grid.Column="1"/>
+            <Label Content="Weapon"
+                   Grid.Row="0"
+                   Grid.Column="2"/>
+            <Label Content="Ring 2"
+                   Grid.Row="0"
+                   Grid.Column="3"/>
+            <Label Content="Amulet"
+                   Grid.Row="0"
+                   Grid.Column="4"/>
+            <Label Content="Head"
+                   Grid.Row="0"
+                   Grid.Column="5"/>
+            <Label Content="Cape"
+                   Grid.Row="0"
+                   Grid.Column="6"/>
+            <Label Content="Chest"
+                   Grid.Row="0"
+                   Grid.Column="7"/>
+            <Label Content="Arms"
+                   Grid.Row="0"
+                   Grid.Column="8"/>
+            <Label Content="Belt"
+                   Grid.Row="0"
+                   Grid.Column="9"/>
+            <Label Content="Legs"
+                   Grid.Row="0"
+                   Grid.Column="10"/>
+            <Label Content="Boots"
+                   Grid.Row="0"
+                   Grid.Column="11"/>
+        </Grid>
+        
+        <Grid x:Name="CharacterStats"
+              Margin="15"
+              Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Stat"
                FontWeight="Bold"
                Grid.Row="0"
                Grid.Column="0"/>
-        <Label Content="Base"
+            <Label Content="Base"
                FontWeight="Bold"
                Grid.Row="0"
                Grid.Column="1"
                Grid.ColumnSpan="2"/>
-        <Label Content="Mod"
+            <Label Content="Mod"
                FontWeight="Bold"
                Grid.Row="0"
                Grid.Column="3"/>
 
-        <Label Content="Hitpoints"
+            <Label Content="Hitpoints"
                Grid.Row="1"
                Grid.Column="0"/>
-        <Label Content="{Binding Mage.Hitpoints.Base}"
+            <Label Content="{Binding Mage.Hitpoints.Base}"
                Grid.Row="1"
                Grid.Column="1"/>
-        <Slider Value="{Binding Mage.Hitpoints.Base, Mode=TwoWay}"
+            <Slider Value="{Binding Mage.Hitpoints.Base, Mode=TwoWay}"
                 Minimum="{Binding Mage.Hitpoints.Start, Mode=TwoWay}"
                 Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
                 VerticalAlignment="Center"
                 Grid.Row="1"
                 Grid.Column="2"/>
-        <Label Content="{Binding Mage.Hitpoints.Mod, Mode=OneWay}"
+            <Label Content="{Binding Mage.Hitpoints.Mod, Mode=OneWay}"
                Grid.Row="1"
                Grid.Column="3"/>
 
-        <Label Content="Endurance"
+            <Label Content="Endurance"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"
                Grid.Row="2"
                Grid.Column="0"/>
-        <Label Content="{Binding Mage.Endurance.Base}"
+            <Label Content="{Binding Mage.Endurance.Base}"
                Grid.Row="2"
                Grid.Column="1"/>
-        <Slider Value="{Binding Mage.Endurance.Base, Mode=TwoWay}"
+            <Slider Value="{Binding Mage.Endurance.Base, Mode=TwoWay}"
                 Minimum="{Binding Mage.Endurance.Start, Mode=TwoWay}"
                 Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
                 VerticalAlignment="Center"
                 Grid.Row="2"
                 Grid.Column="2"/>
-        <Label Content="{Binding Mage.Endurance.Mod, Mode=OneWay}"
+            <Label Content="{Binding Mage.Endurance.Mod, Mode=OneWay}"
                Grid.Row="2"
                Grid.Column="3"/>
 
-        <Label Content="Mana"
+            <Label Content="Mana"
                Grid.Row="3"
                Grid.Column="0"/>
-        <Label Content="{Binding Mage.Mana.Base}"
+            <Label Content="{Binding Mage.Mana.Base}"
                Grid.Row="3"
                Grid.Column="1"/>
-        <Slider Value="{Binding Mage.Mana.Base, Mode=TwoWay}"
+            <Slider Value="{Binding Mage.Mana.Base, Mode=TwoWay}"
                 Minimum="{Binding Mage.Mana.Start, Mode=TwoWay}"
                 Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
                 VerticalAlignment="Center"
                 Grid.Row="3"
                 Grid.Column="2"/>
-        <Label Content="{Binding Mage.Mana.Mod, Mode=OneWay}"
+            <Label Content="{Binding Mage.Mana.Mod, Mode=OneWay}"
                Grid.Row="3"
                Grid.Column="3"/>
 
-        <Label Content="Attributes"
+            <Label Content="Attributes"
                FontWeight="Bold"
                Grid.Row="4"
                Grid.Column="0"/>
-        
-        <Label Content="Wisdom"
+
+            <Label Content="Wisdom"
                Grid.Row="5"
                Grid.Column="0"/>
-        <Label Content="{Binding Mage.Wisdom.Base}"
+            <Label Content="{Binding Mage.Wisdom.Base}"
                Grid.Row="5"
                Grid.Column="1"/>
-        <Slider Value="{Binding Mage.Wisdom.Base, Mode=TwoWay}"
+            <Slider Value="{Binding Mage.Wisdom.Base, Mode=TwoWay}"
                 Minimum="{Binding Mage.Wisdom.Start, Mode=TwoWay}"
                 Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
                 VerticalAlignment="Center"
                 Grid.Row="5"
                 Grid.Column="2"/>
-        <Label Content="{Binding Mage.Wisdom.Mod, Mode=OneWay}"
+            <Label Content="{Binding Mage.Wisdom.Mod, Mode=OneWay}"
                Grid.Row="5"
                Grid.Column="3"/>
 
-        <Label Content="Intuition"
+            <Label Content="Intuition"
                Grid.Row="6"
                Grid.Column="0"/>
-        <Label Content="{Binding Mage.Intuition.Base}"
+            <Label Content="{Binding Mage.Intuition.Base}"
                Grid.Row="6"
                Grid.Column="1"/>
-        <Slider Value="{Binding Mage.Intuition.Base, Mode=TwoWay}"
+            <Slider Value="{Binding Mage.Intuition.Base, Mode=TwoWay}"
                 Minimum="{Binding Mage.Intuition.Start, Mode=TwoWay}"
                 Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
                 VerticalAlignment="Center"
                 Grid.Row="6"
                 Grid.Column="2"/>
-        <Label Content="{Binding Mage.Intuition.Mod, Mode=OneWay}"
+            <Label Content="{Binding Mage.Intuition.Mod, Mode=OneWay}"
                Grid.Row="6"
                Grid.Column="3"/>
 
-        <Label Content="Agility"
+            <Label Content="Agility"
                Grid.Row="7"
                Grid.Column="0"/>
-        <Label Content="{Binding Mage.Agility.Base}"
+            <Label Content="{Binding Mage.Agility.Base}"
                Grid.Row="7"
                Grid.Column="1"/>
-        <Slider Value="{Binding Mage.Agility.Base, Mode=TwoWay}"
+            <Slider Value="{Binding Mage.Agility.Base, Mode=TwoWay}"
                 Minimum="{Binding Mage.Agility.Start, Mode=TwoWay}"
                 Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
                 VerticalAlignment="Center"
                 Grid.Row="7"
                 Grid.Column="2"/>
-        <Label Content="{Binding Mage.Agility.Mod, Mode=OneWay}"
+            <Label Content="{Binding Mage.Agility.Mod, Mode=OneWay}"
                Grid.Row="7"
                Grid.Column="3"/>
 
-        <Label Content="Strength"
+            <Label Content="Strength"
                Grid.Row="8"
                Grid.Column="0"/>
-        <Label Content="{Binding Mage.Strength.Base}"
+            <Label Content="{Binding Mage.Strength.Base}"
                Grid.Row="8"
                Grid.Column="1"/>
-        <Slider Value="{Binding Mage.Strength.Base, Mode=TwoWay}"
+            <Slider Value="{Binding Mage.Strength.Base, Mode=TwoWay}"
                 Minimum="{Binding Mage.Strength.Start, Mode=TwoWay}"
                 Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
                 VerticalAlignment="Center"
                 Grid.Row="8"
                 Grid.Column="2"/>
-        <Label Content="{Binding Mage.Strength.Mod, Mode=OneWay}"
+            <Label Content="{Binding Mage.Strength.Mod, Mode=OneWay}"
                Grid.Row="8"
                Grid.Column="3"/>
 
-        <Label Content="Skills"
+            <Label Content="Weapon Skills"
                FontWeight="Bold"
                Grid.Row="9"
                Grid.Column="0"/>
-        
-        <Label Content="Bless"
+
+            <Label Content="Dagger"
                Grid.Row="10"
                Grid.Column="0"/>
-        <Label Content="{Binding Mage.Bless.Base}"
+            <Label Content="{Binding Mage.Dagger.Base}"
                Grid.Row="10"
                Grid.Column="1"/>
-        <Slider Value="{Binding Mage.Bless.Base, Mode=TwoWay}"
-                Minimum="{Binding Mage.Bless.Start, Mode=TwoWay}"
+            <Slider Value="{Binding Mage.Dagger.Base, Mode=TwoWay}"
+                Minimum="{Binding Mage.Dagger.Start, Mode=TwoWay}"
                 Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
                 VerticalAlignment="Center"
                 Grid.Row="10"
                 Grid.Column="2"/>
-        <Label Content="{Binding Mage.Bless.Mod, Mode=OneWay}"
+            <Label Content="{Binding Mage.Dagger.Mod, Mode=OneWay}"
                Grid.Row="10"
                Grid.Column="3"/>
-        
-        <Label Content="Lightning"
+
+            <Label Content="Hand to Hand"
                Grid.Row="11"
                Grid.Column="0"/>
-        <Label Content="{Binding Mage.Lightning.Base}"
+            <Label Content="{Binding Mage.HandToHand.Base}"
                Grid.Row="11"
                Grid.Column="1"/>
-        <Slider Value="{Binding Mage.Lightning.Base, Mode=TwoWay}"
-                Minimum="{Binding Mage.Lightning.Start, Mode=TwoWay}"
+            <Slider Value="{Binding Mage.HandToHand.Base, Mode=TwoWay}"
+                Minimum="{Binding Mage.HandToHand.Start, Mode=TwoWay}"
                 Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
                 VerticalAlignment="Center"
                 Grid.Row="11"
                 Grid.Column="2"/>
-        <Label Content="{Binding Mage.Lightning.Mod, Mode=OneWay}"
+            <Label Content="{Binding Mage.HandToHand.Mod, Mode=OneWay}"
                Grid.Row="11"
                Grid.Column="3"/>
+
+            <Label Content="Staff"
+               Grid.Row="12"
+               Grid.Column="0"/>
+            <Label Content="{Binding Mage.Staff.Base}"
+               Grid.Row="12"
+               Grid.Column="1"/>
+            <Slider Value="{Binding Mage.Staff.Base, Mode=TwoWay}"
+                Minimum="{Binding Mage.Staff.Start, Mode=TwoWay}"
+                Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
+                VerticalAlignment="Center"
+                Grid.Row="12"
+                Grid.Column="2"/>
+            <Label Content="{Binding Mage.Staff.Mod, Mode=OneWay}"
+               Grid.Row="12"
+               Grid.Column="3"/>
+
+            <Label Content="Skills"
+               FontWeight="Bold"
+               Grid.Row="13"
+               Grid.Column="0"/>
+
+            <Label Content="Bless"
+               Grid.Row="14"
+               Grid.Column="0"/>
+            <Label Content="{Binding Mage.Bless.Base}"
+               Grid.Row="14"
+               Grid.Column="1"/>
+            <Slider Value="{Binding Mage.Bless.Base, Mode=TwoWay}"
+                Minimum="{Binding Mage.Bless.Start, Mode=TwoWay}"
+                Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
+                VerticalAlignment="Center"
+                Grid.Row="14"
+                Grid.Column="2"/>
+            <Label Content="{Binding Mage.Bless.Mod, Mode=OneWay}"
+               Grid.Row="14"
+               Grid.Column="3"/>
+
+            <Label Content="Heal"
+               Grid.Row="15"
+               Grid.Column="0"/>
+            <Label Content="{Binding Mage.Heal.Base}"
+               Grid.Row="15"
+               Grid.Column="1"/>
+            <Slider Value="{Binding Mage.Heal.Base, Mode=TwoWay}"
+                Minimum="{Binding Mage.Heal.Start, Mode=TwoWay}"
+                Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
+                VerticalAlignment="Center"
+                Grid.Row="15"
+                Grid.Column="2"/>
+            <Label Content="{Binding Mage.Heal.Mod, Mode=OneWay}"
+               Grid.Row="15"
+               Grid.Column="3"/>
+
+            <Label Content="Freeze"
+               Grid.Row="16"
+               Grid.Column="0"/>
+            <Label Content="{Binding Mage.Freeze.Base}"
+               Grid.Row="16"
+               Grid.Column="1"/>
+            <Slider Value="{Binding Mage.Freeze.Base, Mode=TwoWay}"
+                Minimum="{Binding Mage.Freeze.Start, Mode=TwoWay}"
+                Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
+                VerticalAlignment="Center"
+                Grid.Row="16"
+                Grid.Column="2"/>
+            <Label Content="{Binding Mage.Freeze.Mod, Mode=OneWay}"
+               Grid.Row="16"
+               Grid.Column="3"/>
+
+            <Label Content="Magic Shield"
+               Grid.Row="17"
+               Grid.Column="0"/>
+            <Label Content="{Binding Mage.MagicShield.Base}"
+               Grid.Row="17"
+               Grid.Column="1"/>
+            <Slider Value="{Binding Mage.MagicShield.Base, Mode=TwoWay}"
+                Minimum="{Binding Mage.MagicShield.Start, Mode=TwoWay}"
+                Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
+                VerticalAlignment="Center"
+                Grid.Row="17"
+                Grid.Column="2"/>
+            <Label Content="{Binding Mage.MagicShield.Mod, Mode=OneWay}"
+               Grid.Row="17"
+               Grid.Column="3"/>
+
+            <Label Content="Lightning"
+               Grid.Row="18"
+               Grid.Column="0"/>
+            <Label Content="{Binding Mage.Lightning.Base}"
+               Grid.Row="18"
+               Grid.Column="1"/>
+            <Slider Value="{Binding Mage.Lightning.Base, Mode=TwoWay}"
+                Minimum="{Binding Mage.Lightning.Start, Mode=TwoWay}"
+                Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
+                VerticalAlignment="Center"
+                Grid.Row="18"
+                Grid.Column="2"/>
+            <Label Content="{Binding Mage.Lightning.Mod, Mode=OneWay}"
+               Grid.Row="18"
+               Grid.Column="3"/>
+
+            <Label Content="Fire"
+               Grid.Row="19"
+               Grid.Column="0"/>
+            <Label Content="{Binding Mage.Fire.Base}"
+               Grid.Row="19"
+               Grid.Column="1"/>
+            <Slider Value="{Binding Mage.Fire.Base, Mode=TwoWay}"
+                Minimum="{Binding Mage.Fire.Start, Mode=TwoWay}"
+                Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
+                VerticalAlignment="Center"
+                Grid.Row="19"
+                Grid.Column="2"/>
+            <Label Content="{Binding Mage.Fire.Mod, Mode=OneWay}"
+               Grid.Row="19"
+               Grid.Column="3"/>
+
+            <Label Content="Pulse"
+               Grid.Row="20"
+               Grid.Column="0"/>
+            <Label Content="{Binding Mage.Pulse.Base}"
+               Grid.Row="20"
+               Grid.Column="1"/>
+            <Slider Value="{Binding Mage.Pulse.Base, Mode=TwoWay}"
+                Minimum="{Binding Mage.Pulse.Start, Mode=TwoWay}"
+                Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
+                VerticalAlignment="Center"
+                Grid.Row="20"
+                Grid.Column="2"/>
+            <Label Content="{Binding Mage.Pulse.Mod, Mode=OneWay}"
+               Grid.Row="20"
+               Grid.Column="3"/>
+
+            <Label Content="Bartering"
+               Grid.Row="21"
+               Grid.Column="0"/>
+            <Label Content="{Binding Mage.Bartering.Base}"
+               Grid.Row="21"
+               Grid.Column="1"/>
+            <Slider Value="{Binding Mage.Bartering.Base, Mode=TwoWay}"
+                Minimum="{Binding Mage.Bartering.Start, Mode=TwoWay}"
+                Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
+                VerticalAlignment="Center"
+                Grid.Row="21"
+                Grid.Column="2"/>
+            <Label Content="{Binding Mage.Bartering.Mod, Mode=OneWay}"
+               Grid.Row="21"
+               Grid.Column="3"/>
+
+            <Label Content="Perception"
+               Grid.Row="22"
+               Grid.Column="0"/>
+            <Label Content="{Binding Mage.Perception.Base}"
+               Grid.Row="22"
+               Grid.Column="1"/>
+            <Slider Value="{Binding Mage.Perception.Base, Mode=TwoWay}"
+                Minimum="{Binding Mage.Perception.Start, Mode=TwoWay}"
+                Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
+                VerticalAlignment="Center"
+                Grid.Row="22"
+                Grid.Column="2"/>
+            <Label Content="{Binding Mage.Perception.Mod, Mode=OneWay}"
+               Grid.Row="22"
+               Grid.Column="3"/>
+
+            <Label Content="Stealth"
+               Grid.Row="23"
+               Grid.Column="0"/>
+            <Label Content="{Binding Mage.Stealth.Base}"
+               Grid.Row="23"
+               Grid.Column="1"/>
+            <Slider Value="{Binding Mage.Stealth.Base, Mode=TwoWay}"
+                Minimum="{Binding Mage.Stealth.Start, Mode=TwoWay}"
+                Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
+                VerticalAlignment="Center"
+                Grid.Row="23"
+                Grid.Column="2"/>
+            <Label Content="{Binding Mage.Stealth.Mod, Mode=OneWay}"
+               Grid.Row="23"
+               Grid.Column="3"/>
+
+            <Label Content="Meditate"
+               Grid.Row="24"
+               Grid.Column="0"/>
+            <Label Content="{Binding Mage.Meditate.Base}"
+               Grid.Row="24"
+               Grid.Column="1"/>
+            <Slider Value="{Binding Mage.Meditate.Base, Mode=TwoWay}"
+                Minimum="{Binding Mage.Meditate.Start, Mode=TwoWay}"
+                Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
+                VerticalAlignment="Center"
+                Grid.Row="24"
+                Grid.Column="2"/>
+            <Label Content="{Binding Mage.Meditate.Mod, Mode=OneWay}"
+               Grid.Row="24"
+               Grid.Column="3"/>
+
+            <Label Content="Immunity"
+               Grid.Row="25"
+               Grid.Column="0"/>
+            <Label Content="{Binding Mage.Immunity.Base}"
+               Grid.Row="25"
+               Grid.Column="1"/>
+            <Slider Value="{Binding Mage.Immunity.Base, Mode=TwoWay}"
+                Minimum="{Binding Mage.Immunity.Start, Mode=TwoWay}"
+                Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
+                VerticalAlignment="Center"
+                Grid.Row="25"
+                Grid.Column="2"/>
+            <Label Content="{Binding Mage.Immunity.Mod, Mode=OneWay}"
+               Grid.Row="25"
+               Grid.Column="3"/>
+        </Grid>
     </Grid>
+    
+   
 </UserControl>
