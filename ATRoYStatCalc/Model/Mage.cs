@@ -8,6 +8,10 @@ namespace ATRoYStatCalc.Model
     {
         private bool BlessActive = true;
 
+        public decimal Armor { get; set; }
+        public int Weapon { get; set; }
+        public int Speed { get; set; }
+
         public Skill Staff { get; set; } = new Skill()
         {
             DisplayName = "Staff",
@@ -150,12 +154,14 @@ namespace ATRoYStatCalc.Model
             Staff.Mod = Staff.Base.MaxMagicalBonus(Staff.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
 
             Heal.Mod = Heal.Base.MaxMagicalBonus(Heal.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            Freeze.Mod = Freeze.Base.MaxMagicalBonus(Freeze.EquipmentBonus + (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            Freeze.Mod = Freeze.Base.MaxMagicalBonus(Freeze.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
             MagicShield.Mod = MagicShield.Base.MaxMagicalBonus(MagicShield.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
             Lightning.Mod = Lightning.Base.MaxMagicalBonus(Lightning.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
             Fire.Mod = Fire.Base.MaxMagicalBonus(Fire.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
             Pulse.Mod = Pulse.Base.MaxMagicalBonus(Pulse.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
             Duration.Mod = Duration.Base.MaxMagicalBonus(Duration.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Strength.Mod) / 5);
+
+            Meditate.Mod = Meditate.Base.MaxMagicalBonus(Meditate.EquipmentBonus) + ((Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5);
         }
     }
 }

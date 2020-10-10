@@ -185,9 +185,9 @@ namespace ATRoYStatCalc.Model
 
         public virtual void CalculateStats()
         {
-            Hitpoints.Mod = Hitpoints.Base.MaxMagicalBonus(Hitpoints.EquipmentBonus);
-            Endurance.Mod = Endurance.Base.MaxMagicalBonus(Endurance.EquipmentBonus);
-            Mana.Mod = Mana.Base.MaxMagicalBonus(Mana.EquipmentBonus);
+            Hitpoints.Mod = Hitpoints.Base + Hitpoints.EquipmentBonus;
+            Endurance.Mod = Endurance.Base + Endurance.EquipmentBonus;
+            Mana.Mod = Mana.Base + Mana.EquipmentBonus;
 
             Dagger.Mod = Dagger.Base.MaxMagicalBonus(Dagger.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5); 
             HandToHand.Mod = HandToHand.Base.MaxMagicalBonus(HandToHand.EquipmentBonus) + ((Agility.Mod + Strength.Mod + Strength.Mod) / 5);

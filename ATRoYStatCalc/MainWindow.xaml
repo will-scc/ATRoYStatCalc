@@ -11,8 +11,12 @@
         Height="600"
         Width="800">
     <Grid>
-        <ScrollViewer>
-            <view:MageView/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
+            <view:MageView VerticalAlignment="Stretch"
+                           VerticalContentAlignment="Stretch"
+                           HorizontalAlignment="Stretch"
+                           HorizontalContentAlignment="Stretch"/>
         </ScrollViewer>
     </Grid>
 </Window>
