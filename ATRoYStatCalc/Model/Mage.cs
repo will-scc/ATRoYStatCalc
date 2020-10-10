@@ -10,7 +10,6 @@ namespace ATRoYStatCalc.Model
 
         public decimal Armor { get; set; }
         public int Weapon { get; set; }
-        public int Speed { get; set; }
 
         public Skill Staff { get; set; } = new Skill()
         {
@@ -122,14 +121,13 @@ namespace ATRoYStatCalc.Model
             BlessActive = false;
 
             CalculateAttributes();
-
             CalculateBlessMod();
 
             BlessActive = true;
 
             CalculateAttributes();
-
             CalculateStats();
+            CalculateLevel();
         }
 
         private void CalculateBlessMod()

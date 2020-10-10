@@ -10,8 +10,40 @@ namespace ATRoYStatCalc.Model
     {
         public const int MaxExp = 1600000000;
         public int MaxBase => HardCore ? 107 : 100;
-
         public bool HardCore { get; set; } = false;
+
+        private int _currentExp = 0;
+        public int CurrentExp
+        {
+            get => _currentExp;
+            set
+            {
+                _currentExp = value;
+                RaisePropertyChanged("CurrentExp");
+            }
+        }
+
+        private int _currentLevel = 1;
+        public int CurrentLevel
+        {
+            get => _currentLevel;
+            set
+            {
+                _currentLevel = value;
+                RaisePropertyChanged("CurrentLevel");
+            }
+        }
+
+        private int _speed;
+        public int Speed
+        {
+            get => _speed;
+            set
+            {
+                _speed = value;
+                RaisePropertyChanged("Speed");
+            }
+        }
 
         public List<Skill> Skills { get; set; } = new List<Skill>();
 
@@ -173,6 +205,7 @@ namespace ATRoYStatCalc.Model
         {
             CalculateAttributes();
             CalculateStats();
+            CalculateLevel();
         }
 
         public virtual void CalculateAttributes()
@@ -185,9 +218,11 @@ namespace ATRoYStatCalc.Model
 
         public virtual void CalculateStats()
         {
-            Hitpoints.Mod = Hitpoints.Base + Hitpoints.EquipmentBonus;
-            Endurance.Mod = Endurance.Base + Endurance.EquipmentBonus;
-            Mana.Mod = Mana.Base + Mana.EquipmentBonus;
+            Speed = (Agility.Mod + Agility.Mod + Strength.Mod) / 5;
+
+            Hitpoints.Mod = Hitpoints.Base.MaxMagicalBonus(Hitpoints.EquipmentBonus);
+            Endurance.Mod = Endurance.Base.MaxMagicalBonus(Endurance.EquipmentBonus);
+            Mana.Mod = Mana.Base.MaxMagicalBonus(Endurance.EquipmentBonus);
 
             Dagger.Mod = Dagger.Base.MaxMagicalBonus(Dagger.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5); 
             HandToHand.Mod = HandToHand.Base.MaxMagicalBonus(HandToHand.EquipmentBonus) + ((Agility.Mod + Strength.Mod + Strength.Mod) / 5);
@@ -199,10 +234,30 @@ namespace ATRoYStatCalc.Model
             Immunity.Mod = Immunity.Base.MaxMagicalBonus(Immunity.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Strength.Mod) / 5);
         }
 
+        public void CalculateLevel()
+        {
+            int totalSpentExp = 0;
+
+            foreach (Skill skill in Skills)
+            {
+                int skillExp = 0;
+                for (int i = skill.Start; i < skill.Base; i++)
+                {
+                    skillExp += RaiseCost(skill, i);
+                }
+
+                totalSpentExp += skillExp;
+            }
+
+            CurrentExp = totalSpentExp;
+
+            CurrentLevel = HelperFuncs.GetCurrentLevel(CurrentExp);
+        }
+
         public virtual int RaiseCost(Skill skill, int nextLevel)
         {
             int nr = nextLevel - skill.Start + 1 + 5;
-            return Math.Max(1, nr * 3 * skill.Cost / 10);
+            return Math.Max(1, (nr * nr * nr * skill.Cost) / 10);
         }
     }
 }

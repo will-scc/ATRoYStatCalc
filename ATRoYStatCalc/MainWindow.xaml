@@ -7,7 +7,7 @@
         xmlns:view="clr-namespace:ATRoYStatCalc.View"
         mc:Ignorable="d"
         DataContext="{Binding MainPage, Source={StaticResource ViewModelLocator}}"
-        Title="MainWindow"
+        Title="Belgarath's Stat Calculator"
         Height="600"
         Width="800">
     <Grid>

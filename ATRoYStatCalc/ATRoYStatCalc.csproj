@@ -5,6 +5,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <StartupObject>ATRoYStatCalc.App</StartupObject>
+    <Authors>Will_SCC</Authors>
+    <Product>Astonia: The Return of Yendor Stat Calculator</Product>
+    <Description>A build, equipment and stat calculator for Astonia: The Return of Yendor.</Description>
+    <PackageProjectUrl>https://github.com/will-scc/ATRoYStatCalc</PackageProjectUrl>
+    <NeutralLanguage />
   </PropertyGroup>
 
   <ItemGroup>

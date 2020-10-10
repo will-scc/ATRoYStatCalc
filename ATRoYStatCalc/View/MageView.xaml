@@ -31,22 +31,46 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Row="1"
+            <Grid Margin="10"
+                  Grid.Row="1"
                   Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Content="Level: 100"
-                       Grid.Row="0"/>
-                <Label Content="Armour: 100"
+                
+                <Label Content="Level"
+                       Grid.Row="0"
+                       Grid.Column="0"/>
+                <Label Content="{Binding Mage.CurrentLevel}"
+                       Grid.Row="0"
+                       Grid.Column="1"/>
+                
+                <Label Content="Armour"
                        Grid.Row="1"/>
-                <Label Content="Weapon: 100"
-                       Grid.Row="2"/>
-                 <Label Content="Speed: 100"
-                        Grid.Row="3"/>
+                <Label Content="100"
+                       Grid.Row="1"
+                       Grid.Column="1"/>
+                
+                <Label Content="Weapon"
+                       Grid.Row="2"
+                       Grid.Column="0"/>
+                <Label Content="100"
+                       Grid.Row="2"
+                       Grid.Column="1"/>
+
+                <Label Content="Speed"
+                       Grid.Row="3"
+                       Grid.Column="0"/>
+                <Label Content="{Binding Mage.Speed}"
+                        Grid.Row="3"
+                       Grid.Column="1"/>
             </Grid>
             
             <local:EquipmentSlot Text="Ring 1"
