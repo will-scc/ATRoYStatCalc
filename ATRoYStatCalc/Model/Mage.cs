@@ -137,6 +137,7 @@ namespace ATRoYStatCalc.Model
 
         public override void CalculateAttributes()
         {
+            //blessValue is ignored when Bless isn't active (non-blessed WIAS is used to calculate Bless Mod)
             int blessValue = BlessActive ? Bless.Mod / 4 : 0;
 
             Wisdom.Mod = Wisdom.Base.MaxMagicalBonus(Wisdom.EquipmentBonus + blessValue);
@@ -147,10 +148,11 @@ namespace ATRoYStatCalc.Model
 
         public override void CalculateStats()
         {
+            //Calculate all the shared stats first
             base.CalculateStats();
 
+            //Calculate Mage-specific stats
             Staff.Mod = Staff.Base.MaxMagicalBonus(Staff.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-
             Heal.Mod = Heal.Base.MaxMagicalBonus(Heal.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
             Freeze.Mod = Freeze.Base.MaxMagicalBonus(Freeze.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
             MagicShield.Mod = MagicShield.Base.MaxMagicalBonus(MagicShield.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);

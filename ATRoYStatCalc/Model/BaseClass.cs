@@ -10,7 +10,41 @@ namespace ATRoYStatCalc.Model
     {
         public const int MaxExp = 1600000000;
         public int MaxBase => HardCore ? 107 : 100;
-        public bool HardCore { get; set; } = false;
+        public int MaxBasePTM { get; set; } = 202;
+
+        private bool _hardCore = false;
+        public bool HardCore
+        {
+            get => _hardCore;
+            set
+            {
+                _hardCore = value;
+                RaisePropertyChanged("HardCore");
+                RaisePropertyChanged("MaxBase");
+            }
+        }
+
+        private bool _masterAthlete;
+        public bool MasterAthlete
+        {
+            get => _masterAthlete;
+            set
+            {
+                _masterAthlete = value;
+                RaisePropertyChanged("MasterAthlete");
+            }
+        }
+
+        private bool _masterWarrior;
+        public bool MasterWarrior
+        {
+            get => _masterWarrior;
+            set
+            {
+                _masterWarrior = value;
+                RaisePropertyChanged("MasterWarrior");
+            }
+        }
 
         private int _currentExp = 0;
         public int CurrentExp
@@ -169,14 +203,15 @@ namespace ATRoYStatCalc.Model
             EquipmentBonus = 0
         };
 
-        //public Skill Profession { get; set; } = new Skill()
-        //{
-        //    Start = 1,
-        //    Base = 1,
-        //    Mod = 0,
-        //    Cost = 3,
-        //    EquipmentBonus = 0
-        //};
+        public Skill Profession { get; set; } = new Skill()
+        {
+            DisplayName = "Profession",
+            Start = 1,
+            Base = 1,
+            Mod = 0,
+            Cost = 3,
+            EquipmentBonus = 0
+        };
 
         public BaseClass()
         {
@@ -198,7 +233,7 @@ namespace ATRoYStatCalc.Model
             
             Skills.Add(Immunity);
 
-            //Skills.Add(Profession);
+            Skills.Add(Profession);
         }
 
         public virtual void UpdateCharacter()
@@ -218,8 +253,8 @@ namespace ATRoYStatCalc.Model
 
         public virtual void CalculateStats()
         {
-            Speed = (Agility.Mod + Agility.Mod + Strength.Mod) / 5;
-
+            //Armour
+            //Weapon
             Hitpoints.Mod = Hitpoints.Base.MaxMagicalBonus(Hitpoints.EquipmentBonus);
             Endurance.Mod = Endurance.Base.MaxMagicalBonus(Endurance.EquipmentBonus);
             Mana.Mod = Mana.Base.MaxMagicalBonus(Endurance.EquipmentBonus);
@@ -231,7 +266,19 @@ namespace ATRoYStatCalc.Model
             Perception.Mod = Perception.Base.MaxMagicalBonus(Perception.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
             Stealth.Mod = Stealth.Base.MaxMagicalBonus(Stealth.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Intuition.Mod) / 5);
 
-            Immunity.Mod = Immunity.Base.MaxMagicalBonus(Immunity.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //Immunity was changed from Wis+Int+Str to Int+Int+Str
+            Immunity.Mod = Immunity.Base.MaxMagicalBonus(Immunity.EquipmentBonus) + ((Intuition.Mod + Intuition.Mod + Strength.Mod) / 5);
+
+            Profession.Mod = 0;
+            if (MasterAthlete)
+            {
+                Profession.Mod += 30;
+            }
+
+            if (MasterWarrior)
+            {
+                Profession.Mod += 30;
+            }    
         }
 
         public void CalculateLevel()
@@ -250,14 +297,37 @@ namespace ATRoYStatCalc.Model
             }
 
             CurrentExp = totalSpentExp;
-
             CurrentLevel = HelperFuncs.GetCurrentLevel(CurrentExp);
         }
 
-        public virtual int RaiseCost(Skill skill, int nextLevel)
+        public virtual int RaiseCost(Skill Skill, int NextLevel)
         {
-            int nr = nextLevel - skill.Start + 1 + 5;
-            return Math.Max(1, (nr * nr * nr * skill.Cost) / 10);
+            if (NextLevel <= MaxBase)
+            {
+                int nr = NextLevel - Skill.Start + 1 + 5;
+                return Math.Max(1, (nr * nr * nr * Skill.Cost) / 10);
+            }
+            else
+            {
+                int nr = NextLevel - Skill.Start + 1 + 5;
+                int normalCost = Math.Max(1, (nr * nr * nr * Skill.Cost) / 10);
+
+                int ptmCost;
+                if (Skill.DisplayName == "Wisdom" ||
+                    Skill.DisplayName == "Intuition" ||
+                    Skill.DisplayName == "Agility" ||
+                    Skill.DisplayName == "Strength")
+                {
+                    ptmCost = 6000000;
+                }
+                else
+                {
+                    ptmCost = 3000000;
+                }
+
+                return normalCost + ptmCost;
+            }
+            
         }
     }
 }

@@ -6,7 +6,7 @@
              xmlns:n="clr-namespace:NumericUpDownLib;assembly=NumericUpDownLib"
              mc:Ignorable="d" 
              d:Background="White">
-    <Grid Margin="5">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
@@ -25,6 +25,7 @@
                VerticalContentAlignment="Center"
                HorizontalAlignment="Stretch"
                HorizontalContentAlignment="Left"
+               Margin="1"
                Grid.Row="0"
                Grid.Column="0"
                Grid.ColumnSpan="2"/>
@@ -33,12 +34,14 @@
                   DisplayMemberPath="DisplayName"
                   SelectedValuePath="DisplayName"
                   SelectedValue="{Binding Equipment.First.Stat, Mode=TwoWay}"
+                  Margin="1"
                   Grid.Row="1"
                   Grid.Column="0"/>
         <n:UIntegerUpDown Value="{Binding Equipment.First.Value, Mode=TwoWay}"
                           FormatString="+0"
                           MinValue="0"
                           MaxValue="50"
+                          Margin="1"
                           Grid.Row="1"
                           Grid.Column="1"/>
 
@@ -46,12 +49,14 @@
                   DisplayMemberPath="DisplayName"
                   SelectedValuePath="DisplayName"
                   SelectedValue="{Binding Equipment.Second.Stat, Mode=TwoWay}"
+                  Margin="1"
                   Grid.Row="2"
                   Grid.Column="0"/>
         <n:UIntegerUpDown Value="{Binding Equipment.Second.Value, Mode=TwoWay}"
                           FormatString="+0"
                           MinValue="0"
                           MaxValue="50"
+                          Margin="1"
                           Grid.Row="2"
                           Grid.Column="1"/>
 
@@ -59,12 +64,14 @@
                   DisplayMemberPath="DisplayName"
                   SelectedValuePath="DisplayName"
                   SelectedValue="{Binding Equipment.Third.Stat, Mode=TwoWay}"
+                  Margin="1"
                   Grid.Row="3"
                   Grid.Column="0"/>
         <n:UIntegerUpDown Value="{Binding Equipment.Third.Value, Mode=TwoWay}"
                           FormatString="+0"
                           MinValue="0"
                           MaxValue="50"
+                          Margin="1"
                           Grid.Row="3"
                           Grid.Column="1"/>
 
@@ -72,12 +79,14 @@
                   DisplayMemberPath="DisplayName"
                   SelectedValuePath="DisplayName"
                   SelectedValue="{Binding Equipment.Fourth.Stat, Mode=TwoWay}"
+                  Margin="1"
                   Grid.Row="4"
                   Grid.Column="0"/>
         <n:UIntegerUpDown Value="{Binding Equipment.Fourth.Value, Mode=TwoWay}"
                           FormatString="+0"
                           MinValue="0"
                           MaxValue="50"
+                          Margin="1"
                           Grid.Row="4"
                           Grid.Column="1"/>
     </Grid>

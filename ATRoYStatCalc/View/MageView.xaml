@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:ATRoYStatCalc.View"
              mc:Ignorable="d" 
              d:Background="White"
-             DataContext="{Binding MageControl, Source={StaticResource ViewModelLocator}}">
-    <Grid>
+             DataContext="{Binding MageView, Source={StaticResource ViewModelLocator}}">
+    <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -16,11 +16,11 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
-        <Grid Margin="10"
+        <Grid Margin="5"
               Grid.Row="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -31,7 +31,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Margin="10"
+            <Grid Margin="5"
                   Grid.Row="1"
                   Grid.Column="0">
                 <Grid.ColumnDefinitions>
@@ -43,25 +43,30 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 
                 <Label Content="Level"
+                       FontWeight="Bold"
                        Grid.Row="0"
                        Grid.Column="0"/>
                 <Label Content="{Binding Mage.CurrentLevel}"
+                       FontWeight="Bold"
                        Grid.Row="0"
                        Grid.Column="1"/>
                 
                 <Label Content="Armour"
                        Grid.Row="1"/>
-                <Label Content="100"
+                <Label Content="N/A"
                        Grid.Row="1"
                        Grid.Column="1"/>
                 
                 <Label Content="Weapon"
                        Grid.Row="2"
                        Grid.Column="0"/>
-                <Label Content="100"
+                <Label Content="N/A"
                        Grid.Row="2"
                        Grid.Column="1"/>
 
@@ -71,18 +76,35 @@
                 <Label Content="{Binding Mage.Speed}"
                         Grid.Row="3"
                        Grid.Column="1"/>
+
+                <CheckBox Content="Hardcore"
+                          IsChecked="{Binding Mage.HardCore}"
+                          Margin="5"
+                          Grid.Row="4"
+                          Grid.ColumnSpan="2"/>
+
+                <CheckBox Content="Athlete"
+                          IsChecked="{Binding Mage.MasterAthlete}"
+                          Margin="5"
+                          Grid.Row="5"
+                          Grid.ColumnSpan="2"/>
+
+                <CheckBox Content="Light/Dark Warrior"
+                          IsChecked="{Binding Mage.MasterWarrior}"
+                          Margin="5"
+                          Grid.Row="6"
+                          Grid.ColumnSpan="2"/>
             </Grid>
-            
-            <local:EquipmentSlot Text="Ring 1"
-                                 AvailableStats="{Binding DataContext.Mage.Skills, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Equipment="{Binding DataContext.EquipmentSet.FirstRing, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Margin="0,0,5,0"
-                                 Grid.Row="0"
-                                 Grid.Column="0"/>
 
             <local:EquipmentSlot Text="Weapon"
                                  AvailableStats="{Binding DataContext.Mage.Skills, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                  Equipment="{Binding DataContext.EquipmentSet.Weapon, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                 Grid.Row="0"
+                                 Grid.Column="0"/>
+            
+            <local:EquipmentSlot Text="Ring 1"
+                                 AvailableStats="{Binding DataContext.Mage.Skills, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                 Equipment="{Binding DataContext.EquipmentSet.FirstRing, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                  Grid.Row="0"
                                  Grid.Column="1"/>
 
@@ -139,9 +161,8 @@
                                  Equipment="{Binding DataContext.EquipmentSet.Boots, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                  Grid.Row="1"
                                  Grid.Column="5"/>
-
         </Grid>
-        
+
         <Grid x:Name="CharacterStats"
               Margin="10"
               Grid.Row="1">
@@ -209,8 +230,8 @@
                 Grid.Row="1"
                 Grid.Column="2"/>
             <Label Content="{Binding Mage.Hitpoints.Mod, Mode=OneWay}"
-               Grid.Row="1"
-               Grid.Column="3"/>
+                   Grid.Row="1"
+                   Grid.Column="3"/>
 
             <Label Content="Endurance"
                Grid.Row="2"
@@ -560,8 +581,24 @@
                 Grid.Row="25"
                 Grid.Column="2"/>
             <Label Content="{Binding Mage.Immunity.Mod, Mode=OneWay}"
-               Grid.Row="25"
-               Grid.Column="3"/>
+                   Grid.Row="25"
+                   Grid.Column="3"/>
+
+            <Label Content="Profession"
+                   Grid.Row="26"
+                   Grid.Column="0"/>
+            <Label Content="{Binding Mage.Profession.Base}"
+                   Grid.Row="26"
+                   Grid.Column="1"/>
+            <Slider Value="{Binding Mage.Profession.Base, Mode=TwoWay}"
+                    Minimum="{Binding Mage.Profession.Start, Mode=TwoWay}"
+                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
+                    VerticalAlignment="Center"
+                    Grid.Row="26"
+                    Grid.Column="2"/>
+            <Label Content="{Binding Mage.Profession.Mod, Mode=OneWay}"
+                   Grid.Row="26"
+                   Grid.Column="3"/>
         </Grid>
     </Grid>
     

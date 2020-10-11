@@ -15,12 +15,15 @@ namespace ATRoYStatCalc.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<WarriorViewModel>();
             SimpleIoc.Default.Register<MageViewModel>();
+            SimpleIoc.Default.Register<SeyanViewModel>();
         }
 
         public MainViewModel MainPage => SimpleIoc.Default.GetInstance<MainViewModel>();
 
-        public WarriorViewModel WarriorControl => SimpleIoc.Default.GetInstance<WarriorViewModel>();
+        public WarriorViewModel WarriorView => SimpleIoc.Default.GetInstance<WarriorViewModel>();
 
-        public MageViewModel MageControl => SimpleIoc.Default.GetInstance<MageViewModel>();
+        public MageViewModel MageView => SimpleIoc.Default.GetInstance<MageViewModel>();
+
+        public SeyanViewModel SeyanView => SimpleIoc.Default.GetInstance<SeyanViewModel>();
     }
 }

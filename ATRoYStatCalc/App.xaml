@@ -2,9 +2,13 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="clr-namespace:ATRoYStatCalc.ViewModel"
+             xmlns:c="clr-namespace:ATRoYStatCalc.Converters"
              xmlns:local="clr-namespace:ATRoYStatCalc"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <vm:ViewModelLocator x:Key="ViewModelLocator"/>
+        <ResourceDictionary>
+            <vm:ViewModelLocator x:Key="ViewModelLocator"/>
+            <c:MaxModColourConverter x:Key="MaxModExceededCol"/>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

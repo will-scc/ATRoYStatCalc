@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace ATRoYStatCalc
+namespace ATRoYStatCalc.View
 {
     /// <summary>
     /// Interaction logic for WarriorSkills.xaml
