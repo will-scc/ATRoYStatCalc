@@ -9,22 +9,16 @@ using System.Windows.Media;
 
 namespace ATRoYStatCalc.Converters
 {
-    class MaxModColourConverter : IMultiValueConverter
+    class MaxModColourConverter : IValueConverter
     {
-
-        //Skill skill = (Skill)value;
-        //return skill.EquipmentBonus > (skill.Base + (skill.Base / 2)) ? Brushes.Red : Brushes.Black;
-        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            int baseValue = (int)values[0];
-            int bonusValue = (int)values[1];
-            
-            return bonusValue > (baseValue + (baseValue / 2)) ? Brushes.Red : Brushes.Black;
+            return (bool)value ? Brushes.Red : Brushes.Black;
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

@@ -9,8 +9,8 @@ namespace ATRoYStatCalc.Model
     public class BaseClass : ObservableObject
     {
         public const int MaxExp = 1600000000;
-        public int MaxBase => HardCore ? 107 : 100;
-        public int MaxBasePTM { get; set; } = 202;
+        public bool MaxExpReached => CurrentExp >= MaxExp ? true : false;
+        public int MaxBase => 230;
 
         private bool _hardCore = false;
         public bool HardCore
@@ -302,7 +302,8 @@ namespace ATRoYStatCalc.Model
 
         public virtual int RaiseCost(Skill Skill, int NextLevel)
         {
-            if (NextLevel <= MaxBase)
+            int maxNonPTMBase = HardCore ? 107 : 100;
+            if (NextLevel <= maxNonPTMBase)
             {
                 int nr = NextLevel - Skill.Start + 1 + 5;
                 return Math.Max(1, (nr * nr * nr * Skill.Cost) / 10);

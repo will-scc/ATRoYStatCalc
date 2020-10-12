@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using System.Runtime.CompilerServices;
 
 namespace ATRoYStatCalc.Model
 {
@@ -34,6 +35,7 @@ namespace ATRoYStatCalc.Model
             {
                 _base = value;
                 RaisePropertyChanged("Base");
+                RaisePropertyChanged("MaxModExceeded");
             }
         }
 
@@ -67,7 +69,10 @@ namespace ATRoYStatCalc.Model
             {
                 _equipmentBonus = value;
                 RaisePropertyChanged("EquipmentBonus");
+                RaisePropertyChanged("MaxModExceeded");
             }
         }
+
+        public bool MaxModExceeded => EquipmentBonus > (Base / 2) ? true : false;
     }
 }
