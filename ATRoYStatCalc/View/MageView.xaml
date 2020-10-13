@@ -80,19 +80,19 @@
                 <CheckBox Content="Hardcore"
                           IsChecked="{Binding Mage.HardCore}"
                           Margin="5"
-                          Grid.Row="4"
+                          Grid.Row="6"
                           Grid.ColumnSpan="2" />
 
                 <CheckBox Content="Athlete"
                           IsChecked="{Binding Mage.MasterAthlete}"
                           Margin="5"
-                          Grid.Row="5"
+                          Grid.Row="4"
                           Grid.ColumnSpan="2" />
 
                 <CheckBox Content="Light/Dark Warrior"
                           IsChecked="{Binding Mage.MasterWarrior}"
                           Margin="5"
-                          Grid.Row="6"
+                          Grid.Row="5"
                           Grid.ColumnSpan="2" />
             </Grid>
 
@@ -623,6 +623,5 @@
                    Grid.Column="3" />
         </Grid>
     </Grid>
-
 
 </UserControl>
