@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace ATRoYStatCalc
 {
@@ -9,15 +10,15 @@ namespace ATRoYStatCalc
             return Bonus > Base / 2 ? Base + (Base / 2) : Base + Bonus;
         }
 
-        public static int GetCurrentLevel(int CurrentExp)
+        public static int GetCurrentLevel(long CurrentExp)
         {
             int level = 0;
-            int usedExp = 0;
+            long usedExp = 0;
 
             do
             {
                 level++;
-                usedExp += (int)Math.Round(RequiredExp(level, level+1), MidpointRounding.ToZero);
+                usedExp += (long)Math.Round(RequiredExp(level, level+1), MidpointRounding.ToZero);
             } while (CurrentExp >= usedExp);
 
             return level;

@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection.Metadata;
 using System.Text;
 
@@ -8,7 +9,7 @@ namespace ATRoYStatCalc.Model
 {
     public class BaseClass : ObservableObject
     {
-        public const int MaxExp = 1600000000;
+        public const long MaxExp = 1600000000;
         public bool MaxExpReached => CurrentExp >= MaxExp ? true : false;
         
         //seyan is 202
@@ -48,8 +49,8 @@ namespace ATRoYStatCalc.Model
             }
         }
 
-        private int _currentExp = 0;
-        public int CurrentExp
+        private long _currentExp = 0;
+        public long CurrentExp
         {
             get => _currentExp;
             set
@@ -205,6 +206,8 @@ namespace ATRoYStatCalc.Model
         {
             Skills.Add(Hitpoints);
             Skills.Add(Endurance);
+            Skills.Add(Mana);
+
             Skills.Add(Wisdom);
             Skills.Add(Intuition);
             Skills.Add(Agility);
@@ -237,6 +240,8 @@ namespace ATRoYStatCalc.Model
         {
             //Armour
             //Weapon
+            //Speed
+
             Hitpoints.Mod = Hitpoints.Base.MaxMagicalBonus(Hitpoints.EquipmentBonus);
             Endurance.Mod = Endurance.Base.MaxMagicalBonus(Endurance.EquipmentBonus);
 
@@ -264,7 +269,7 @@ namespace ATRoYStatCalc.Model
 
         public void CalculateLevel()
         {
-            int totalSpentExp = 0;
+            long totalSpentExp = 0;
 
             foreach (Skill skill in Skills)
             {
@@ -283,7 +288,8 @@ namespace ATRoYStatCalc.Model
 
         public virtual int RaiseCost(Skill Skill, int NextLevel)
         {
-            int maxNonPTMBase = HardCore ? 107 : 100;
+            int maxNonPTMBase = HardCore ? 120 : 100;
+
             if (NextLevel <= maxNonPTMBase)
             {
                 int nr = NextLevel - Skill.Start + 1 + 5;
@@ -309,7 +315,6 @@ namespace ATRoYStatCalc.Model
 
                 return normalCost + ptmCost;
             }
-            
         }
     }
 }
