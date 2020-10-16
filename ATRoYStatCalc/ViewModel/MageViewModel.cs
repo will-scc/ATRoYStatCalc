@@ -103,5 +103,11 @@ namespace ATRoYStatCalc.ViewModel
             }
 
         }
+
+
+        public void Save()
+        {
+
+        }
     }
 }

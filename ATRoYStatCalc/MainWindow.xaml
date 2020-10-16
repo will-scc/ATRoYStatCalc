@@ -28,7 +28,7 @@
             <MenuItem Header="File">
                 <MenuItem Header="Import"/>
                 <MenuItem Header="Export"/>
-            </MenuItem>/>
+            </MenuItem>
             <MenuItem Header="Warrior"
                       Command="{Binding SetWarriorView}"/>
             <MenuItem Header="Mage"

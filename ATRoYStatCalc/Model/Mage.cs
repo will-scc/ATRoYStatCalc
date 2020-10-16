@@ -8,9 +8,15 @@ namespace ATRoYStatCalc.Model
     {
         private bool BlessActive = true;
 
-        public decimal Armor { get; set; }
-        public int Weapon { get; set; }
-
+        public Skill Mana { get; set; } = new Skill()
+        {
+            DisplayName = "Mana",
+            Start = 10,
+            Base = 10,
+            Mod = 10,
+            Cost = 3,
+            EquipmentBonus = 0
+        };
         public Skill Staff { get; set; } = new Skill()
         {
             DisplayName = "Staff",
@@ -104,6 +110,7 @@ namespace ATRoYStatCalc.Model
 
         public Mage()
         {
+            Skills.Add(Mana);
             Skills.Add(Staff);
             Skills.Add(Bless);
             Skills.Add(Heal);
@@ -152,6 +159,7 @@ namespace ATRoYStatCalc.Model
             base.CalculateStats();
 
             //Calculate Mage-specific stats
+            Mana.Mod = Mana.Base.MaxMagicalBonus(Mana.EquipmentBonus);
             Staff.Mod = Staff.Base.MaxMagicalBonus(Staff.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
             Heal.Mod = Heal.Base.MaxMagicalBonus(Heal.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
             Freeze.Mod = Freeze.Base.MaxMagicalBonus(Freeze.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
@@ -160,8 +168,16 @@ namespace ATRoYStatCalc.Model
             Fire.Mod = Fire.Base.MaxMagicalBonus(Fire.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
             Pulse.Mod = Pulse.Base.MaxMagicalBonus(Pulse.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
             Duration.Mod = Duration.Base.MaxMagicalBonus(Duration.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Strength.Mod) / 5);
-
             Meditate.Mod = Meditate.Base.MaxMagicalBonus(Meditate.EquipmentBonus) + ((Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5);
+
+            if (MasterAthlete)
+            {
+                Speed = ((Agility.Mod + Agility.Mod + Strength.Mod) / 5) + (30 * 3);
+            }
+            else
+            {
+                Speed = ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
+            }
         }
     }
 }

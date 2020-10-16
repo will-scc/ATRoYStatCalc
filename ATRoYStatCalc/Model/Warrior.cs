@@ -111,6 +111,7 @@
             //Calculate Warrior-specific stats
             Sword.Mod = Sword.Base.MaxMagicalBonus(Sword.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
             TwoHanded.Mod = TwoHanded.Base.MaxMagicalBonus(TwoHanded.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
+            Rage.Mod = Rage.Base.MaxMagicalBonus(Rage.EquipmentBonus) + ((Strength.Mod + Strength.Mod + Intuition.Mod) / 5);
             BodyControl.Mod = BodyControl.Base.MaxMagicalBonus(BodyControl.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
             ArmorSkill.Mod = ArmorSkill.Base.MaxMagicalBonus(ArmorSkill.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
             Attack.Mod = Attack.Base.MaxMagicalBonus(Attack.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);

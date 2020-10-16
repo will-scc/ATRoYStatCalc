@@ -38,5 +38,30 @@ namespace ATRoYStatCalc.ViewModel
         {
             CurrentView = new WarriorViewModel();
         });
+
+        private ICommand _setSeyanView;
+        public ICommand SetSeyanView => _setSeyanView ??= new RelayCommand(() =>
+        {
+            CurrentView = new SeyanViewModel();
+        });
+
+        private void Export()
+        {
+            if (CurrentView.GetType() == typeof(MageViewModel))
+            {
+                MageViewModel temp = (MageViewModel)CurrentView;
+                temp.Save();
+            }
+
+            if (CurrentView.GetType() == typeof(WarriorViewModel))
+            {
+                WarriorViewModel temp = (WarriorViewModel)CurrentView;
+            }
+
+            if (CurrentView.GetType() == typeof(SeyanViewModel))
+            {
+                SeyanViewModel temp = (SeyanViewModel)CurrentView;
+            }
+        }
     }
 }

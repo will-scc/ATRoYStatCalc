@@ -10,6 +10,8 @@ namespace ATRoYStatCalc.Model
     {
         public const int MaxExp = 1600000000;
         public bool MaxExpReached => CurrentExp >= MaxExp ? true : false;
+        
+        //seyan is 202
         public int MaxBase => 230;
 
         private bool _hardCore = false;
@@ -99,16 +101,6 @@ namespace ATRoYStatCalc.Model
             Cost = 3,
             EquipmentBonus = 0
         };
-        public Skill Mana { get; set; } = new Skill()
-        {
-            DisplayName = "Mana",
-            Start = 10,
-            Base = 10,
-            Mod = 10,
-            Cost = 3,
-            EquipmentBonus = 0
-        };
-
         public Skill Wisdom { get; set; } = new Skill()
         {
             DisplayName = "Wisdom",
@@ -145,7 +137,6 @@ namespace ATRoYStatCalc.Model
             Cost = 2,
             EquipmentBonus = 0
         };
-
         public Skill Dagger { get; set; } = new Skill()
         {
             DisplayName = "Dagger",
@@ -164,7 +155,6 @@ namespace ATRoYStatCalc.Model
             Cost = 1,
             EquipmentBonus = 0
         };
-
         public Skill Bartering { get; set; } = new Skill()
         {
             DisplayName = "Bartering",
@@ -192,7 +182,6 @@ namespace ATRoYStatCalc.Model
             Cost = 1,
             EquipmentBonus = 0
         };
-
         public Skill Immunity { get; set; } = new Skill()
         {
             DisplayName = "Immunity",
@@ -202,7 +191,6 @@ namespace ATRoYStatCalc.Model
             Cost = 1,
             EquipmentBonus = 0
         };
-
         public Skill Profession { get; set; } = new Skill()
         {
             DisplayName = "Profession",
@@ -217,22 +205,16 @@ namespace ATRoYStatCalc.Model
         {
             Skills.Add(Hitpoints);
             Skills.Add(Endurance);
-            Skills.Add(Mana);
-
             Skills.Add(Wisdom);
             Skills.Add(Intuition);
             Skills.Add(Agility);
             Skills.Add(Strength);
-
             Skills.Add(Dagger);
             Skills.Add(HandToHand);
-            
             Skills.Add(Bartering);
             Skills.Add(Perception);
             Skills.Add(Stealth);
-            
             Skills.Add(Immunity);
-
             Skills.Add(Profession);
         }
 
@@ -257,7 +239,6 @@ namespace ATRoYStatCalc.Model
             //Weapon
             Hitpoints.Mod = Hitpoints.Base.MaxMagicalBonus(Hitpoints.EquipmentBonus);
             Endurance.Mod = Endurance.Base.MaxMagicalBonus(Endurance.EquipmentBonus);
-            Mana.Mod = Mana.Base.MaxMagicalBonus(Endurance.EquipmentBonus);
 
             Dagger.Mod = Dagger.Base.MaxMagicalBonus(Dagger.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5); 
             HandToHand.Mod = HandToHand.Base.MaxMagicalBonus(HandToHand.EquipmentBonus) + ((Agility.Mod + Strength.Mod + Strength.Mod) / 5);
