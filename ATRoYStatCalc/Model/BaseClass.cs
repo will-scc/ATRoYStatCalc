@@ -10,7 +10,7 @@ namespace ATRoYStatCalc.Model
     public class BaseClass : ObservableObject
     {
         public const long MaxExp = 1600000000;
-        public bool MaxExpReached => CurrentExp >= MaxExp ? true : false;
+        public bool MaxExpExceeded => CurrentExp > MaxExp;
         
         //seyan is 202
         public int MaxBase => 230;
@@ -202,12 +202,12 @@ namespace ATRoYStatCalc.Model
             EquipmentBonus = 0
         };
 
+        public bool MissingProfessionBases => Profession.Base < Profession.Mod;
+
         public BaseClass()
         {
             Skills.Add(Hitpoints);
             Skills.Add(Endurance);
-            Skills.Add(Mana);
-
             Skills.Add(Wisdom);
             Skills.Add(Intuition);
             Skills.Add(Agility);
@@ -240,14 +240,10 @@ namespace ATRoYStatCalc.Model
         {
             //Armour
             //Weapon
-            //Speed
-
             Hitpoints.Mod = Hitpoints.Base.MaxMagicalBonus(Hitpoints.EquipmentBonus);
             Endurance.Mod = Endurance.Base.MaxMagicalBonus(Endurance.EquipmentBonus);
-
             Dagger.Mod = Dagger.Base.MaxMagicalBonus(Dagger.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5); 
             HandToHand.Mod = HandToHand.Base.MaxMagicalBonus(HandToHand.EquipmentBonus) + ((Agility.Mod + Strength.Mod + Strength.Mod) / 5);
-
             Bartering.Mod = Bartering.Base.MaxMagicalBonus(Bartering.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
             Perception.Mod = Perception.Base.MaxMagicalBonus(Perception.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
             Stealth.Mod = Stealth.Base.MaxMagicalBonus(Stealth.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Intuition.Mod) / 5);
@@ -260,11 +256,14 @@ namespace ATRoYStatCalc.Model
             {
                 Profession.Mod += 30;
             }
-
+            
             if (MasterWarrior)
             {
                 Profession.Mod += 30;
-            }    
+            }
+
+            RaisePropertyChanged("MissingProfessionBases");
+            RaisePropertyChanged("MaxExpExceeded");
         }
 
         public void CalculateLevel()
@@ -289,16 +288,15 @@ namespace ATRoYStatCalc.Model
         public virtual int RaiseCost(Skill Skill, int NextLevel)
         {
             int maxNonPTMBase = HardCore ? 120 : 100;
-
+            int nr = NextLevel - Skill.Start + 1 + 5;
+            
             if (NextLevel <= maxNonPTMBase)
             {
-                int nr = NextLevel - Skill.Start + 1 + 5;
-                return Math.Max(1, (nr * nr * nr * Skill.Cost) / 10);
+                return Math.Max(1, nr * nr * nr * Skill.Cost / 10);
             }
             else
             {
-                int nr = NextLevel - Skill.Start + 1 + 5;
-                int normalCost = Math.Max(1, (nr * nr * nr * Skill.Cost) / 10);
+                int normalCost = Math.Max(1, nr * nr * nr * Skill.Cost / 10);
 
                 int ptmCost;
                 if (Skill.DisplayName == "Wisdom" ||

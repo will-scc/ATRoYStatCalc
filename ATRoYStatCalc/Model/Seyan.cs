@@ -234,10 +234,6 @@ namespace ATRoYStatCalc.Model
             Tactics.Mod = Tactics.Base.MaxMagicalBonus(Tactics.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
             SurroundHit.Mod = SurroundHit.Base.MaxMagicalBonus(SurroundHit.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
             SpeedSkill.Mod = SpeedSkill.Base.MaxMagicalBonus(SpeedSkill.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-
-            Speed = MasterAthlete ? (SpeedSkill.Mod / 2) + (30 * 3) : SpeedSkill.Mod / 2;
-
-            //Calculate Mage-specific stats
             Mana.Mod = Mana.Base.MaxMagicalBonus(Mana.EquipmentBonus);
             Heal.Mod = Heal.Base.MaxMagicalBonus(Heal.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
             Freeze.Mod = Freeze.Base.MaxMagicalBonus(Freeze.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
@@ -247,20 +243,41 @@ namespace ATRoYStatCalc.Model
             Pulse.Mod = Pulse.Base.MaxMagicalBonus(Pulse.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
             Meditate.Mod = Meditate.Base.MaxMagicalBonus(Meditate.EquipmentBonus) + ((Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5);
 
-            if (MasterAthlete)
+            Speed = MasterAthlete
+                ? (SpeedSkill.Mod / 2) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5) + (30 * 3)
+                : (SpeedSkill.Mod / 2) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
+        }
+
+        public override int RaiseCost(Skill Skill, int NextLevel)
+        {
+            //Seyan has slightly different skill costs
+            int maxNonPTMBase = HardCore ? 107 : 100;
+
+            if (NextLevel <= maxNonPTMBase)
             {
-                Speed = ((Agility.Mod + Agility.Mod + Strength.Mod) / 5) + (30 * 3);
+                int nr = NextLevel - Skill.Start + 1 + 5;
+                return Math.Max(1, (nr * nr * nr * Skill.Cost * 4) / 30);
             }
             else
             {
-                Speed = ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
-            }
-        }
+                int nr = NextLevel - Skill.Start + 1 + 5;
+                int normalCost = Math.Max(1, (nr * nr * nr * Skill.Cost * 4) / 30);
 
-        public override int RaiseCost(Skill skill, int nextLevel)
-        {
-            int nr = nextLevel - skill.Start + 1 + 5;
-            return Math.Max(1, nr * 3 * skill.Cost * 4 / 30);
+                int ptmCost;
+                if (Skill.DisplayName == "Wisdom" ||
+                    Skill.DisplayName == "Intuition" ||
+                    Skill.DisplayName == "Agility" ||
+                    Skill.DisplayName == "Strength")
+                {
+                    ptmCost = 6000000;
+                }
+                else
+                {
+                    ptmCost = 3000000;
+                }
+
+                return normalCost + ptmCost;
+            }
         }
     }
 }

@@ -8,7 +8,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <vm:ViewModelLocator x:Key="ViewModelLocator"/>
-            <c:MaxModColourConverter x:Key="MaxModExceededCol"/>
+            <c:MaxModColourConverter x:Key="BoolToRed"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

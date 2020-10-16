@@ -13,12 +13,16 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <Grid Margin="5"
-              Grid.Row="0">
+              Grid.Row="0"
+              Grid.Column="0"
+              Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
@@ -57,44 +61,53 @@
                        Grid.Row="0"
                        Grid.Column="1" />
 
-                <Label Content="Armour"
-                       Grid.Row="1" />
-                <Label Content="N/A"
+                <Label Content="Experience"
+                       Grid.Row="1"
+                       Grid.Column="0" />
+
+                <Label Content="{Binding Mage.CurrentExp}"
+                       Foreground="{Binding Mage.MaxExpExceeded, Converter={StaticResource BoolToRed}}"
                        Grid.Row="1"
                        Grid.Column="1" />
 
-                <Label Content="Weapon"
-                       Grid.Row="2"
-                       Grid.Column="0" />
+                <Label Content="Armour"
+                       Grid.Row="2" />
                 <Label Content="N/A"
                        Grid.Row="2"
                        Grid.Column="1" />
 
-                <Label Content="Speed"
+                <Label Content="Weapon"
                        Grid.Row="3"
                        Grid.Column="0" />
-                <Label Content="{Binding Mage.Speed}"
+                <Label Content="N/A"
                        Grid.Row="3"
                        Grid.Column="1" />
 
-                <CheckBox Content="Hardcore"
-                          IsChecked="{Binding Mage.HardCore}"
-                          Margin="5"
-                          Grid.Row="6"
-                          Grid.ColumnSpan="2" />
+                <Label Content="Speed"
+                       Grid.Row="4"
+                       Grid.Column="0" />
+                <Label Content="{Binding Mage.Speed}"
+                       Grid.Row="4"
+                       Grid.Column="1" />
 
+                
+            </Grid>
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="5"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="6">
                 <CheckBox Content="Athlete"
                           IsChecked="{Binding Mage.MasterAthlete}"
-                          Margin="5"
-                          Grid.Row="4"
-                          Grid.ColumnSpan="2" />
+                          Margin="5"/>
 
                 <CheckBox Content="Light/Dark Warrior"
                           IsChecked="{Binding Mage.MasterWarrior}"
-                          Margin="5"
-                          Grid.Row="5"
-                          Grid.ColumnSpan="2" />
-            </Grid>
+                          Margin="5"/>
+                <CheckBox Content="Hardcore"
+                          IsChecked="{Binding Mage.HardCore}"
+                          Margin="5" />
+            </StackPanel>
 
             <local:EquipmentSlot Text="Weapon"
                                  AvailableStats="{Binding DataContext.Mage.Skills, RelativeSource={RelativeSource AncestorType=UserControl}}"
@@ -163,9 +176,12 @@
                                  Grid.Column="5" />
         </Grid>
 
+        
+        
         <Grid x:Name="CharacterStats"
-              Margin="10"
-              Grid.Row="1">
+              Margin="5"
+              Grid.Row="1"
+              Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
@@ -230,7 +246,7 @@
                     Grid.Row="1"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Hitpoints.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Hitpoints.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Hitpoints.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="1"
                    Grid.Column="3" />
 
@@ -247,7 +263,7 @@
                     Grid.Row="2"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Endurance.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Endurance.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Endurance.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="2"
                    Grid.Column="3" />
 
@@ -264,7 +280,7 @@
                     Grid.Row="3"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Mana.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Mana.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Mana.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="3"
                    Grid.Column="3" />
 
@@ -286,7 +302,7 @@
                     Grid.Row="5"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Wisdom.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Wisdom.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Wisdom.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="5"
                    Grid.Column="3" />
 
@@ -303,7 +319,7 @@
                     Grid.Row="6"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Intuition.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Intuition.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Intuition.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="6"
                    Grid.Column="3" />
 
@@ -320,7 +336,7 @@
                     Grid.Row="7"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Agility.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Agility.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Agility.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="7"
                    Grid.Column="3" />
 
@@ -337,7 +353,7 @@
                     Grid.Row="8"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Strength.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Strength.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Strength.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="8"
                    Grid.Column="3" />
 
@@ -359,7 +375,7 @@
                     Grid.Row="10"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Dagger.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Dagger.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Dagger.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="10"
                    Grid.Column="3" />
 
@@ -376,7 +392,7 @@
                     Grid.Row="11"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.HandToHand.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.HandToHand.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.HandToHand.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="11"
                    Grid.Column="3" />
 
@@ -393,7 +409,7 @@
                     Grid.Row="12"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Staff.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Staff.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Staff.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="12"
                    Grid.Column="3" />
 
@@ -415,7 +431,7 @@
                     Grid.Row="14"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Bless.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Bless.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Bless.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="14"
                    Grid.Column="3" />
 
@@ -432,7 +448,7 @@
                     Grid.Row="15"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Heal.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Heal.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Heal.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="15"
                    Grid.Column="3" />
 
@@ -449,7 +465,7 @@
                     Grid.Row="16"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Freeze.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Freeze.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Freeze.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="16"
                    Grid.Column="3" />
 
@@ -466,7 +482,7 @@
                     Grid.Row="17"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.MagicShield.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.MagicShield.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.MagicShield.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="17"
                    Grid.Column="3" />
 
@@ -483,7 +499,7 @@
                     Grid.Row="18"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Lightning.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Lightning.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Lightning.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="18"
                    Grid.Column="3" />
 
@@ -500,7 +516,7 @@
                     Grid.Row="19"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Fire.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Fire.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Fire.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="19"
                    Grid.Column="3" />
 
@@ -517,7 +533,7 @@
                     Grid.Row="20"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Pulse.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Pulse.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Pulse.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="20"
                    Grid.Column="3" />
 
@@ -534,7 +550,7 @@
                     Grid.Row="21"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Bartering.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Bartering.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Bartering.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="21"
                    Grid.Column="3" />
 
@@ -551,7 +567,7 @@
                     Grid.Row="22"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Perception.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Perception.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Perception.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="22"
                    Grid.Column="3" />
 
@@ -568,7 +584,7 @@
                     Grid.Row="23"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Stealth.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Stealth.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Stealth.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="23"
                    Grid.Column="3" />
 
@@ -585,7 +601,7 @@
                     Grid.Row="24"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Meditate.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Meditate.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Meditate.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="24"
                    Grid.Column="3" />
 
@@ -602,7 +618,7 @@
                     Grid.Row="25"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Immunity.Mod, Mode=OneWay}"
-                   Foreground="{Binding Mage.Immunity.MaxModExceeded, Mode=OneWay, Converter={StaticResource MaxModExceededCol}}"
+                   Foreground="{Binding Mage.Immunity.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="25"
                    Grid.Column="3" />
 
@@ -619,6 +635,7 @@
                     Grid.Row="26"
                     Grid.Column="2" />
             <Label Content="{Binding Mage.Profession.Mod, Mode=OneWay}"
+                   Foreground="{Binding Mage.MissingProfessionBases, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="26"
                    Grid.Column="3" />
         </Grid>
