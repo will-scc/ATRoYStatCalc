@@ -26,15 +26,17 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
             <MenuItem Header="File">
-                <MenuItem Header="Import"/>
-                <MenuItem Header="Export"/>
+                <MenuItem Header="Import"
+                          IsEnabled="False"/>
+                <MenuItem Header="Export"
+                          IsEnabled="False"/>
             </MenuItem>
             <MenuItem Header="Warrior"
                       Command="{Binding SetWarriorView}"/>
             <MenuItem Header="Mage"
                       Command="{Binding SetMageView}"/>
             <MenuItem Header="Seyan'Du"
-                      Command=""/>
+                      Command="{Binding SetSeyanView}"/>
         </Menu>
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"
