@@ -89,24 +89,23 @@
                 <Label Content="{Binding Mage.Speed}"
                        Grid.Row="4"
                        Grid.Column="1" />
-
-                
             </Grid>
 
             <StackPanel Orientation="Horizontal"
-                        Margin="5"
                         Grid.Row="2"
                         Grid.ColumnSpan="6">
-                <CheckBox Content="Athlete"
-                          IsChecked="{Binding Mage.MasterAthlete}"
-                          Margin="5"/>
-
-                <CheckBox Content="Light/Dark Warrior"
-                          IsChecked="{Binding Mage.MasterWarrior}"
-                          Margin="5"/>
                 <CheckBox Content="Hardcore"
                           IsChecked="{Binding Mage.HardCore}"
                           Margin="5" />
+                <CheckBox Content="Master Athlete"
+                          IsChecked="{Binding Mage.MasterAthlete}"
+                          Margin="5"/>
+                <CheckBox Content="Master Light Warrior"
+                          IsChecked="{Binding Seyan.MasterLightWarrior}"
+                          Margin="5"/>
+                <CheckBox Content="Master Dark Warrior"
+                          IsChecked="{Binding Seyan.MasterDarkWarrior}"
+                          Margin="5"/>
             </StackPanel>
 
             <local:EquipmentSlot Text="Weapon"
@@ -233,7 +232,7 @@
                    Grid.Row="0"
                    Grid.Column="3" />
 
-            <Label Content="Hitpoints"
+            <Label Content="{Binding Mage.Hitpoints.DisplayName}"
                    Grid.Row="1"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Hitpoints.Base}"
@@ -250,7 +249,7 @@
                    Grid.Row="1"
                    Grid.Column="3" />
 
-            <Label Content="Endurance"
+            <Label Content="{Binding Mage.Endurance.DisplayName}"
                    Grid.Row="2"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Endurance.Base}"
@@ -267,7 +266,7 @@
                    Grid.Row="2"
                    Grid.Column="3" />
 
-            <Label Content="Mana"
+            <Label Content="{Binding Mage.Mana.DisplayName}"
                    Grid.Row="3"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Mana.Base}"
@@ -289,7 +288,7 @@
                    Grid.Row="4"
                    Grid.Column="0" />
 
-            <Label Content="Wisdom"
+            <Label Content="{Binding Mage.Wisdom.DisplayName}"
                    Grid.Row="5"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Wisdom.Base}"
@@ -306,7 +305,7 @@
                    Grid.Row="5"
                    Grid.Column="3" />
 
-            <Label Content="Intuition"
+            <Label Content="{Binding Mage.Intuition.DisplayName}"
                    Grid.Row="6"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Intuition.Base}"
@@ -323,7 +322,7 @@
                    Grid.Row="6"
                    Grid.Column="3" />
 
-            <Label Content="Agility"
+            <Label Content="{Binding Mage.Agility.DisplayName}"
                    Grid.Row="7"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Agility.Base}"
@@ -340,7 +339,7 @@
                    Grid.Row="7"
                    Grid.Column="3" />
 
-            <Label Content="Strength"
+            <Label Content="{Binding Mage.Strength.DisplayName}"
                    Grid.Row="8"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Strength.Base}"
@@ -362,7 +361,7 @@
                    Grid.Row="9"
                    Grid.Column="0" />
 
-            <Label Content="Dagger"
+            <Label Content="{Binding Mage.Dagger.DisplayName}"
                    Grid.Row="10"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Dagger.Base}"
@@ -379,7 +378,7 @@
                    Grid.Row="10"
                    Grid.Column="3" />
 
-            <Label Content="Hand to Hand"
+            <Label Content="{Binding Mage.HandToHand.DisplayName}"
                    Grid.Row="11"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.HandToHand.Base}"
@@ -396,7 +395,7 @@
                    Grid.Row="11"
                    Grid.Column="3" />
 
-            <Label Content="Staff"
+            <Label Content="{Binding Mage.Staff.DisplayName}"
                    Grid.Row="12"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Staff.Base}"
@@ -418,7 +417,7 @@
                    Grid.Row="13"
                    Grid.Column="0" />
 
-            <Label Content="Bless"
+            <Label Content="{Binding Mage.Bless.DisplayName}"
                    Grid.Row="14"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Bless.Base}"
@@ -435,7 +434,7 @@
                    Grid.Row="14"
                    Grid.Column="3" />
 
-            <Label Content="Heal"
+            <Label Content="{Binding Mage.Heal.DisplayName}"
                    Grid.Row="15"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Heal.Base}"
@@ -452,7 +451,7 @@
                    Grid.Row="15"
                    Grid.Column="3" />
 
-            <Label Content="Freeze"
+            <Label Content="{Binding Mage.Freeze.DisplayName}"
                    Grid.Row="16"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Freeze.Base}"
@@ -469,7 +468,7 @@
                    Grid.Row="16"
                    Grid.Column="3" />
 
-            <Label Content="Magic Shield"
+            <Label Content="{Binding Mage.MagicShield.DisplayName}"
                    Grid.Row="17"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.MagicShield.Base}"
@@ -486,7 +485,7 @@
                    Grid.Row="17"
                    Grid.Column="3" />
 
-            <Label Content="Lightning"
+            <Label Content="{Binding Mage.Lightning.DisplayName}"
                    Grid.Row="18"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Lightning.Base}"
@@ -503,7 +502,7 @@
                    Grid.Row="18"
                    Grid.Column="3" />
 
-            <Label Content="Fire"
+            <Label Content="{Binding Mage.Fire.DisplayName}"
                    Grid.Row="19"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Fire.Base}"
@@ -520,7 +519,7 @@
                    Grid.Row="19"
                    Grid.Column="3" />
 
-            <Label Content="Pulse"
+            <Label Content="{Binding Mage.Pulse.DisplayName}"
                    Grid.Row="20"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Pulse.Base}"
@@ -537,7 +536,7 @@
                    Grid.Row="20"
                    Grid.Column="3" />
 
-            <Label Content="Bartering"
+            <Label Content="{Binding Mage.Bartering.DisplayName}"
                    Grid.Row="21"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Bartering.Base}"
@@ -554,7 +553,7 @@
                    Grid.Row="21"
                    Grid.Column="3" />
 
-            <Label Content="Perception"
+            <Label Content="{Binding Mage.Perception.DisplayName}"
                    Grid.Row="22"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Perception.Base}"
@@ -571,7 +570,7 @@
                    Grid.Row="22"
                    Grid.Column="3" />
 
-            <Label Content="Stealth"
+            <Label Content="{Binding Mage.Stealth.DisplayName}"
                    Grid.Row="23"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Stealth.Base}"
@@ -588,7 +587,7 @@
                    Grid.Row="23"
                    Grid.Column="3" />
 
-            <Label Content="Meditate"
+            <Label Content="{Binding Mage.Meditate.DisplayName}"
                    Grid.Row="24"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Meditate.Base}"
@@ -605,7 +604,7 @@
                    Grid.Row="24"
                    Grid.Column="3" />
 
-            <Label Content="Immunity"
+            <Label Content="{Binding Mage.Immunity.DisplayName}"
                    Grid.Row="25"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Immunity.Base}"
@@ -622,7 +621,7 @@
                    Grid.Row="25"
                    Grid.Column="3" />
 
-            <Label Content="Profession"
+            <Label Content="{Binding Mage.Profession.DisplayName}"
                    Grid.Row="26"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Profession.Base}"

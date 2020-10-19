@@ -1,9 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reflection.Metadata;
-using System.Text;
 
 namespace ATRoYStatCalc.Model
 {
@@ -11,10 +8,9 @@ namespace ATRoYStatCalc.Model
     {
         public const long MaxExp = 1600000000;
         public bool MaxExpExceeded => CurrentExp > MaxExp;
-        
+        public bool MissingProfessionBases => Profession.Base < Profession.Mod;
         //seyan is 202
         public int MaxBase => 230;
-
         private bool _hardCore = false;
         public bool HardCore
         {
@@ -26,7 +22,6 @@ namespace ATRoYStatCalc.Model
                 RaisePropertyChanged("MaxBase");
             }
         }
-
         private bool _masterAthlete;
         public bool MasterAthlete
         {
@@ -37,18 +32,26 @@ namespace ATRoYStatCalc.Model
                 RaisePropertyChanged("MasterAthlete");
             }
         }
-
-        private bool _masterWarrior;
-        public bool MasterWarrior
+        private bool _masterLightWarrior;
+        public bool MasterLightWarrior
         {
-            get => _masterWarrior;
+            get => _masterLightWarrior;
             set
             {
-                _masterWarrior = value;
-                RaisePropertyChanged("MasterWarrior");
+                _masterLightWarrior = value;
+                RaisePropertyChanged("MasterLightWarrior");
             }
         }
-
+        private bool _masterDarkWarrior;
+        public bool MasterDarkWarrior
+        {
+            get => _masterDarkWarrior;
+            set
+            {
+                _masterDarkWarrior = value;
+                RaisePropertyChanged("MasterDarkWarrior");
+            }
+        }
         private long _currentExp = 0;
         public long CurrentExp
         {
@@ -59,7 +62,6 @@ namespace ATRoYStatCalc.Model
                 RaisePropertyChanged("CurrentExp");
             }
         }
-
         private int _currentLevel = 1;
         public int CurrentLevel
         {
@@ -70,7 +72,6 @@ namespace ATRoYStatCalc.Model
                 RaisePropertyChanged("CurrentLevel");
             }
         }
-
         private int _speed;
         public int Speed
         {
@@ -81,9 +82,6 @@ namespace ATRoYStatCalc.Model
                 RaisePropertyChanged("Speed");
             }
         }
-
-        public List<Skill> Skills { get; set; } = new List<Skill>();
-
         public Skill Hitpoints { get; set; } = new Skill()
         {
             DisplayName = "Hitpoints",
@@ -201,8 +199,7 @@ namespace ATRoYStatCalc.Model
             Cost = 3,
             EquipmentBonus = 0
         };
-
-        public bool MissingProfessionBases => Profession.Base < Profession.Mod;
+        public List<Skill> Skills { get; set; } = new List<Skill>();
 
         public BaseClass()
         {
@@ -257,7 +254,12 @@ namespace ATRoYStatCalc.Model
                 Profession.Mod += 30;
             }
             
-            if (MasterWarrior)
+            if (MasterLightWarrior)
+            {
+                Profession.Mod += 30;
+            }
+
+            if (MasterDarkWarrior)
             {
                 Profession.Mod += 30;
             }

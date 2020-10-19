@@ -1,8 +1,4 @@
-﻿using GalaSoft.MvvmLight;
-using System.Collections.Generic;
-using System.Windows.Documents;
-
-namespace ATRoYStatCalc.Model
+﻿namespace ATRoYStatCalc.Model
 {
     public class Mage : BaseClass
     {

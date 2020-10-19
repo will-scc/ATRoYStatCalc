@@ -1,14 +1,6 @@
 ﻿using ATRoYStatCalc.Model;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Windows.Input;
 
 namespace ATRoYStatCalc.ViewModel
 {

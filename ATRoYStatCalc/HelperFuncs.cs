@@ -7,7 +7,14 @@ namespace ATRoYStatCalc
     {
         public static int MaxMagicalBonus(this int Base, int Bonus)
         {
-            return Bonus > Base / 2 ? Base + (Base / 2) : Base + Bonus;
+            if (Bonus > (Base / 2))
+            {
+                return Base + (Base / 2);
+            }
+            else
+            {
+                return Base + Bonus;
+            }
         }
 
         public static int GetCurrentLevel(long CurrentExp)

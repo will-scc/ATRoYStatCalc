@@ -11,7 +11,6 @@ namespace ATRoYStatCalc.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => (IServiceLocator)SimpleIoc.Default);
-
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<WarriorViewModel>();
             SimpleIoc.Default.Register<MageViewModel>();
