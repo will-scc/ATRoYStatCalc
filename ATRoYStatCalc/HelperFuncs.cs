@@ -1,21 +1,28 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 
 namespace ATRoYStatCalc
 {
     public static class HelperFuncs
     {
-        public static int MaxMagicalBonus(this int Base, int Bonus)
+        public static bool In(this string source, params string[] list)
         {
-            if (Bonus > (Base / 2))
-            {
-                return Base + (Base / 2);
-            }
-            else
-            {
-                return Base + Bonus;
-            }
+            if (null == source) throw new ArgumentNullException("source");
+            return list.Contains(source, StringComparer.OrdinalIgnoreCase);
         }
+
+        //public static int MaxMagicalBonus(this int Base, int Bonus)
+        //{
+        //    if (Bonus > (Base / 2))
+        //    {
+        //        return Base + (Base / 2);
+        //    }
+        //    else
+        //    {
+        //        return Base + Bonus;
+        //    }
+        //}
 
         public static int GetCurrentLevel(long CurrentExp)
         {

@@ -73,6 +73,7 @@ namespace ATRoYStatCalc.Model
             }
         }
 
-        public bool MaxModExceeded => EquipmentBonus > (Base / 2) ? true : false;
+        public bool MaxModExceeded => EquipmentBonus > (Base / 2);
+        //public bool MaxModExceeded => false;
     }
 }

@@ -135,7 +135,7 @@
 
         private void CalculateBlessMod()
         {
-            Bless.Mod = Bless.Base.MaxMagicalBonus(Bless.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            //Bless.Mod = Bless.Base.MaxMagicalBonus(Bless.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
         }
 
         public override void CalculateAttributes()
@@ -143,10 +143,10 @@
             //blessValue is ignored when Bless isn't active (non-blessed WIAS is used to calculate Bless Mod)
             int blessValue = BlessActive ? Bless.Mod / 4 : 0;
 
-            Wisdom.Mod = Wisdom.Base.MaxMagicalBonus(Wisdom.EquipmentBonus + blessValue);
-            Intuition.Mod = Intuition.Base.MaxMagicalBonus(Intuition.EquipmentBonus + blessValue);
-            Agility.Mod = Agility.Base.MaxMagicalBonus(Agility.EquipmentBonus + blessValue);
-            Strength.Mod = Strength.Base.MaxMagicalBonus(Strength.EquipmentBonus + blessValue);
+            //Wisdom.Mod = Wisdom.Base.MaxMagicalBonus(Wisdom.EquipmentBonus + blessValue);
+            //Intuition.Mod = Intuition.Base.MaxMagicalBonus(Intuition.EquipmentBonus + blessValue);
+            //Agility.Mod = Agility.Base.MaxMagicalBonus(Agility.EquipmentBonus + blessValue);
+            //Strength.Mod = Strength.Base.MaxMagicalBonus(Strength.EquipmentBonus + blessValue);
         }
 
         public override void CalculateStats()
@@ -155,16 +155,16 @@
             base.CalculateStats();
 
             //Calculate Mage-specific stats
-            Mana.Mod = Mana.Base.MaxMagicalBonus(Mana.EquipmentBonus);
-            Staff.Mod = Staff.Base.MaxMagicalBonus(Staff.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            Heal.Mod = Heal.Base.MaxMagicalBonus(Heal.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            Freeze.Mod = Freeze.Base.MaxMagicalBonus(Freeze.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            MagicShield.Mod = MagicShield.Base.MaxMagicalBonus(MagicShield.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            Lightning.Mod = Lightning.Base.MaxMagicalBonus(Lightning.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            Fire.Mod = Fire.Base.MaxMagicalBonus(Fire.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            Pulse.Mod = Pulse.Base.MaxMagicalBonus(Pulse.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            Duration.Mod = Duration.Base.MaxMagicalBonus(Duration.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Strength.Mod) / 5);
-            Meditate.Mod = Meditate.Base.MaxMagicalBonus(Meditate.EquipmentBonus) + ((Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5);
+            //Mana.Mod = Mana.Base.MaxMagicalBonus(Mana.EquipmentBonus);
+            //Staff.Mod = Staff.Base.MaxMagicalBonus(Staff.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //Heal.Mod = Heal.Base.MaxMagicalBonus(Heal.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            //Freeze.Mod = Freeze.Base.MaxMagicalBonus(Freeze.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            //MagicShield.Mod = MagicShield.Base.MaxMagicalBonus(MagicShield.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            //Lightning.Mod = Lightning.Base.MaxMagicalBonus(Lightning.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            //Fire.Mod = Fire.Base.MaxMagicalBonus(Fire.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            //Pulse.Mod = Pulse.Base.MaxMagicalBonus(Pulse.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            //Duration.Mod = Duration.Base.MaxMagicalBonus(Duration.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //Meditate.Mod = Meditate.Base.MaxMagicalBonus(Meditate.EquipmentBonus) + ((Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5);
 
             if (MasterAthlete)
             {

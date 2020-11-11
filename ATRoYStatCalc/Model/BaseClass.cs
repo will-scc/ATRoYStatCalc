@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks.Dataflow;
 
 namespace ATRoYStatCalc.Model
 {
@@ -11,6 +13,7 @@ namespace ATRoYStatCalc.Model
         public bool MissingProfessionBases => Profession.Base < Profession.Mod;
         //seyan is 202
         public int MaxBase => 230;
+        
         private bool _hardCore = false;
         public bool HardCore
         {
@@ -22,6 +25,7 @@ namespace ATRoYStatCalc.Model
                 RaisePropertyChanged("MaxBase");
             }
         }
+        
         private bool _masterAthlete;
         public bool MasterAthlete
         {
@@ -227,26 +231,37 @@ namespace ATRoYStatCalc.Model
 
         public virtual void CalculateAttributes()
         {
-            Wisdom.Mod = Wisdom.Base.MaxMagicalBonus(Wisdom.EquipmentBonus);
-            Intuition.Mod = Intuition.Base.MaxMagicalBonus(Intuition.EquipmentBonus);
-            Agility.Mod = Agility.Base.MaxMagicalBonus(Agility.EquipmentBonus);
-            Strength.Mod = Strength.Base.MaxMagicalBonus(Strength.EquipmentBonus);
+            //Wisdom.Mod = Wisdom.Base.MaxMagicalBonus(Wisdom.EquipmentBonus);
+            //Intuition.Mod = Intuition.Base.MaxMagicalBonus(Intuition.EquipmentBonus);
+            //Agility.Mod = Agility.Base.MaxMagicalBonus(Agility.EquipmentBonus);
+            //Strength.Mod = Strength.Base.MaxMagicalBonus(Strength.EquipmentBonus);
+
+            Wisdom.Mod = Wisdom.Base + MaxMagicalBonus(Wisdom);
+            Intuition.Mod = Intuition.Base + MaxMagicalBonus(Intuition);
+            Agility.Mod = Agility.Base + MaxMagicalBonus(Agility);
+            Strength.Mod = Strength.Base + MaxMagicalBonus(Strength);
         }
 
         public virtual void CalculateStats()
         {
             //Armour
             //Weapon
-            Hitpoints.Mod = Hitpoints.Base.MaxMagicalBonus(Hitpoints.EquipmentBonus);
-            Endurance.Mod = Endurance.Base.MaxMagicalBonus(Endurance.EquipmentBonus);
-            Dagger.Mod = Dagger.Base.MaxMagicalBonus(Dagger.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5); 
-            HandToHand.Mod = HandToHand.Base.MaxMagicalBonus(HandToHand.EquipmentBonus) + ((Agility.Mod + Strength.Mod + Strength.Mod) / 5);
-            Bartering.Mod = Bartering.Base.MaxMagicalBonus(Bartering.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            Perception.Mod = Perception.Base.MaxMagicalBonus(Perception.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            Stealth.Mod = Stealth.Base.MaxMagicalBonus(Stealth.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Intuition.Mod) / 5);
+            
+            //Hitpoints.Mod = Hitpoints.Base.MaxMagicalBonus(Hitpoints.EquipmentBonus);
+            //Endurance.Mod = Endurance.Base.MaxMagicalBonus(Endurance.EquipmentBonus);
 
-            //Immunity was changed from Wis+Int+Str to Int+Int+Str
-            Immunity.Mod = Immunity.Base.MaxMagicalBonus(Immunity.EquipmentBonus) + ((Intuition.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //Hitpoints.Mod = Hitpoints.Base + MaxMagicalBonus(Hitpoints);
+            //Endurance.Mod = Endurance.Base + MaxMagicalBonus(Endurance);
+
+            //Dagger.Mod = Dagger.Base + MaxMagicalBonus(Dagger) + MaxAttributeBonus(Dagger, ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5));
+
+            //HandToHand.Mod = HandToHand.Base + MaxMagicalBonus(HandToHand) + ((Agility.Mod + Strength.Mod + Strength.Mod) / 5);
+            //Bartering.Mod = Bartering.Base.MaxMagicalBonus(Bartering.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            //Perception.Mod = Perception.Base.MaxMagicalBonus(Perception.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            //Stealth.Mod = Stealth.Base.MaxMagicalBonus(Stealth.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Intuition.Mod) / 5);
+
+            ////Immunity was changed from Wis+Int+Str to Int+Int+Str
+            //Immunity.Mod = Immunity.Base.MaxMagicalBonus(Immunity.EquipmentBonus) + ((Intuition.Mod + Intuition.Mod + Strength.Mod) / 5);
 
             Profession.Mod = 0;
             if (MasterAthlete)
@@ -315,6 +330,27 @@ namespace ATRoYStatCalc.Model
 
                 return normalCost + ptmCost;
             }
+        }
+
+        public virtual int MaxMagicalBonus(Skill Skill)
+        {
+            int maxMod;
+            if (Skill.DisplayName.In("Wisdom", "Intuition", "Agility","Strength"))
+            {
+                maxMod = Skill.Base;
+            }
+            else
+            {
+                maxMod = Skill.Base * 2;
+            }
+
+            return Math.Min(Skill.EquipmentBonus, maxMod);
+        }
+
+        public int MaxAttributeBonus(Skill Skill, int AttributeBonus)
+        {
+            int maxMod = Skill.Base * 2;
+            return Math.Min(maxMod, Math.Max(15, AttributeBonus));
         }
     }
 }

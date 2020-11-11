@@ -205,7 +205,8 @@ namespace ATRoYStatCalc.Model
 
         private void CalculateBlessMod()
         {
-            Bless.Mod = Bless.Base.MaxMagicalBonus(Bless.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            //Bless.Mod = Bless.Base.MaxMagicalBonus(Bless.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            Bless.Mod = Bless.Base + MaxMagicalBonus(Bless) + MaxAttributeBonus(Bless, (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
         }
 
         public override void CalculateAttributes()
@@ -213,10 +214,15 @@ namespace ATRoYStatCalc.Model
             //blessValue is ignored when Bless isn't active (non-blessed WIAS is used to calculate Bless Mod)
             int blessValue = BlessActive ? Bless.Mod / 4 : 0;
 
-            Wisdom.Mod = Wisdom.Base.MaxMagicalBonus(Wisdom.EquipmentBonus + blessValue);
-            Intuition.Mod = Intuition.Base.MaxMagicalBonus(Intuition.EquipmentBonus + blessValue);
-            Agility.Mod = Agility.Base.MaxMagicalBonus(Agility.EquipmentBonus + blessValue);
-            Strength.Mod = Strength.Base.MaxMagicalBonus(Strength.EquipmentBonus + blessValue);
+            //Wisdom.Mod = Wisdom.Base.MaxMagicalBonus(Wisdom.EquipmentBonus + blessValue);
+            Wisdom.Mod = Wisdom.Base + MaxMagicalBonus(Wisdom) + blessValue;
+            Intuition.Mod = Intuition.Base + MaxMagicalBonus(Intuition) + blessValue;
+            Agility.Mod = Agility.Base + MaxMagicalBonus(Agility) + blessValue;
+            Strength.Mod = Strength.Base + MaxMagicalBonus(Strength) + blessValue;
+
+            //Intuition.Mod = Intuition.Base.MaxMagicalBonus(Intuition.EquipmentBonus + blessValue);
+            //Agility.Mod = Agility.Base.MaxMagicalBonus(Agility.EquipmentBonus + blessValue);
+            //Strength.Mod = Strength.Base.MaxMagicalBonus(Strength.EquipmentBonus + blessValue);
         }
 
         public override void CalculateStats()
@@ -224,24 +230,28 @@ namespace ATRoYStatCalc.Model
             //Calculate all the shared stats first
             base.CalculateStats();
 
-            Mana.Mod = Mana.Base.MaxMagicalBonus(Mana.EquipmentBonus);
-            Sword.Mod = Sword.Base.MaxMagicalBonus(Sword.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            TwoHanded.Mod = TwoHanded.Base.MaxMagicalBonus(TwoHanded.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
-            BodyControl.Mod = BodyControl.Base.MaxMagicalBonus(BodyControl.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            ArmorSkill.Mod = ArmorSkill.Base.MaxMagicalBonus(ArmorSkill.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
-            Attack.Mod = Attack.Base.MaxMagicalBonus(Attack.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            Parry.Mod = Parry.Base.MaxMagicalBonus(Parry.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            Warcry.Mod = Warcry.Base.MaxMagicalBonus(Warcry.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            Tactics.Mod = Tactics.Base.MaxMagicalBonus(Tactics.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Strength.Mod) / 5);
-            SurroundHit.Mod = SurroundHit.Base.MaxMagicalBonus(SurroundHit.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            SpeedSkill.Mod = SpeedSkill.Base.MaxMagicalBonus(SpeedSkill.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            Heal.Mod = Heal.Base.MaxMagicalBonus(Heal.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            Freeze.Mod = Freeze.Base.MaxMagicalBonus(Freeze.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            MagicShield.Mod = MagicShield.Base.MaxMagicalBonus(MagicShield.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            Lightning.Mod = Lightning.Base.MaxMagicalBonus(Lightning.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            Fire.Mod = Fire.Base.MaxMagicalBonus(Fire.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            Pulse.Mod = Pulse.Base.MaxMagicalBonus(Pulse.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            Meditate.Mod = Meditate.Base.MaxMagicalBonus(Meditate.EquipmentBonus) + ((Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5);
+            Mana.Mod = Mana.Base + MaxMagicalBonus(Mana);
+
+            Sword.Mod = Sword.Base + MaxMagicalBonus(Sword) + MaxAttributeBonus(Sword, ((Intuition.Mod + Intuition.Mod + Agility.Mod) / 5));
+            Attack.Mod = Attack.Base + MaxMagicalBonus(Attack) + MaxAttributeBonus(Attack, ((Intuition.Mod + Intuition.Mod + Agility.Mod) / 5));
+            //change these:
+
+            //TwoHanded.Mod = TwoHanded.Base.MaxMagicalBonus(TwoHanded.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
+            //BodyControl.Mod = BodyControl.Base.MaxMagicalBonus(BodyControl.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //ArmorSkill.Mod = ArmorSkill.Base.MaxMagicalBonus(ArmorSkill.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
+            //Attack.Mod = Attack.Base.MaxMagicalBonus(Attack.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //Parry.Mod = Parry.Base.MaxMagicalBonus(Parry.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //Warcry.Mod = Warcry.Base.MaxMagicalBonus(Warcry.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //Tactics.Mod = Tactics.Base.MaxMagicalBonus(Tactics.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //SurroundHit.Mod = SurroundHit.Base.MaxMagicalBonus(SurroundHit.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //SpeedSkill.Mod = SpeedSkill.Base.MaxMagicalBonus(SpeedSkill.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //Heal.Mod = Heal.Base.MaxMagicalBonus(Heal.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            //Freeze.Mod = Freeze.Base.MaxMagicalBonus(Freeze.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            //MagicShield.Mod = MagicShield.Base.MaxMagicalBonus(MagicShield.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            //Lightning.Mod = Lightning.Base.MaxMagicalBonus(Lightning.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            //Fire.Mod = Fire.Base.MaxMagicalBonus(Fire.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            //Pulse.Mod = Pulse.Base.MaxMagicalBonus(Pulse.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            //Meditate.Mod = Meditate.Base.MaxMagicalBonus(Meditate.EquipmentBonus) + ((Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5);
 
             Speed = MasterAthlete
                 ? (SpeedSkill.Mod / 2) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5) + (30 * 3)
@@ -278,6 +288,12 @@ namespace ATRoYStatCalc.Model
 
                 return normalCost + ptmCost;
             }
+        }
+
+        public override int MaxMagicalBonus(Skill skill)
+        {
+            int maxMod = (int)Math.Floor(((double)skill.Base / 100) * 72.5);
+            return Math.Min(skill.EquipmentBonus, maxMod);
         }
     }
 }

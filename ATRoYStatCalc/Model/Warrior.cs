@@ -109,17 +109,17 @@
             base.CalculateStats();
 
             //Calculate Warrior-specific stats
-            Sword.Mod = Sword.Base.MaxMagicalBonus(Sword.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            TwoHanded.Mod = TwoHanded.Base.MaxMagicalBonus(TwoHanded.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
-            Rage.Mod = Rage.Base.MaxMagicalBonus(Rage.EquipmentBonus) + ((Strength.Mod + Strength.Mod + Intuition.Mod) / 5);
-            BodyControl.Mod = BodyControl.Base.MaxMagicalBonus(BodyControl.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            ArmorSkill.Mod = ArmorSkill.Base.MaxMagicalBonus(ArmorSkill.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
-            Attack.Mod = Attack.Base.MaxMagicalBonus(Attack.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            Parry.Mod = Parry.Base.MaxMagicalBonus(Parry.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            Warcry.Mod = Warcry.Base.MaxMagicalBonus(Warcry.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            Tactics.Mod = Tactics.Base.MaxMagicalBonus(Tactics.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            SurroundHit.Mod = SurroundHit.Base.MaxMagicalBonus(SurroundHit.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            SpeedSkill.Mod = SpeedSkill.Base.MaxMagicalBonus(SpeedSkill.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //Sword.Mod = Sword.Base.MaxMagicalBonus(Sword.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //TwoHanded.Mod = TwoHanded.Base.MaxMagicalBonus(TwoHanded.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
+            //Rage.Mod = Rage.Base.MaxMagicalBonus(Rage.EquipmentBonus) + ((Strength.Mod + Strength.Mod + Intuition.Mod) / 5);
+            //BodyControl.Mod = BodyControl.Base.MaxMagicalBonus(BodyControl.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //ArmorSkill.Mod = ArmorSkill.Base.MaxMagicalBonus(ArmorSkill.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
+            //Attack.Mod = Attack.Base.MaxMagicalBonus(Attack.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //Parry.Mod = Parry.Base.MaxMagicalBonus(Parry.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //Warcry.Mod = Warcry.Base.MaxMagicalBonus(Warcry.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //Tactics.Mod = Tactics.Base.MaxMagicalBonus(Tactics.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //SurroundHit.Mod = SurroundHit.Base.MaxMagicalBonus(SurroundHit.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            //SpeedSkill.Mod = SpeedSkill.Base.MaxMagicalBonus(SpeedSkill.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
 
             Speed = MasterAthlete
                 ? (SpeedSkill.Mod / 2) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5) + (30 * 3)
