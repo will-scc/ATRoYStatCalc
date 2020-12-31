@@ -1,8 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks.Dataflow;
 
 namespace ATRoYStatCalc.Model
 {
@@ -10,10 +8,10 @@ namespace ATRoYStatCalc.Model
     {
         public const long MaxExp = 1600000000;
         public bool MaxExpExceeded => CurrentExp > MaxExp;
-        public bool MissingProfessionBases => Profession.Base < Profession.Mod;
-        //seyan is 202
         public int MaxBase => 230;
-        
+        public bool PvpChar { get; set; }
+        public bool MissingProfessionBases => Profession.Base < Profession.Mod;
+
         private bool _hardCore = false;
         public bool HardCore
         {
@@ -25,7 +23,7 @@ namespace ATRoYStatCalc.Model
                 RaisePropertyChanged("MaxBase");
             }
         }
-        
+
         private bool _masterAthlete;
         public bool MasterAthlete
         {
@@ -86,7 +84,7 @@ namespace ATRoYStatCalc.Model
                 RaisePropertyChanged("Speed");
             }
         }
-        public Skill Hitpoints { get; set; } = new Skill()
+        public Skill Hitpoints { get; set; } = new Skill(false)
         {
             DisplayName = "Hitpoints",
             Start = 10,
@@ -95,7 +93,7 @@ namespace ATRoYStatCalc.Model
             Cost = 3,
             EquipmentBonus = 0
         };
-        public Skill Endurance { get; set; } = new Skill()
+        public Skill Endurance { get; set; } = new Skill(false)
         {
             DisplayName = "Endurance",
             Start = 10,
@@ -104,7 +102,7 @@ namespace ATRoYStatCalc.Model
             Cost = 3,
             EquipmentBonus = 0
         };
-        public Skill Wisdom { get; set; } = new Skill()
+        public Skill Wisdom { get; set; } = new Skill(false)
         {
             DisplayName = "Wisdom",
             Start = 10,
@@ -113,7 +111,7 @@ namespace ATRoYStatCalc.Model
             Cost = 2,
             EquipmentBonus = 0
         };
-        public Skill Intuition { get; set; } = new Skill()
+        public Skill Intuition { get; set; } = new Skill(false)
         {
             DisplayName = "Intuition",
             Start = 10,
@@ -122,7 +120,7 @@ namespace ATRoYStatCalc.Model
             Cost = 2,
             EquipmentBonus = 0
         };
-        public Skill Agility { get; set; } = new Skill()
+        public Skill Agility { get; set; } = new Skill(false)
         {
             DisplayName = "Agility",
             Start = 10,
@@ -131,7 +129,7 @@ namespace ATRoYStatCalc.Model
             Cost = 2,
             EquipmentBonus = 0
         };
-        public Skill Strength { get; set; } = new Skill()
+        public Skill Strength { get; set; } = new Skill(false)
         {
             DisplayName = "Strength",
             Start = 10,
@@ -140,7 +138,7 @@ namespace ATRoYStatCalc.Model
             Cost = 2,
             EquipmentBonus = 0
         };
-        public Skill Dagger { get; set; } = new Skill()
+        public Skill Dagger { get; set; } = new Skill(false)
         {
             DisplayName = "Dagger",
             Start = 1,
@@ -149,7 +147,7 @@ namespace ATRoYStatCalc.Model
             Cost = 1,
             EquipmentBonus = 0
         };
-        public Skill HandToHand { get; set; } = new Skill()
+        public Skill HandToHand { get; set; } = new Skill(false)
         {
             DisplayName = "Hand to Hand",
             Start = 1,
@@ -158,7 +156,7 @@ namespace ATRoYStatCalc.Model
             Cost = 1,
             EquipmentBonus = 0
         };
-        public Skill Bartering { get; set; } = new Skill()
+        public Skill Bartering { get; set; } = new Skill(false)
         {
             DisplayName = "Bartering",
             Start = 1,
@@ -167,7 +165,7 @@ namespace ATRoYStatCalc.Model
             Cost = 1,
             EquipmentBonus = 0
         };
-        public Skill Perception { get; set; } = new Skill()
+        public Skill Perception { get; set; } = new Skill(false)
         {
             DisplayName = "Perception",
             Start = 1,
@@ -176,7 +174,7 @@ namespace ATRoYStatCalc.Model
             Cost = 1,
             EquipmentBonus = 0
         };
-        public Skill Stealth { get; set; } = new Skill()
+        public Skill Stealth { get; set; } = new Skill(false)
         {
             DisplayName = "Stealth",
             Start = 1,
@@ -185,7 +183,7 @@ namespace ATRoYStatCalc.Model
             Cost = 1,
             EquipmentBonus = 0
         };
-        public Skill Immunity { get; set; } = new Skill()
+        public Skill Immunity { get; set; } = new Skill(false)
         {
             DisplayName = "Immunity",
             Start = 1,
@@ -194,7 +192,7 @@ namespace ATRoYStatCalc.Model
             Cost = 1,
             EquipmentBonus = 0
         };
-        public Skill Profession { get; set; } = new Skill()
+        public Skill Profession { get; set; } = new Skill(false)
         {
             DisplayName = "Profession",
             Start = 1,
@@ -231,11 +229,6 @@ namespace ATRoYStatCalc.Model
 
         public virtual void CalculateAttributes()
         {
-            //Wisdom.Mod = Wisdom.Base.MaxMagicalBonus(Wisdom.EquipmentBonus);
-            //Intuition.Mod = Intuition.Base.MaxMagicalBonus(Intuition.EquipmentBonus);
-            //Agility.Mod = Agility.Base.MaxMagicalBonus(Agility.EquipmentBonus);
-            //Strength.Mod = Strength.Base.MaxMagicalBonus(Strength.EquipmentBonus);
-
             Wisdom.Mod = Wisdom.Base + MaxMagicalBonus(Wisdom);
             Intuition.Mod = Intuition.Base + MaxMagicalBonus(Intuition);
             Agility.Mod = Agility.Base + MaxMagicalBonus(Agility);
@@ -244,31 +237,23 @@ namespace ATRoYStatCalc.Model
 
         public virtual void CalculateStats()
         {
-            //Armour
-            //Weapon
-            
-            //Hitpoints.Mod = Hitpoints.Base.MaxMagicalBonus(Hitpoints.EquipmentBonus);
-            //Endurance.Mod = Endurance.Base.MaxMagicalBonus(Endurance.EquipmentBonus);
+            Hitpoints.Mod = Hitpoints.Base + MaxMagicalBonus(Hitpoints);
+            Endurance.Mod = Endurance.Base + MaxMagicalBonus(Endurance);
 
-            //Hitpoints.Mod = Hitpoints.Base + MaxMagicalBonus(Hitpoints);
-            //Endurance.Mod = Endurance.Base + MaxMagicalBonus(Endurance);
+            Dagger.Mod = Dagger.Base + MaxMagicalBonus(Dagger) + MaxAttributeBonus(Dagger, ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5));
+            HandToHand.Mod = HandToHand.Base + MaxMagicalBonus(HandToHand) + MaxAttributeBonus(HandToHand, (Agility.Mod + Strength.Mod + Strength.Mod) / 5);
 
-            //Dagger.Mod = Dagger.Base + MaxMagicalBonus(Dagger) + MaxAttributeBonus(Dagger, ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5));
-
-            //HandToHand.Mod = HandToHand.Base + MaxMagicalBonus(HandToHand) + ((Agility.Mod + Strength.Mod + Strength.Mod) / 5);
-            //Bartering.Mod = Bartering.Base.MaxMagicalBonus(Bartering.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            //Perception.Mod = Perception.Base.MaxMagicalBonus(Perception.EquipmentBonus) + ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            //Stealth.Mod = Stealth.Base.MaxMagicalBonus(Stealth.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Intuition.Mod) / 5);
-
-            ////Immunity was changed from Wis+Int+Str to Int+Int+Str
-            //Immunity.Mod = Immunity.Base.MaxMagicalBonus(Immunity.EquipmentBonus) + ((Intuition.Mod + Intuition.Mod + Strength.Mod) / 5);
+            Bartering.Mod = Bartering.Base + MaxMagicalBonus(Bartering) + MaxAttributeBonus(Bartering, (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            Perception.Mod = Perception.Base + MaxMagicalBonus(Perception) + MaxAttributeBonus(Perception, (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            Stealth.Mod = Stealth.Base + MaxMagicalBonus(Stealth) + MaxAttributeBonus(Stealth, (Agility.Mod + Agility.Mod + Intuition.Mod) / 5);
+            Immunity.Mod = Immunity.Base + MaxMagicalBonus(Immunity) + MaxAttributeBonus(Immunity, (Intuition.Mod + Intuition.Mod + Strength.Mod) / 5);
 
             Profession.Mod = 0;
             if (MasterAthlete)
             {
                 Profession.Mod += 30;
             }
-            
+
             if (MasterLightWarrior)
             {
                 Profession.Mod += 30;
@@ -294,7 +279,6 @@ namespace ATRoYStatCalc.Model
                 {
                     skillExp += RaiseCost(skill, i);
                 }
-
                 totalSpentExp += skillExp;
             }
 
@@ -302,12 +286,12 @@ namespace ATRoYStatCalc.Model
             CurrentLevel = HelperFuncs.GetCurrentLevel(CurrentExp);
         }
 
-        public virtual int RaiseCost(Skill Skill, int NextLevel)
+        public int RaiseCost(Skill Skill, int NextLevel)
         {
             int maxNonPTMBase = HardCore ? 120 : 100;
             int nr = NextLevel - Skill.Start + 1 + 5;
-            
-            if (NextLevel <= maxNonPTMBase)
+
+            if (NextLevel < maxNonPTMBase)
             {
                 return Math.Max(1, nr * nr * nr * Skill.Cost / 10);
             }
@@ -334,17 +318,8 @@ namespace ATRoYStatCalc.Model
 
         public virtual int MaxMagicalBonus(Skill Skill)
         {
-            int maxMod;
-            if (Skill.DisplayName.In("Wisdom", "Intuition", "Agility","Strength"))
-            {
-                maxMod = Skill.Base;
-            }
-            else
-            {
-                maxMod = Skill.Base * 2;
-            }
-
-            return Math.Min(Skill.EquipmentBonus, maxMod);
+            int maxMod = Skill.DisplayName.In("Wisdom", "Intuition", "Agility", "Strength") ? Skill.Base : Skill.Base * 2;
+            return PvpChar ? maxMod : Math.Min(Skill.EquipmentBonus, maxMod);
         }
 
         public int MaxAttributeBonus(Skill Skill, int AttributeBonus)

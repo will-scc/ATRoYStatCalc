@@ -97,6 +97,9 @@
                 <CheckBox Content="Hardcore"
                           IsChecked="{Binding Seyan.HardCore}"
                           Margin="5" />
+                <CheckBox Content="PvP"
+                          IsChecked="{Binding Seyan.PvpChar}"
+                          Margin="5" />
                 <CheckBox Content="Master Athlete"
                           IsChecked="{Binding Seyan.MasterAthlete}"
                           Margin="5"/>
@@ -253,7 +256,7 @@
                     Grid.Row="1"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Hitpoints.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Hitpoints.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Hitpoints.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="1"
                    Grid.Column="3" />
 
@@ -270,7 +273,7 @@
                     Grid.Row="2"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Endurance.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Endurance.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Endurance.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="2"
                    Grid.Column="3" />
 
@@ -287,7 +290,7 @@
                     Grid.Row="3"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Mana.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Mana.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Mana.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="3"
                    Grid.Column="3" />
             
@@ -309,7 +312,7 @@
                     Grid.Row="5"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Wisdom.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Wisdom.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Wisdom.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="5"
                    Grid.Column="3" />
 
@@ -326,7 +329,7 @@
                     Grid.Row="6"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Intuition.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Intuition.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Intuition.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="6"
                    Grid.Column="3" />
 
@@ -343,7 +346,7 @@
                     Grid.Row="7"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Agility.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Agility.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Agility.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="7"
                    Grid.Column="3" />
 
@@ -360,7 +363,7 @@
                     Grid.Row="8"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Strength.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Strength.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Strength.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="8"
                    Grid.Column="3" />
 
@@ -382,7 +385,7 @@
                     Grid.Row="10"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Dagger.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Dagger.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Dagger.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="10"
                    Grid.Column="3" />
 
@@ -399,7 +402,7 @@
                     Grid.Row="11"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.HandToHand.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.HandToHand.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.HandToHand.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="11"
                    Grid.Column="3" />
 
@@ -416,7 +419,7 @@
                     Grid.Row="12"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Sword.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Sword.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Sword.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="12"
                    Grid.Column="3" />
 
@@ -433,7 +436,7 @@
                     Grid.Row="13"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.TwoHanded.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.TwoHanded.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.TwoHanded.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="13"
                    Grid.Column="3" />
 
@@ -455,7 +458,7 @@
                     Grid.Row="15"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.ArmorSkill.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.ArmorSkill.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.ArmorSkill.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="15"
                    Grid.Column="3" />
 
@@ -472,7 +475,7 @@
                     Grid.Row="16"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Attack.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Attack.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Attack.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="16"
                    Grid.Column="3" />
 
@@ -489,7 +492,7 @@
                     Grid.Row="17"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Parry.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Parry.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Parry.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="17"
                    Grid.Column="3" />
 
@@ -506,7 +509,7 @@
                     Grid.Row="18"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Warcry.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Warcry.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Warcry.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="18"
                    Grid.Column="3" />
 
@@ -523,7 +526,7 @@
                     Grid.Row="19"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Tactics.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Tactics.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Tactics.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="19"
                    Grid.Column="3" />
 
@@ -540,7 +543,7 @@
                     Grid.Row="20"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.SurroundHit.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.SurroundHit.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.SurroundHit.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="20"
                    Grid.Column="3" />
 
@@ -557,7 +560,7 @@
                     Grid.Row="21"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.BodyControl.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.BodyControl.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.BodyControl.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="21"
                    Grid.Column="3" />
 
@@ -574,7 +577,7 @@
                     Grid.Row="22"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.SpeedSkill.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.SpeedSkill.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.SpeedSkill.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="22"
                    Grid.Column="3" />
 
@@ -591,7 +594,7 @@
                     Grid.Row="23"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Bless.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Bless.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Bless.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="23"
                    Grid.Column="3" />
 
@@ -608,7 +611,7 @@
                     Grid.Row="24"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Heal.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Heal.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Heal.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="24"
                    Grid.Column="3" />
 
@@ -625,7 +628,7 @@
                     Grid.Row="25"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Freeze.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Freeze.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Freeze.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="25"
                    Grid.Column="3" />
 
@@ -642,7 +645,7 @@
                     Grid.Row="26"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.MagicShield.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.MagicShield.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.MagicShield.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="26"
                    Grid.Column="3" />
 
@@ -659,7 +662,7 @@
                     Grid.Row="27"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Lightning.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Lightning.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Lightning.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="27"
                    Grid.Column="3" />
 
@@ -676,7 +679,7 @@
                     Grid.Row="28"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Fire.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Fire.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Fire.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="28"
                    Grid.Column="3" />
 
@@ -693,7 +696,7 @@
                     Grid.Row="29"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Pulse.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Pulse.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Pulse.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="29"
                    Grid.Column="3" />
             
@@ -712,7 +715,7 @@
                     Grid.Row="30"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Bartering.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Bartering.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Bartering.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="30"
                    Grid.Column="3" />
 
@@ -729,7 +732,7 @@
                     Grid.Row="31"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Perception.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Perception.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Perception.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="31"
                    Grid.Column="3" />
 
@@ -746,7 +749,7 @@
                     Grid.Row="32"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Stealth.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Stealth.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Stealth.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="32"
                    Grid.Column="3" />
 
@@ -763,7 +766,7 @@
                     Grid.Row="33"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Regenerate.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Regenerate.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Regenerate.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="33"
                    Grid.Column="3" />
             
@@ -780,7 +783,7 @@
                     Grid.Row="34"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Meditate.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Meditate.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Meditate.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="34"
                    Grid.Column="3" />
             
@@ -797,7 +800,7 @@
                     Grid.Row="35"
                     Grid.Column="2" />
             <Label Content="{Binding Seyan.Immunity.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.Immunity.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Seyan.Immunity.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="35"
                    Grid.Column="3" />
 

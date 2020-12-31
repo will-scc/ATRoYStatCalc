@@ -12,30 +12,11 @@ namespace ATRoYStatCalc
             return list.Contains(source, StringComparer.OrdinalIgnoreCase);
         }
 
-        //public static int MaxMagicalBonus(this int Base, int Bonus)
-        //{
-        //    if (Bonus > (Base / 2))
-        //    {
-        //        return Base + (Base / 2);
-        //    }
-        //    else
-        //    {
-        //        return Base + Bonus;
-        //    }
-        //}
-
         public static int GetCurrentLevel(long CurrentExp)
         {
-            int level = 0;
-            long usedExp = 0;
-
-            do
-            {
-                level++;
-                usedExp += (long)Math.Round(RequiredExp(level, level+1), MidpointRounding.ToZero);
-            } while (CurrentExp >= usedExp);
-
-            return level;
+            return CurrentExp < 1 
+                ? 1
+                : Math.Max(1, (int)Math.Sqrt(Math.Sqrt(CurrentExp)));
         }
 
         public static double RequiredExp(int CurrentLevel, int NextLevel)

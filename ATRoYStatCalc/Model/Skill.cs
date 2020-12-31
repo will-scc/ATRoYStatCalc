@@ -1,10 +1,16 @@
 ﻿using GalaSoft.MvvmLight;
-using System.Runtime.CompilerServices;
+using System;
 
 namespace ATRoYStatCalc.Model
 {
     public class Skill : ObservableObject
     {
+        private bool isSeyan;
+        public Skill(bool IsSeyan)
+        {
+            isSeyan = IsSeyan;
+        }
+
         private string _displayName;
         public string DisplayName
         {
@@ -35,7 +41,7 @@ namespace ATRoYStatCalc.Model
             {
                 _base = value;
                 RaisePropertyChanged("Base");
-                RaisePropertyChanged("MaxModExceeded");
+                RaisePropertyChanged("MaxEquipmentModExceeded");
             }
         }
 
@@ -69,11 +75,12 @@ namespace ATRoYStatCalc.Model
             {
                 _equipmentBonus = value;
                 RaisePropertyChanged("EquipmentBonus");
-                RaisePropertyChanged("MaxModExceeded");
+                RaisePropertyChanged("MaxEquipmentModExceeded");
             }
         }
 
-        public bool MaxModExceeded => EquipmentBonus > (Base / 2);
-        //public bool MaxModExceeded => false;
+        public bool MaxEquipmentModExceeded => isSeyan
+                    ? EquipmentBonus > (int)Math.Floor(((double)Base / 100) * 72.5)
+                    : EquipmentBonus > (int)Math.Floor(((double)Base / 100) * 50);
     }
 }

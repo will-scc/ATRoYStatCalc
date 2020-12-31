@@ -97,7 +97,10 @@
                 <CheckBox Content="Hardcore"
                           IsChecked="{Binding Warrior.HardCore}"
                           Margin="5" />
-                <CheckBox Content="MasterAthlete"
+                <CheckBox Content="PvP"
+                          IsChecked="{Binding Warrior.PvpChar}"
+                          Margin="5" />
+                <CheckBox Content="Master Athlete"
                           IsChecked="{Binding Warrior.MasterAthlete}"
                           Margin="5"/>
                 <CheckBox Content="Master Light Warrior"
@@ -182,7 +185,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="103*" />
+                <ColumnDefinition Width="13*"/>
+                <ColumnDefinition Width="303*"/>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
@@ -221,456 +226,453 @@
             <Label Content="Stat"
                    FontWeight="Bold"
                    Grid.Row="0"
-                   Grid.Column="0" />
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,23,26" Grid.RowSpan="2" />
             <Label Content="Base"
                    FontWeight="Bold"
                    Grid.Row="0"
                    Grid.Column="1"
-                   Grid.ColumnSpan="2" />
+                   Grid.ColumnSpan="4" Margin="0,0,0,26" Grid.RowSpan="2" />
             <Label Content="Mod"
                    FontWeight="Bold"
                    Grid.Row="0"
-                   Grid.Column="3" />
+                   Grid.Column="4" Margin="267,0,0,26" Grid.RowSpan="2" />
 
             <Label Content="{Binding Warrior.Hitpoints.DisplayName}"
-                   Grid.Row="1"
-                   Grid.Column="0" />
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,15,23,26" Grid.RowSpan="3" />
             <Label Content="{Binding Warrior.Hitpoints.Base}"
-                   Grid.Row="1"
-                   Grid.Column="1" />
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,15,80,26" Grid.RowSpan="3" />
             <Slider Value="{Binding Warrior.Hitpoints.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Hitpoints.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="1"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Hitpoints.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Hitpoints.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="1"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.Hitpoints.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Column="4" Margin="267,15,0,26" Grid.RowSpan="3" />
 
             <Label Content="{Binding Warrior.Endurance.DisplayName}"
                    Grid.Row="2"
-                   Grid.Column="0" />
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,23,2" />
             <Label Content="{Binding Warrior.Endurance.Base}"
                    Grid.Row="2"
-                   Grid.Column="1" />
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,80,2" />
             <Slider Value="{Binding Warrior.Endurance.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Endurance.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="2"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Endurance.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Endurance.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Warrior.Endurance.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="2"
-                   Grid.Column="3" />
+                   Grid.Column="4" Margin="267,0,0,2" />
 
             <Label Content="Attributes"
                    FontWeight="Bold"
                    Grid.Row="3"
-                   Grid.Column="0" />
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,23,26" Grid.RowSpan="2" />
 
             <Label Content="{Binding Warrior.Wisdom.DisplayName}"
-                   Grid.Row="4"
-                   Grid.Column="0" />
+                   Grid.Row="3"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,24,23,26" Grid.RowSpan="3" />
             <Label Content="{Binding Warrior.Wisdom.Base}"
-                   Grid.Row="4"
-                   Grid.Column="1" />
+                   Grid.Row="3"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,24,80,26" Grid.RowSpan="3" />
             <Slider Value="{Binding Warrior.Wisdom.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Wisdom.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="4"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Wisdom.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Wisdom.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="4"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.Wisdom.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="3"
+                   Grid.Column="4" Margin="267,24,0,26" Grid.RowSpan="3" />
 
             <Label Content="{Binding Warrior.Intuition.DisplayName}"
-                   Grid.Row="5"
-                   Grid.Column="0" />
+                   Grid.Row="4"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,37,23,0" Grid.RowSpan="2" />
             <Label Content="{Binding Warrior.Intuition.Base}"
-                   Grid.Row="5"
-                   Grid.Column="1" />
+                   Grid.Row="4"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,37,80,0" Grid.RowSpan="2" />
             <Slider Value="{Binding Warrior.Intuition.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Intuition.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="5"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Intuition.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Intuition.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="5"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.Intuition.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="4"
+                   Grid.Column="4" Margin="267,37,0,0" Grid.RowSpan="2" />
 
             <Label Content="{Binding Warrior.Agility.DisplayName}"
-                   Grid.Row="6"
-                   Grid.Column="0" />
+                   Grid.Row="5"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,30,23,26" Grid.RowSpan="3" />
             <Label Content="{Binding Warrior.Agility.Base}"
-                   Grid.Row="6"
-                   Grid.Column="1" />
+                   Grid.Row="5"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,30,80,26" Grid.RowSpan="3" />
             <Slider Value="{Binding Warrior.Agility.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Agility.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="6"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Agility.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Agility.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="6"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.Agility.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="5"
+                   Grid.Column="4" Margin="267,30,0,26" Grid.RowSpan="3" />
 
             <Label Content="{Binding Warrior.Strength.DisplayName}"
-                   Grid.Row="7"
-                   Grid.Column="0" />
+                   Grid.Row="6"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,26,23,3" Grid.RowSpan="2" />
             <Label Content="{Binding Warrior.Strength.Base}"
-                   Grid.Row="7"
-                   Grid.Column="1" />
+                   Grid.Row="6"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,26,80,3" Grid.RowSpan="2" />
             <Slider Value="{Binding Warrior.Strength.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Strength.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="7"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Strength.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Strength.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="7"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.Strength.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="6"
+                   Grid.Column="4" Margin="267,26,0,3" Grid.RowSpan="2" />
 
             <Label Content="Weapon Skills"
                    FontWeight="Bold"
-                   Grid.Row="8"
-                   Grid.Column="0" />
+                   Grid.Row="7"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,35,23,26" Grid.RowSpan="3" />
 
             <Label Content="{Binding Warrior.Dagger.DisplayName}"
-                   Grid.Row="9"
-                   Grid.Column="0" />
+                   Grid.Row="8"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,23,23,26" Grid.RowSpan="3" />
             <Label Content="{Binding Warrior.Dagger.Base}"
-                   Grid.Row="9"
-                   Grid.Column="1" />
+                   Grid.Row="8"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,23,80,26" Grid.RowSpan="3" />
             <Slider Value="{Binding Warrior.Dagger.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Dagger.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="9"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Dagger.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Dagger.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="9"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.Dagger.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="8"
+                   Grid.Column="4" Margin="267,23,0,26" Grid.RowSpan="3" />
 
             <Label Content="{Binding Warrior.HandToHand.DisplayName}"
-                   Grid.Row="10"
-                   Grid.Column="0" />
+                   Grid.Row="9"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,29,23,26" Grid.RowSpan="3" />
             <Label Content="{Binding Warrior.HandToHand.Base}"
-                   Grid.Row="10"
-                   Grid.Column="1" />
+                   Grid.Row="9"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,29,80,26" Grid.RowSpan="3" />
             <Slider Value="{Binding Warrior.HandToHand.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.HandToHand.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="10"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.HandToHand.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.HandToHand.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="10"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.HandToHand.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="9"
+                   Grid.Column="4" Margin="267,29,0,26" Grid.RowSpan="3" />
 
             <Label Content="{Binding Warrior.Sword.DisplayName}"
                    Grid.Row="11"
-                   Grid.Column="0" />
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,23,25" Grid.RowSpan="2" />
             <Label Content="{Binding Warrior.Sword.Base}"
                    Grid.Row="11"
-                   Grid.Column="1" />
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,80,25" Grid.RowSpan="2" />
             <Slider Value="{Binding Warrior.Sword.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Sword.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="11"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Sword.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Sword.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Warrior.Sword.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="11"
-                   Grid.Column="3" />
+                   Grid.Column="4" Margin="267,0,0,25" Grid.RowSpan="2" />
 
             <Label Content="{Binding Warrior.TwoHanded.DisplayName}"
-                   Grid.Row="12"
-                   Grid.Column="0" />
+                   Grid.Row="11"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,26,23,0" Grid.RowSpan="2" />
             <Label Content="{Binding Warrior.TwoHanded.Base}"
-                   Grid.Row="12"
-                   Grid.Column="1" />
+                   Grid.Row="11"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,26,80,0" Grid.RowSpan="2" />
             <Slider Value="{Binding Warrior.TwoHanded.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.TwoHanded.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="12"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.TwoHanded.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.TwoHanded.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="12"
-                   Grid.Column="3" />
-            
+                   Foreground="{Binding Warrior.TwoHanded.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="11"
+                   Grid.Column="4" Margin="267,26,0,0" Grid.RowSpan="2" />
+
             <Label Content="Skills"
                    FontWeight="Bold"
-                   Grid.Row="13"
-                   Grid.Column="0" />
+                   Grid.Row="12"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,25,23,38" Grid.RowSpan="3" />
 
             <Label Content="{Binding Warrior.Rage.DisplayName}"
                    Grid.Row="14"
-                   Grid.Column="0" />
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,6,23,28" Grid.RowSpan="2" />
             <Label Content="{Binding Warrior.Rage.Base}"
                    Grid.Row="14"
-                   Grid.Column="1" />
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,6,80,28" Grid.RowSpan="2" />
             <Slider Value="{Binding Warrior.Rage.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Rage.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="14"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Rage.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Rage.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Foreground="{Binding Warrior.Rage.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="14"
-                   Grid.Column="3" />
+                   Grid.Column="4" Margin="267,6,0,28" Grid.RowSpan="2" />
 
             <Label Content="{Binding Warrior.ArmorSkill.DisplayName}"
-                   Grid.Row="15"
-                   Grid.Column="0" />
+                   Grid.Row="14"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,26,23,0" Grid.RowSpan="2" />
             <Label Content="{Binding Warrior.ArmorSkill.Base}"
-                   Grid.Row="15"
-                   Grid.Column="1" />
+                   Grid.Row="14"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,26,80,0" Grid.RowSpan="2" />
             <Slider Value="{Binding Warrior.ArmorSkill.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.ArmorSkill.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="15"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.ArmorSkill.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.ArmorSkill.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="15"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.ArmorSkill.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="14"
+                   Grid.Column="4" Margin="267,26,0,0" Grid.RowSpan="2" />
 
             <Label Content="{Binding Warrior.Attack.DisplayName}"
-                   Grid.Row="16"
-                   Grid.Column="0" />
+                   Grid.Row="15"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,26,23,29" Grid.RowSpan="3" />
             <Label Content="{Binding Warrior.Attack.Base}"
-                   Grid.Row="16"
-                   Grid.Column="1" />
+                   Grid.Row="15"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,26,80,29" Grid.RowSpan="3" />
             <Slider Value="{Binding Warrior.Attack.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Attack.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="16"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Attack.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Attack.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="16"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.Attack.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="15"
+                   Grid.Column="4" Margin="267,26,0,29" Grid.RowSpan="3" />
 
             <Label Content="{Binding Warrior.Parry.DisplayName}"
-                   Grid.Row="17"
-                   Grid.Column="0" />
+                   Grid.Row="16"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,26,23,28" Grid.RowSpan="3" />
             <Label Content="{Binding Warrior.Parry.Base}"
-                   Grid.Row="17"
-                   Grid.Column="1" />
+                   Grid.Row="16"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,26,80,28" Grid.RowSpan="3" />
             <Slider Value="{Binding Warrior.Parry.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Parry.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="17"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Parry.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Parry.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="17"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.Parry.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="16"
+                   Grid.Column="4" Margin="267,26,0,28" Grid.RowSpan="3" />
 
             <Label Content="{Binding Warrior.Warcry.DisplayName}"
-                   Grid.Row="18"
-                   Grid.Column="0" />
+                   Grid.Row="17"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,26,23,0" Grid.RowSpan="2" />
             <Label Content="{Binding Warrior.Warcry.Base}"
-                   Grid.Row="18"
-                   Grid.Column="1" />
+                   Grid.Row="17"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,26,80,0" Grid.RowSpan="2" />
             <Slider Value="{Binding Warrior.Warcry.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Warcry.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="18"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Warcry.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Warcry.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="18"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.Warcry.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="17"
+                   Grid.Column="4" Margin="267,26,0,0" Grid.RowSpan="2" />
 
             <Label Content="{Binding Warrior.Tactics.DisplayName}"
-                   Grid.Row="19"
-                   Grid.Column="0" />
+                   Grid.Row="18"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,26,23,28" Grid.RowSpan="3" />
             <Label Content="{Binding Warrior.Tactics.Base}"
-                   Grid.Row="19"
-                   Grid.Column="1" />
+                   Grid.Row="18"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,26,80,28" Grid.RowSpan="3" />
             <Slider Value="{Binding Warrior.Tactics.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Tactics.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="19"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Tactics.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Tactics.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="19"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.Tactics.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="18"
+                   Grid.Column="4" Margin="267,26,0,28" Grid.RowSpan="3" />
 
             <Label Content="{Binding Warrior.SurroundHit.DisplayName}"
-                   Grid.Row="20"
-                   Grid.Column="0" />
+                   Grid.Row="19"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,26,23,0" Grid.RowSpan="2" />
             <Label Content="{Binding Warrior.SurroundHit.Base}"
-                   Grid.Row="20"
-                   Grid.Column="1" />
+                   Grid.Row="19"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,26,80,0" Grid.RowSpan="2" />
             <Slider Value="{Binding Warrior.SurroundHit.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.SurroundHit.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="20"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.SurroundHit.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.SurroundHit.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="20"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.SurroundHit.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="19"
+                   Grid.Column="4" Margin="267,26,0,0" Grid.RowSpan="2" />
 
             <Label Content="{Binding Warrior.BodyControl.DisplayName}"
-                   Grid.Row="21"
-                   Grid.Column="0" />
+                   Grid.Row="20"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,26,23,0" Grid.RowSpan="2" />
             <Label Content="{Binding Warrior.Tactics.Base}"
-                   Grid.Row="21"
-                   Grid.Column="1" />
+                   Grid.Row="20"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,26,80,0" Grid.RowSpan="2" />
             <Slider Value="{Binding Warrior.Tactics.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Tactics.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="21"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Tactics.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Tactics.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="21"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.Tactics.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="20"
+                   Grid.Column="4" Margin="267,26,0,0" Grid.RowSpan="2" />
 
             <Label Content="{Binding Warrior.SpeedSkill.DisplayName}"
-                   Grid.Row="22"
-                   Grid.Column="0" />
+                   Grid.Row="21"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,26,23,0" Grid.RowSpan="2" />
             <Label Content="{Binding Warrior.Tactics.Base}"
-                   Grid.Row="22"
-                   Grid.Column="1" />
+                   Grid.Row="21"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,26,80,0" Grid.RowSpan="2" />
             <Slider Value="{Binding Warrior.Tactics.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Tactics.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="22"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Tactics.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Tactics.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="22"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.Tactics.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="21"
+                   Grid.Column="4" Margin="267,26,0,0" Grid.RowSpan="2" />
 
             <Label Content="{Binding Warrior.Regenerate.DisplayName}"
-                   Grid.Row="23"
-                   Grid.Column="0" />
+                   Grid.Row="22"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,26,23,0" Grid.RowSpan="2" />
             <Label Content="{Binding Warrior.Tactics.Base}"
-                   Grid.Row="23"
-                   Grid.Column="1" />
+                   Grid.Row="22"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,26,80,0" Grid.RowSpan="2" />
             <Slider Value="{Binding Warrior.Tactics.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Tactics.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="23"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Tactics.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Tactics.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="23"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.Tactics.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="22"
+                   Grid.Column="4" Margin="267,26,0,0" Grid.RowSpan="2" />
 
             <Label Content="{Binding Warrior.Bartering.DisplayName}"
-                   Grid.Row="24"
-                   Grid.Column="0" />
+                   Grid.Row="23"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,26,23,0" Grid.RowSpan="2" />
             <Label Content="{Binding Warrior.Bartering.Base}"
-                   Grid.Row="24"
-                   Grid.Column="1" />
+                   Grid.Row="23"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,26,80,0" Grid.RowSpan="2" />
             <Slider Value="{Binding Warrior.Bartering.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Bartering.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="24"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Bartering.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Bartering.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="24"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.Bartering.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="23"
+                   Grid.Column="4" Margin="267,26,0,0" Grid.RowSpan="2" />
 
             <Label Content="{Binding Warrior.Perception.DisplayName}"
-                   Grid.Row="25"
-                   Grid.Column="0" />
+                   Grid.Row="24"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,26,23,26" Grid.RowSpan="3" />
             <Label Content="{Binding Warrior.Perception.Base}"
-                   Grid.Row="25"
-                   Grid.Column="1" />
+                   Grid.Row="24"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,26,80,26" Grid.RowSpan="3" />
             <Slider Value="{Binding Warrior.Perception.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Perception.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="25"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Perception.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Perception.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="25"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.Perception.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="24"
+                   Grid.Column="4" Margin="267,26,0,26" Grid.RowSpan="3" />
 
             <Label Content="{Binding Warrior.Stealth.DisplayName}"
-                   Grid.Row="26"
-                   Grid.Column="0" />
+                   Grid.Row="25"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,23,23,26" Grid.RowSpan="3" />
             <Label Content="{Binding Warrior.Stealth.Base}"
-                   Grid.Row="26"
-                   Grid.Column="1" />
+                   Grid.Row="25"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,23,80,26" Grid.RowSpan="3" />
             <Slider Value="{Binding Warrior.Stealth.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Stealth.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="26"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Stealth.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Stealth.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="26"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.Stealth.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="25"
+                   Grid.Column="4" Margin="267,23,0,26" Grid.RowSpan="3" />
 
             <Label Content="{Binding Warrior.Immunity.DisplayName}"
-                   Grid.Row="27"
-                   Grid.Column="0" />
+                   Grid.Row="26"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,29,23,26" Grid.RowSpan="3" />
             <Label Content="{Binding Warrior.Immunity.Base}"
-                   Grid.Row="27"
-                   Grid.Column="1" />
+                   Grid.Row="26"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,29,80,26" Grid.RowSpan="3" />
             <Slider Value="{Binding Warrior.Immunity.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Immunity.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="27"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Immunity.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Immunity.MaxModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="27"
-                   Grid.Column="3" />
+                   Foreground="{Binding Warrior.Immunity.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Grid.Row="26"
+                   Grid.Column="4" Margin="267,29,0,26" Grid.RowSpan="3" />
 
             <Label Content="{Binding Warrior.Profession.DisplayName}"
-                   Grid.Row="28"
-                   Grid.Column="0" />
+                   Grid.Row="27"
+                   Grid.Column="0" Grid.ColumnSpan="2" Margin="0,28,23,0" Grid.RowSpan="2" />
             <Label Content="{Binding Warrior.Profession.Base}"
-                   Grid.Row="28"
-                   Grid.Column="1" />
+                   Grid.Row="27"
+                   Grid.Column="1" Grid.ColumnSpan="2" Margin="0,28,80,0" Grid.RowSpan="2" />
             <Slider Value="{Binding Warrior.Profession.Base, Mode=TwoWay}"
                     Minimum="{Binding Warrior.Profession.Start, Mode=TwoWay}"
                     Maximum="{Binding Warrior.MaxBase, Mode=OneWay}"
                     VerticalAlignment="Center"
                     Grid.Row="28"
-                    Grid.Column="2" />
+                    Grid.Column="2" Grid.ColumnSpan="3" />
             <Label Content="{Binding Warrior.Profession.Mod, Mode=OneWay}"
                    Foreground="{Binding Warrior.MissingProfessionBases, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="28"
-                   Grid.Column="3" />
+                   Grid.Row="27"
+                   Grid.Column="4" Margin="267,28,0,0" Grid.RowSpan="2" />
         </Grid>
     </Grid>
 </UserControl>

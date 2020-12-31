@@ -2,84 +2,84 @@
 {
     public class Warrior : BaseClass
     {
-        public Skill Sword { get; set; } = new Skill
+        public Skill Sword { get; set; } = new Skill(false)
         {
             DisplayName = "Sword",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill TwoHanded { get; set; } = new Skill
+        public Skill TwoHanded { get; set; } = new Skill(false)
         {
             DisplayName = "TwoHanded",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Rage { get; set; } = new Skill
+        public Skill Rage { get; set; } = new Skill(false)
         {
             DisplayName = "Rage",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill ArmorSkill { get; set; } = new Skill
+        public Skill ArmorSkill { get; set; } = new Skill(false)
         {
             DisplayName = "Armor Skill",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Attack { get; set; } = new Skill
+        public Skill Attack { get; set; } = new Skill(false)
         {
             DisplayName = "Attack",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Parry { get; set; } = new Skill
+        public Skill Parry { get; set; } = new Skill(false)
         {
             DisplayName = "Parry",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Warcry { get; set; } = new Skill
+        public Skill Warcry { get; set; } = new Skill(false)
         {
             DisplayName = "Warcry",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Tactics { get; set; } = new Skill
+        public Skill Tactics { get; set; } = new Skill(false)
         {
             DisplayName = "Tactics",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill SurroundHit { get; set; } = new Skill
+        public Skill SurroundHit { get; set; } = new Skill(false)
         {
             DisplayName = "Surround Hit",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill BodyControl { get; set; } = new Skill
+        public Skill BodyControl { get; set; } = new Skill(false)
         {
             DisplayName = "Body Control",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill SpeedSkill { get; set; } = new Skill
+        public Skill SpeedSkill { get; set; } = new Skill(false)
         {
             DisplayName = "Speed Skill",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Regenerate { get; set; } = new Skill
+        public Skill Regenerate { get; set; } = new Skill(false)
         {
             DisplayName = "Regenerate",
             Start = 1,
@@ -108,18 +108,19 @@
             //Calculate all the shared stats first
             base.CalculateStats();
 
-            //Calculate Warrior-specific stats
-            //Sword.Mod = Sword.Base.MaxMagicalBonus(Sword.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            //TwoHanded.Mod = TwoHanded.Base.MaxMagicalBonus(TwoHanded.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
-            //Rage.Mod = Rage.Base.MaxMagicalBonus(Rage.EquipmentBonus) + ((Strength.Mod + Strength.Mod + Intuition.Mod) / 5);
-            //BodyControl.Mod = BodyControl.Base.MaxMagicalBonus(BodyControl.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            //ArmorSkill.Mod = ArmorSkill.Base.MaxMagicalBonus(ArmorSkill.EquipmentBonus) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
-            //Attack.Mod = Attack.Base.MaxMagicalBonus(Attack.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            //Parry.Mod = Parry.Base.MaxMagicalBonus(Parry.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            //Warcry.Mod = Warcry.Base.MaxMagicalBonus(Warcry.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            //Tactics.Mod = Tactics.Base.MaxMagicalBonus(Tactics.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            //SurroundHit.Mod = SurroundHit.Base.MaxMagicalBonus(SurroundHit.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            //SpeedSkill.Mod = SpeedSkill.Base.MaxMagicalBonus(SpeedSkill.EquipmentBonus) + ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            Sword.Mod = Sword.Base + MaxMagicalBonus(Sword) + MaxAttributeBonus(Sword, (Intuition.Mod + Intuition.Mod + Agility.Mod) / 5);
+            TwoHanded.Mod = TwoHanded.Base + MaxMagicalBonus(TwoHanded) + MaxAttributeBonus(TwoHanded, (Agility.Mod + Agility.Mod + Strength.Mod) / 5);
+
+            ArmorSkill.Mod = ArmorSkill.Base + MaxMagicalBonus(ArmorSkill) + MaxAttributeBonus(ArmorSkill, (Agility.Mod + Agility.Mod + Strength.Mod) / 5);
+            Attack.Mod = Attack.Base + MaxMagicalBonus(Attack) + MaxAttributeBonus(Attack, (Intuition.Mod + Intuition.Mod + Agility.Mod) / 5);
+            Parry.Mod = Parry.Base + MaxMagicalBonus(Parry) + MaxAttributeBonus(Parry, (Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            Warcry.Mod = Warcry.Base + MaxMagicalBonus(Warcry) + MaxAttributeBonus(Warcry, (Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            Tactics.Mod = Tactics.Base + MaxMagicalBonus(Tactics) + MaxAttributeBonus(Tactics, (Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            SurroundHit.Mod = SurroundHit.Base + MaxMagicalBonus(SurroundHit) + MaxAttributeBonus(SurroundHit, (Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            BodyControl.Mod = BodyControl.Base + MaxMagicalBonus(BodyControl) + MaxAttributeBonus(BodyControl, (Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+            SpeedSkill.Mod = SpeedSkill.Base + MaxMagicalBonus(SpeedSkill) + MaxAttributeBonus(SpeedSkill, (Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
+
+            Rage.Mod = Rage.Base + MaxMagicalBonus(Rage) + MaxAttributeBonus(Rage, (Strength.Mod + Strength.Mod + Intuition.Mod) / 5);
 
             Speed = MasterAthlete
                 ? (SpeedSkill.Mod / 2) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5) + (30 * 3)
