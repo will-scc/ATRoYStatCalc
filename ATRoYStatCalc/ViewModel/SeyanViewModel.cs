@@ -1,47 +1,27 @@
 ﻿using ATRoYStatCalc.Model;
 using GalaSoft.MvvmLight;
+using Newtonsoft.Json;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ATRoYStatCalc.ViewModel
 {
     public class SeyanViewModel : ViewModelBase
     {
-        private Seyan _seyan = new Seyan();
-        public Seyan Seyan
-        {
-            get => _seyan;
-            set
-            {
-                _seyan = value;
-                RaisePropertyChanged("Seyan");
-            }
-        }
-
-        private EquipmentSet _equipmentSet = new EquipmentSet();
-        public EquipmentSet EquipmentSet
-        {
-            get => _equipmentSet;
-            set
-            {
-                _equipmentSet = value;
-                RaisePropertyChanged("EquipmentSet");
-            }
-        }
+        public Seyan Seyan { get; set; } = new Seyan(true);
 
         public SeyanViewModel()
         {
-            foreach (Skill skill in Seyan.Skills)
+            Parallel.ForEach(Seyan.Attributes, attributes =>
+            {
+                attributes.PropertyChanged += Base_PropertyChanged;
+            });
+
+            Parallel.ForEach(Seyan.Skills, skill =>
             {
                 skill.PropertyChanged += Base_PropertyChanged;
-            }
-
-            foreach (EquipmentPiece equipmentPiece in EquipmentSet.EquipmentPieces)
-            {
-                equipmentPiece.First.PropertyChanged += Equipment_PropertyChanged;
-                equipmentPiece.Second.PropertyChanged += Equipment_PropertyChanged;
-                equipmentPiece.Third.PropertyChanged += Equipment_PropertyChanged;
-                equipmentPiece.Fourth.PropertyChanged += Equipment_PropertyChanged;
-            }
+            });
 
             Seyan.UpdateCharacter();
         }
@@ -54,45 +34,14 @@ namespace ATRoYStatCalc.ViewModel
             }
         }
 
-        private void Equipment_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        public async Task Export()
         {
-            UpdateEquipmentBonuses();
-            Seyan.UpdateCharacter();
-        }
-
-        private void UpdateEquipmentBonuses()
-        {
-            foreach (Skill skill in Seyan.Skills)
+            string jsonString = JsonConvert.SerializeObject(new SeyanBuild()
             {
-                skill.EquipmentBonus = 0;
-            }
+                Stats = Seyan
+            });
 
-            foreach (EquipmentPiece equipmentPiece in EquipmentSet.EquipmentPieces)
-            {
-                Skill firstSkill = Seyan.Skills.FirstOrDefault(x => x.DisplayName == equipmentPiece.First.Stat);
-                if (firstSkill != null)
-                {
-                    firstSkill.EquipmentBonus += equipmentPiece.First.Value;
-                }
-
-                Skill secondSkill = Seyan.Skills.FirstOrDefault(x => x.DisplayName == equipmentPiece.Second.Stat);
-                if (secondSkill != null)
-                {
-                    secondSkill.EquipmentBonus += equipmentPiece.Second.Value;
-                }
-
-                Skill thirdSkill = Seyan.Skills.FirstOrDefault(x => x.DisplayName == equipmentPiece.Third.Stat);
-                if (thirdSkill != null)
-                {
-                    thirdSkill.EquipmentBonus += equipmentPiece.Third.Value;
-                }
-
-                Skill fourthSkill = Seyan.Skills.FirstOrDefault(x => x.DisplayName == equipmentPiece.Fourth.Stat);
-                if (fourthSkill != null)
-                {
-                    fourthSkill.EquipmentBonus += equipmentPiece.Fourth.Value;
-                }
-            }
+            await File.WriteAllTextAsync($"{Seyan.CharacterName}.bsey", jsonString);
         }
     }
 }

@@ -87,44 +87,40 @@
             Cost = 1
         };
 
-        public Warrior()
+        public Warrior(bool initialize = false)
         {
-            Skills.Add(Sword);
-            Skills.Add(TwoHanded);
-            Skills.Add(Rage);
-            Skills.Add(ArmorSkill);
-            Skills.Add(Attack);
-            Skills.Add(Parry);
-            Skills.Add(Warcry);
-            Skills.Add(Tactics);
-            Skills.Add(SurroundHit);
-            Skills.Add(BodyControl);
-            Skills.Add(SpeedSkill);
-            Skills.Add(Regenerate);
+            if (initialize)
+            {
+                Skills.AddDistinctSkill(Sword);
+                Skills.AddDistinctSkill(TwoHanded);
+                Skills.AddDistinctSkill(Rage);
+                Skills.AddDistinctSkill(ArmorSkill);
+                Skills.AddDistinctSkill(Attack);
+                Skills.AddDistinctSkill(Parry);
+                Skills.AddDistinctSkill(Warcry);
+                Skills.AddDistinctSkill(Tactics);
+                Skills.AddDistinctSkill(SurroundHit);
+                Skills.AddDistinctSkill(BodyControl);
+                Skills.AddDistinctSkill(SpeedSkill);
+                Skills.AddDistinctSkill(Regenerate);
+            }
         }
 
-        public override void CalculateStats()
+        public override void CalculateAttributeBonuses()
         {
-            //Calculate all the shared stats first
-            base.CalculateStats();
+            base.CalculateAttributeBonuses();
 
-            Sword.Mod = Sword.Base + MaxMagicalBonus(Sword) + MaxAttributeBonus(Sword, (Intuition.Mod + Intuition.Mod + Agility.Mod) / 5);
-            TwoHanded.Mod = TwoHanded.Base + MaxMagicalBonus(TwoHanded) + MaxAttributeBonus(TwoHanded, (Agility.Mod + Agility.Mod + Strength.Mod) / 5);
-
-            ArmorSkill.Mod = ArmorSkill.Base + MaxMagicalBonus(ArmorSkill) + MaxAttributeBonus(ArmorSkill, (Agility.Mod + Agility.Mod + Strength.Mod) / 5);
-            Attack.Mod = Attack.Base + MaxMagicalBonus(Attack) + MaxAttributeBonus(Attack, (Intuition.Mod + Intuition.Mod + Agility.Mod) / 5);
-            Parry.Mod = Parry.Base + MaxMagicalBonus(Parry) + MaxAttributeBonus(Parry, (Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            Warcry.Mod = Warcry.Base + MaxMagicalBonus(Warcry) + MaxAttributeBonus(Warcry, (Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            Tactics.Mod = Tactics.Base + MaxMagicalBonus(Tactics) + MaxAttributeBonus(Tactics, (Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            SurroundHit.Mod = SurroundHit.Base + MaxMagicalBonus(SurroundHit) + MaxAttributeBonus(SurroundHit, (Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            BodyControl.Mod = BodyControl.Base + MaxMagicalBonus(BodyControl) + MaxAttributeBonus(BodyControl, (Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-            SpeedSkill.Mod = SpeedSkill.Base + MaxMagicalBonus(SpeedSkill) + MaxAttributeBonus(SpeedSkill, (Agility.Mod + Intuition.Mod + Strength.Mod) / 5);
-
-            Rage.Mod = Rage.Base + MaxMagicalBonus(Rage) + MaxAttributeBonus(Rage, (Strength.Mod + Strength.Mod + Intuition.Mod) / 5);
-
-            Speed = MasterAthlete
-                ? (SpeedSkill.Mod / 2) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5) + (30 * 3)
-                : (SpeedSkill.Mod / 2) + ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
+            Sword.AttributeBonus = (Intuition.Mod + Intuition.Mod + Agility.Mod) / 5;
+            TwoHanded.AttributeBonus = (Agility.Mod + Agility.Mod + Strength.Mod) / 5;
+            ArmorSkill.AttributeBonus = (Agility.Mod + Agility.Mod + Strength.Mod) / 5;
+            Attack.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
+            Parry.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
+            Warcry.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
+            Tactics.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
+            SurroundHit.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
+            BodyControl.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
+            SpeedSkill.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
+            Rage.AttributeBonus = (Strength.Mod + Strength.Mod + Intuition.Mod) / 5;
         }
     }
 }

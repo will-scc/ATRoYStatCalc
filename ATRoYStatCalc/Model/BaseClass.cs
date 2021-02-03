@@ -7,270 +7,177 @@ namespace ATRoYStatCalc.Model
     public class BaseClass : ObservableObject
     {
         public const long MaxExp = 1600000000;
+        public string CharacterName { get; set; } = "Unnamed Character";
         public bool MaxExpExceeded => CurrentExp > MaxExp;
         public int MaxBase => 230;
-        public bool PvpChar { get; set; }
+        public bool PvP { get; set; }
+        public bool HardCore { get; set; } = false;
+        public bool MasterAthlete { get; set; } = false;
+        public bool MasterWarrior { get; set; } = false;
+        public long CurrentExp { get; set; } = 0;
+        public int CurrentLevel { get; set; } = 1;
+        public virtual int Speed => MasterAthlete 
+            ? ((Agility.Mod + Agility.Mod + Strength.Mod) / 5) + (30 * 3) 
+            : ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
+        
         public bool MissingProfessionBases => Profession.Base < Profession.Mod;
 
-        private bool _hardCore = false;
-        public bool HardCore
+        public List<Attribute> Attributes { get; set; } = new List<Attribute>();
+        public Attribute Wisdom { get; set; } = new Attribute(false)
         {
-            get => _hardCore;
-            set
-            {
-                _hardCore = value;
-                RaisePropertyChanged("HardCore");
-                RaisePropertyChanged("MaxBase");
-            }
-        }
+            DisplayName = "Wisdom",
+            Start = 10,
+            Base = 10,
+            Cost = 2
+        };
+        public Attribute Intuition { get; set; } = new Attribute(false)
+        {
+            DisplayName = "Intuition",
+            Start = 10,
+            Base = 10,
+            Cost = 2
+        };
+        public Attribute Agility { get; set; } = new Attribute(false)
+        {
+            DisplayName = "Agility",
+            Start = 10,
+            Base = 10,
+            Cost = 2
+        };
+        public Attribute Strength { get; set; } = new Attribute(false)
+        {
+            DisplayName = "Strength",
+            Start = 10,
+            Base = 10,
+            Cost = 2
+        };
 
-        private bool _masterAthlete;
-        public bool MasterAthlete
-        {
-            get => _masterAthlete;
-            set
-            {
-                _masterAthlete = value;
-                RaisePropertyChanged("MasterAthlete");
-            }
-        }
-        private bool _masterLightWarrior;
-        public bool MasterLightWarrior
-        {
-            get => _masterLightWarrior;
-            set
-            {
-                _masterLightWarrior = value;
-                RaisePropertyChanged("MasterLightWarrior");
-            }
-        }
-        private bool _masterDarkWarrior;
-        public bool MasterDarkWarrior
-        {
-            get => _masterDarkWarrior;
-            set
-            {
-                _masterDarkWarrior = value;
-                RaisePropertyChanged("MasterDarkWarrior");
-            }
-        }
-        private long _currentExp = 0;
-        public long CurrentExp
-        {
-            get => _currentExp;
-            set
-            {
-                _currentExp = value;
-                RaisePropertyChanged("CurrentExp");
-            }
-        }
-        private int _currentLevel = 1;
-        public int CurrentLevel
-        {
-            get => _currentLevel;
-            set
-            {
-                _currentLevel = value;
-                RaisePropertyChanged("CurrentLevel");
-            }
-        }
-        private int _speed;
-        public int Speed
-        {
-            get => _speed;
-            set
-            {
-                _speed = value;
-                RaisePropertyChanged("Speed");
-            }
-        }
+        public List<Skill> Skills { get; set; } = new List<Skill>();
         public Skill Hitpoints { get; set; } = new Skill(false)
         {
             DisplayName = "Hitpoints",
             Start = 10,
             Base = 10,
-            Mod = 10,
-            Cost = 3,
-            EquipmentBonus = 0
+            Cost = 3
         };
         public Skill Endurance { get; set; } = new Skill(false)
         {
             DisplayName = "Endurance",
             Start = 10,
             Base = 10,
-            Mod = 10,
-            Cost = 3,
-            EquipmentBonus = 0
-        };
-        public Skill Wisdom { get; set; } = new Skill(false)
-        {
-            DisplayName = "Wisdom",
-            Start = 10,
-            Base = 10,
-            Mod = 10,
-            Cost = 2,
-            EquipmentBonus = 0
-        };
-        public Skill Intuition { get; set; } = new Skill(false)
-        {
-            DisplayName = "Intuition",
-            Start = 10,
-            Base = 10,
-            Mod = 10,
-            Cost = 2,
-            EquipmentBonus = 0
-        };
-        public Skill Agility { get; set; } = new Skill(false)
-        {
-            DisplayName = "Agility",
-            Start = 10,
-            Base = 10,
-            Mod = 10,
-            Cost = 2,
-            EquipmentBonus = 0
-        };
-        public Skill Strength { get; set; } = new Skill(false)
-        {
-            DisplayName = "Strength",
-            Start = 10,
-            Base = 10,
-            Mod = 10,
-            Cost = 2,
-            EquipmentBonus = 0
+            Cost = 3
         };
         public Skill Dagger { get; set; } = new Skill(false)
         {
             DisplayName = "Dagger",
             Start = 1,
             Base = 1,
-            Mod = 1,
-            Cost = 1,
-            EquipmentBonus = 0
+            Cost = 1
         };
         public Skill HandToHand { get; set; } = new Skill(false)
         {
             DisplayName = "Hand to Hand",
             Start = 1,
             Base = 1,
-            Mod = 1,
             Cost = 1,
-            EquipmentBonus = 0
         };
         public Skill Bartering { get; set; } = new Skill(false)
         {
             DisplayName = "Bartering",
             Start = 1,
             Base = 1,
-            Mod = 1,
-            Cost = 1,
-            EquipmentBonus = 0
+            Cost = 1
         };
         public Skill Perception { get; set; } = new Skill(false)
         {
             DisplayName = "Perception",
             Start = 1,
             Base = 1,
-            Mod = 1,
-            Cost = 1,
-            EquipmentBonus = 0
+            Cost = 1
         };
         public Skill Stealth { get; set; } = new Skill(false)
         {
             DisplayName = "Stealth",
             Start = 1,
             Base = 1,
-            Mod = 1,
-            Cost = 1,
-            EquipmentBonus = 0
+            Cost = 1
         };
         public Skill Immunity { get; set; } = new Skill(false)
         {
             DisplayName = "Immunity",
             Start = 1,
             Base = 1,
-            Mod = 1,
-            Cost = 1,
-            EquipmentBonus = 0
+            Cost = 1
         };
         public Skill Profession { get; set; } = new Skill(false)
         {
             DisplayName = "Profession",
             Start = 1,
             Base = 1,
-            Mod = 0,
-            Cost = 3,
-            EquipmentBonus = 0
+            Cost = 3
         };
-        public List<Skill> Skills { get; set; } = new List<Skill>();
 
-        public BaseClass()
+        public BaseClass(bool initialize = false)
         {
-            Skills.Add(Hitpoints);
-            Skills.Add(Endurance);
-            Skills.Add(Wisdom);
-            Skills.Add(Intuition);
-            Skills.Add(Agility);
-            Skills.Add(Strength);
-            Skills.Add(Dagger);
-            Skills.Add(HandToHand);
-            Skills.Add(Bartering);
-            Skills.Add(Perception);
-            Skills.Add(Stealth);
-            Skills.Add(Immunity);
-            Skills.Add(Profession);
+            if (initialize)
+            {
+                Attributes.AddDistinctAttribute(Wisdom);
+                Attributes.AddDistinctAttribute(Intuition);
+                Attributes.AddDistinctAttribute(Agility);
+                Attributes.AddDistinctAttribute(Strength);
+
+                Skills.AddDistinctSkill(Hitpoints);
+                Skills.AddDistinctSkill(Endurance);
+                Skills.AddDistinctSkill(Dagger);
+                Skills.AddDistinctSkill(HandToHand);
+                Skills.AddDistinctSkill(Bartering);
+                Skills.AddDistinctSkill(Perception);
+                Skills.AddDistinctSkill(Stealth);
+                Skills.AddDistinctSkill(Immunity);
+                Skills.AddDistinctSkill(Profession);
+            }
         }
 
         public virtual void UpdateCharacter()
         {
-            CalculateAttributes();
-            CalculateStats();
             CalculateLevel();
+            CalculateAttributeBonuses();
         }
 
-        public virtual void CalculateAttributes()
+        public virtual void CalculateAttributeBonuses()
         {
-            Wisdom.Mod = Wisdom.Base + MaxMagicalBonus(Wisdom);
-            Intuition.Mod = Intuition.Base + MaxMagicalBonus(Intuition);
-            Agility.Mod = Agility.Base + MaxMagicalBonus(Agility);
-            Strength.Mod = Strength.Base + MaxMagicalBonus(Strength);
-        }
+            Dagger.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
+            HandToHand.AttributeBonus = (Agility.Mod + Strength.Mod + Strength.Mod) / 5;
 
-        public virtual void CalculateStats()
-        {
-            Hitpoints.Mod = Hitpoints.Base + MaxMagicalBonus(Hitpoints);
-            Endurance.Mod = Endurance.Base + MaxMagicalBonus(Endurance);
+            Bartering.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
+            Perception.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
+            Stealth.AttributeBonus = (Agility.Mod + Agility.Mod + Intuition.Mod) / 5;
+            Immunity.AttributeBonus = (Intuition.Mod + Intuition.Mod + Strength.Mod) / 5;
 
-            Dagger.Mod = Dagger.Base + MaxMagicalBonus(Dagger) + MaxAttributeBonus(Dagger, ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5));
-            HandToHand.Mod = HandToHand.Base + MaxMagicalBonus(HandToHand) + MaxAttributeBonus(HandToHand, (Agility.Mod + Strength.Mod + Strength.Mod) / 5);
-
-            Bartering.Mod = Bartering.Base + MaxMagicalBonus(Bartering) + MaxAttributeBonus(Bartering, (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            Perception.Mod = Perception.Base + MaxMagicalBonus(Perception) + MaxAttributeBonus(Perception, (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
-            Stealth.Mod = Stealth.Base + MaxMagicalBonus(Stealth) + MaxAttributeBonus(Stealth, (Agility.Mod + Agility.Mod + Intuition.Mod) / 5);
-            Immunity.Mod = Immunity.Base + MaxMagicalBonus(Immunity) + MaxAttributeBonus(Immunity, (Intuition.Mod + Intuition.Mod + Strength.Mod) / 5);
-
-            Profession.Mod = 0;
             if (MasterAthlete)
             {
-                Profession.Mod += 30;
+                Profession.EquipmentBonus += 30;
             }
 
-            if (MasterLightWarrior)
+            if (MasterWarrior)
             {
-                Profession.Mod += 30;
+                Profession.EquipmentBonus += 30;
             }
-
-            if (MasterDarkWarrior)
-            {
-                Profession.Mod += 30;
-            }
-
-            RaisePropertyChanged("MissingProfessionBases");
-            RaisePropertyChanged("MaxExpExceeded");
         }
-
+      
         public void CalculateLevel()
         {
             long totalSpentExp = 0;
+
+            foreach (Attribute attribute in Attributes)
+            {
+                int attributeExp = 0;
+                for (int i = attribute.Start; i < attribute.Base; i++)
+                {
+                    attributeExp += RaiseCost(attribute, i);
+                }
+                totalSpentExp += attributeExp;
+            }
 
             foreach (Skill skill in Skills)
             {
@@ -283,7 +190,7 @@ namespace ATRoYStatCalc.Model
             }
 
             CurrentExp = totalSpentExp;
-            CurrentLevel = HelperFuncs.GetCurrentLevel(CurrentExp);
+            CurrentLevel = HelperFuncs.GetLevelFromExp(CurrentExp);
         }
 
         public int RaiseCost(Skill Skill, int NextLevel)
@@ -298,34 +205,26 @@ namespace ATRoYStatCalc.Model
             else
             {
                 int normalCost = Math.Max(1, nr * nr * nr * Skill.Cost / 10);
-
-                int ptmCost;
-                if (Skill.DisplayName == "Wisdom" ||
-                    Skill.DisplayName == "Intuition" ||
-                    Skill.DisplayName == "Agility" ||
-                    Skill.DisplayName == "Strength")
-                {
-                    ptmCost = 6000000;
-                }
-                else
-                {
-                    ptmCost = 3000000;
-                }
-
+                int ptmCost = 3000000;
                 return normalCost + ptmCost;
             }
         }
 
-        public virtual int MaxMagicalBonus(Skill Skill)
+        public int RaiseCost(Attribute Attribute, int NextLevel)
         {
-            int maxMod = Skill.DisplayName.In("Wisdom", "Intuition", "Agility", "Strength") ? Skill.Base : Skill.Base * 2;
-            return PvpChar ? maxMod : Math.Min(Skill.EquipmentBonus, maxMod);
-        }
+            int maxNonPTMBase = HardCore ? 122 : 115;
+            int nr = NextLevel - Attribute.Start + 1 + 5;
 
-        public int MaxAttributeBonus(Skill Skill, int AttributeBonus)
-        {
-            int maxMod = Skill.Base * 2;
-            return Math.Min(maxMod, Math.Max(15, AttributeBonus));
+            if (NextLevel < maxNonPTMBase)
+            {
+                return Math.Max(1, nr * nr * nr * Attribute.Cost / 10);
+            }
+            else
+            {
+                int normalCost = Math.Max(1, nr * nr * nr * Attribute.Cost / 10);
+                int ptmCost = 6000000;
+                return normalCost + ptmCost;
+            }
         }
     }
 }

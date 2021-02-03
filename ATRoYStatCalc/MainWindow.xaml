@@ -30,16 +30,20 @@
         <Menu Grid.Row="0">
             <MenuItem Header="File">
                 <MenuItem Header="Import"
-                          IsEnabled="False"/>
+                          Command="{Binding Import}"/>
                 <MenuItem Header="Export"
-                          IsEnabled="False"/>
+                          Command="{Binding Export}"/>
             </MenuItem>
-            <MenuItem Header="Warrior"
-                      Command="{Binding SetWarriorView}"/>
-            <MenuItem Header="Mage"
-                      Command="{Binding SetMageView}"/>
-            <MenuItem Header="Seyan'Du"
-                      Command="{Binding SetSeyanView}"/>
+            <MenuItem Header="New Build">
+                <MenuItem Header="Warrior"
+                          Command="{Binding SetWarriorView}" />
+                <MenuItem Header="Mage"
+                          Command="{Binding SetMageView}" />
+                <MenuItem Header="Seyan'Du"
+                          Command="{Binding SetSeyanView}" />
+                <MenuItem Header="Rogue"
+                          IsEnabled="False" />
+            </MenuItem>
         </Menu>
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Auto"

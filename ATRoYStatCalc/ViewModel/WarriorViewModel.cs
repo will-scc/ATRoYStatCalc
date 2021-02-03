@@ -1,53 +1,27 @@
 ﻿using ATRoYStatCalc.Model;
 using GalaSoft.MvvmLight;
-using System;
-using System.Collections.Generic;
+using Newtonsoft.Json;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace ATRoYStatCalc.ViewModel
 {
     public class WarriorViewModel : ViewModelBase
     {
-        private Warrior _warrior;
-        public Warrior Warrior
-        {
-            get => _warrior;
-            set
-            {
-                _warrior = value;
-                RaisePropertyChanged("Warrior");
-            }
-        }
-
-        private EquipmentSet _equipmentSet = new EquipmentSet();
-        public EquipmentSet EquipmentSet
-        {
-            get => _equipmentSet;
-            set
-            {
-                _equipmentSet = value;
-                RaisePropertyChanged("EquipmentSet");
-            }
-        }
+        public Warrior Warrior { get; set; } = new Warrior(true);
 
         public WarriorViewModel()
         {
-            Warrior = new Warrior();
+            Parallel.ForEach(Warrior.Attributes, attribute =>
+            {
+                attribute.PropertyChanged += Base_PropertyChanged;
+            });
 
-            foreach (Skill skill in Warrior.Skills)
+            Parallel.ForEach(Warrior.Skills, skill =>
             {
                 skill.PropertyChanged += Base_PropertyChanged;
-            }
-
-            foreach (EquipmentPiece equipmentPiece in EquipmentSet.EquipmentPieces)
-            {
-                equipmentPiece.First.PropertyChanged += Equipment_PropertyChanged;
-                equipmentPiece.Second.PropertyChanged += Equipment_PropertyChanged;
-                equipmentPiece.Third.PropertyChanged += Equipment_PropertyChanged;
-                equipmentPiece.Fourth.PropertyChanged += Equipment_PropertyChanged;
-            }
+            });
 
             Warrior.UpdateCharacter();
         }
@@ -60,46 +34,14 @@ namespace ATRoYStatCalc.ViewModel
             }
         }
 
-        private void Equipment_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        public async Task Export()
         {
-            UpdateEquipmentBonuses();
-            Warrior.UpdateCharacter();
-        }
-
-        private void UpdateEquipmentBonuses()
-        {
-            foreach (Skill skill in Warrior.Skills)
+            string jsonString = JsonConvert.SerializeObject(new WarriorBuild()
             {
-                skill.EquipmentBonus = 0;
-            }
+                Stats = Warrior
+            });
 
-            foreach (EquipmentPiece equipmentPiece in EquipmentSet.EquipmentPieces)
-            {
-                Skill firstSkill = Warrior.Skills.FirstOrDefault(x => x.DisplayName == equipmentPiece.First.Stat);
-                if (firstSkill != null)
-                {
-                    firstSkill.EquipmentBonus += equipmentPiece.First.Value;
-                }
-
-                Skill secondSkill = Warrior.Skills.FirstOrDefault(x => x.DisplayName == equipmentPiece.Second.Stat);
-                if (secondSkill != null)
-                {
-                    secondSkill.EquipmentBonus += equipmentPiece.Second.Value;
-                }
-
-                Skill thirdSkill = Warrior.Skills.FirstOrDefault(x => x.DisplayName == equipmentPiece.Third.Stat);
-                if (thirdSkill != null)
-                {
-                    thirdSkill.EquipmentBonus += equipmentPiece.Third.Value;
-                }
-
-                Skill fourthSkill = Warrior.Skills.FirstOrDefault(x => x.DisplayName == equipmentPiece.Fourth.Stat);
-                if (fourthSkill != null)
-                {
-                    fourthSkill.EquipmentBonus += equipmentPiece.Fourth.Value;
-                }
-            }
-
+            await File.WriteAllTextAsync($"{Warrior.CharacterName}.bwar", jsonString);
         }
     }
 }

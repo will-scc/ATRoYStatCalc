@@ -5,82 +5,61 @@ namespace ATRoYStatCalc.Model
 {
     public class Skill : ObservableObject
     {
-        private bool isSeyan;
+        private readonly bool IsSeyan;
         public Skill(bool IsSeyan)
         {
-            isSeyan = IsSeyan;
+            this.IsSeyan = IsSeyan;
         }
 
-        private string _displayName;
-        public string DisplayName
-        {
-            get => _displayName;
-            set
-            {
-                _displayName = value;
-                RaisePropertyChanged("DisplayName");
-            }
-        }
+        public string DisplayName { get; set; }
+        public int Start { get; set; }
+        //private int _base;
+        public int Base { get; set; }
+        //{
+        //    get => _base;
+        //    set
+        //    {
+        //        _base = value;
+        //        RaisePropertyChanged("Base");
+        //        RaisePropertyChanged("MaxEquipmentModExceeded");
+        //    }
+        //}
 
-        private int _start;
-        public int Start
-        {
-            get => _start;
-            set
-            {
-                _start = value;
-                RaisePropertyChanged("Start");
-            }
-        }
+        
+        public int Cost { get; set; }
+        public int AttributeBonus { get; set; }
+        //private int _equipmentBonus;
+        public int EquipmentBonus { get; set; }
+        //{
+        //    get => _equipmentBonus;
+        //    set
+        //    {
+        //        _equipmentBonus = value;
+        //        RaisePropertyChanged("EquipmentBonus");
+        //        RaisePropertyChanged("MaxEquipmentModExceeded");
+        //    }
+        //}
+        public int Mod => Base + Math.Min(AttributeBonus, MaxAttributeMod) + Math.Min(EquipmentBonus, MaxEquipmentMod);
 
-        private int _base;
-        public int Base
-        {
-            get => _base;
-            set
-            {
-                _base = value;
-                RaisePropertyChanged("Base");
-                RaisePropertyChanged("MaxEquipmentModExceeded");
-            }
-        }
+        public int MaxAttributeMod => Base * 2;
+        public int MaxEquipmentMod => IsSeyan
+                    ? (int)Math.Floor(((double)Base / 100) * 72.5)
+                    : (int)Math.Floor(((double)Base / 100) * 50);
+        
+        public bool MaxAttributeModExceeded => AttributeBonus > MaxAttributeMod;
+        public bool MaxEquipmentModExceeded => EquipmentBonus > MaxEquipmentMod;
 
-        private int _mod;
-        public int Mod
-        {
-            get => _mod;
-            set
-            {
-                _mod = value;
-                RaisePropertyChanged("Mod");
-            }
-        }
+        //public void Calculate(int ModFromAttribute)
+        //{
+        //    //equipment mod
+        //    //attributemod
+        //    //bless?
+        //    AttributeBonus = ModFromAttribute;
 
-        private int _cost;
-        public int Cost
-        {
-            get => _cost;
-            set
-            {
-                _cost = value;
-                RaisePropertyChanged("Cost");
-            }
-        }
+        //    int actualAttributeBonus = Math.Min(MaxAttributeMod, Math.Max(15, AttributeBonus));
+        //    int actualEquipmentBonus = Math.Min(EquipmentBonus, MaxMagicalMod);
 
-        private int _equipmentBonus;
-        public int EquipmentBonus
-        {
-            get => _equipmentBonus;
-            set
-            {
-                _equipmentBonus = value;
-                RaisePropertyChanged("EquipmentBonus");
-                RaisePropertyChanged("MaxEquipmentModExceeded");
-            }
-        }
-
-        public bool MaxEquipmentModExceeded => isSeyan
-                    ? EquipmentBonus > (int)Math.Floor(((double)Base / 100) * 72.5)
-                    : EquipmentBonus > (int)Math.Floor(((double)Base / 100) * 50);
+        //    Mod = Base + actualAttributeBonus + actualEquipmentBonus;
+        //}
     }
 }

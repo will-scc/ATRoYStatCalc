@@ -1,5 +1,6 @@
-﻿using System;
-using System.Diagnostics;
+﻿using ATRoYStatCalc.Model;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ATRoYStatCalc
@@ -12,9 +13,25 @@ namespace ATRoYStatCalc
             return list.Contains(source, StringComparer.OrdinalIgnoreCase);
         }
 
-        public static int GetCurrentLevel(long CurrentExp)
+        public static void AddDistinctAttribute(this List<Model.Attribute> list, Model.Attribute attribute)
         {
-            return CurrentExp < 1 
+            if (!list.Any(p => p.DisplayName == attribute.DisplayName))
+            {
+                list.Add(attribute);
+            }
+        }
+
+        public static void AddDistinctSkill(this List<Skill> list, Skill skill)
+        {
+            if (!list.Any(p => p.DisplayName == skill.DisplayName))
+            {
+                list.Add(skill);
+            }
+        }
+
+        public static int GetLevelFromExp(long CurrentExp)
+        {
+            return CurrentExp < 1
                 ? 1
                 : Math.Max(1, (int)Math.Sqrt(Math.Sqrt(CurrentExp)));
         }

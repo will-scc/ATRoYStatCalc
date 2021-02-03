@@ -1,4 +1,6 @@
 ﻿using System.Windows.Controls;
+using System.Text.RegularExpressions;
+using System.Windows.Input;
 
 namespace ATRoYStatCalc.View
 {

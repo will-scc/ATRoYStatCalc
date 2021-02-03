@@ -5,17 +5,36 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <StartupObject>ATRoYStatCalc.App</StartupObject>
-    <Authors>Will_SCC</Authors>
+    <Authors>Will_SCC (Belgarath)</Authors>
     <Product>Astonia: The Return of Yendor Stat Calculator</Product>
-    <Description>A build, equipment and stat calculator for Astonia: The Return of Yendor.</Description>
+    <Description>A build, equipment and stat calculator for Astonia: The Return of Yendor by Belgarath</Description>
     <PackageProjectUrl>https://github.com/will-scc/ATRoYStatCalc</PackageProjectUrl>
     <NeutralLanguage />
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.5" />
-    <PackageReference Include="Dirkster.NumericUpDownLib" Version="2.4.2.1" />
+    <PackageReference Include="Dirkster.NumericUpDownLib" Version="2.4.2.2" />
+    <PackageReference Include="Fody" Version="6.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="View\WarriorView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="View\WarriorView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

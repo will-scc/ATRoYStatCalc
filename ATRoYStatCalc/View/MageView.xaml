@@ -4,182 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ATRoYStatCalc.View"
+             xmlns:n="clr-namespace:NumericUpDownLib;assembly=NumericUpDownLib"
              mc:Ignorable="d"
              d:Background="White"
              DataContext="{Binding MageView, Source={StaticResource ViewModelLocator}}">
     <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Grid Margin="5"
-              Grid.Row="0"
-              Grid.Column="0"
-              Grid.ColumnSpan="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Grid Margin="5"
-                  Grid.Row="1"
-                  Grid.Column="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-
-                <Label Content="Level"
-                       FontWeight="Bold"
-                       Grid.Row="0"
-                       Grid.Column="0" />
-                <Label Content="{Binding Mage.CurrentLevel}"
-                       FontWeight="Bold"
-                       Grid.Row="0"
-                       Grid.Column="1" />
-
-                <Label Content="Experience"
-                       Grid.Row="1"
-                       Grid.Column="0" />
-
-                <Label Content="{Binding Mage.CurrentExp}"
-                       Foreground="{Binding Mage.MaxExpExceeded, Converter={StaticResource BoolToRed}}"
-                       Grid.Row="1"
-                       Grid.Column="1" />
-
-                <Label Content="Armour"
-                       Grid.Row="2" />
-                <Label Content="N/A"
-                       Grid.Row="2"
-                       Grid.Column="1" />
-
-                <Label Content="Weapon"
-                       Grid.Row="3"
-                       Grid.Column="0" />
-                <Label Content="N/A"
-                       Grid.Row="3"
-                       Grid.Column="1" />
-
-                <Label Content="Speed"
-                       Grid.Row="4"
-                       Grid.Column="0" />
-                <Label Content="{Binding Mage.Speed}"
-                       Grid.Row="4"
-                       Grid.Column="1" />
-            </Grid>
-
-            <StackPanel Orientation="Horizontal"
-                        Grid.Row="2"
-                        Grid.ColumnSpan="6">
-                <CheckBox Content="Hardcore"
-                          IsChecked="{Binding Mage.HardCore}"
-                          Margin="5" />
-                <CheckBox Content="PvP"
-                          IsChecked="{Binding Mage.PvpChar}"
-                          Margin="5" />
-                <CheckBox Content="Master Athlete"
-                          IsChecked="{Binding Mage.MasterAthlete}"
-                          Margin="5"/>
-                <CheckBox Content="Master Light Warrior"
-                          IsChecked="{Binding Seyan.MasterLightWarrior}"
-                          Margin="5"/>
-                <CheckBox Content="Master Dark Warrior"
-                          IsChecked="{Binding Seyan.MasterDarkWarrior}"
-                          Margin="5"/>
-            </StackPanel>
-
-            <local:EquipmentSlot Text="Weapon"
-                                 AvailableStats="{Binding DataContext.Mage.Skills, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Equipment="{Binding DataContext.EquipmentSet.Weapon, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Grid.Row="0"
-                                 Grid.Column="0" />
-
-            <local:EquipmentSlot Text="Ring 1"
-                                 AvailableStats="{Binding DataContext.Mage.Skills, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Equipment="{Binding DataContext.EquipmentSet.FirstRing, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Grid.Row="0"
-                                 Grid.Column="1" />
-
-            <local:EquipmentSlot Text="Ring 2"
-                                 AvailableStats="{Binding DataContext.Mage.Skills, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Equipment="{Binding DataContext.EquipmentSet.SecondRing, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Grid.Row="0"
-                                 Grid.Column="2" />
-
-            <local:EquipmentSlot Text="Amulet"
-                                 AvailableStats="{Binding DataContext.Mage.Skills, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Equipment="{Binding DataContext.EquipmentSet.Amulet, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Grid.Row="0"
-                                 Grid.Column="3" />
-
-            <local:EquipmentSlot Text="Head"
-                                 AvailableStats="{Binding DataContext.Mage.Skills, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Equipment="{Binding DataContext.EquipmentSet.Head, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Grid.Row="0"
-                                 Grid.Column="4" />
-
-            <local:EquipmentSlot Text="Cape"
-                                 AvailableStats="{Binding DataContext.Mage.Skills, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Equipment="{Binding DataContext.EquipmentSet.Cape, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Grid.Row="0"
-                                 Grid.Column="5" />
-
-            <local:EquipmentSlot Text="Chest"
-                                 AvailableStats="{Binding DataContext.Mage.Skills, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Equipment="{Binding DataContext.EquipmentSet.Chest, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Grid.Row="1"
-                                 Grid.Column="1" />
-
-            <local:EquipmentSlot Text="Belt"
-                                 AvailableStats="{Binding DataContext.Mage.Skills, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Equipment="{Binding DataContext.EquipmentSet.Belt, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Grid.Row="1"
-                                 Grid.Column="2" />
-
-            <local:EquipmentSlot Text="Arms"
-                                 AvailableStats="{Binding DataContext.Mage.Skills, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Equipment="{Binding DataContext.EquipmentSet.Arms, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Grid.Row="1"
-                                 Grid.Column="3" />
-
-            <local:EquipmentSlot Text="Legs"
-                                 AvailableStats="{Binding DataContext.Mage.Skills, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Equipment="{Binding DataContext.EquipmentSet.Legs, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Grid.Row="1"
-                                 Grid.Column="4" />
-
-            <local:EquipmentSlot Text="Boots"
-                                 AvailableStats="{Binding DataContext.Mage.Skills, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Equipment="{Binding DataContext.EquipmentSet.Boots, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                 Grid.Row="1"
-                                 Grid.Column="5" />
-        </Grid>
-
-        
-        
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2">
+            <Label Content="Mage - "/>
+            <TextBox Text="{Binding Mage.CharacterName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     VerticalAlignment="Center"/>
+        </StackPanel>
+      
         <Grid x:Name="CharacterStats"
               Margin="5"
               Grid.Row="1"
@@ -187,7 +33,6 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
@@ -228,8 +73,11 @@
             <Label Content="Base"
                    FontWeight="Bold"
                    Grid.Row="0"
-                   Grid.Column="1"
-                   Grid.ColumnSpan="2" />
+                   Grid.Column="1" />
+            <Label Content="Equipment"
+                   FontWeight="Bold"
+                   Grid.Row="0"
+                   Grid.Column="2" />
             <Label Content="Mod"
                    FontWeight="Bold"
                    Grid.Row="0"
@@ -238,15 +86,16 @@
             <Label Content="{Binding Mage.Hitpoints.DisplayName}"
                    Grid.Row="1"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Hitpoints.Base}"
-                   Grid.Row="1"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Hitpoints.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Hitpoints.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="1"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Hitpoints.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Hitpoints.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="1"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown Value="{Binding Mage.Hitpoints.EquipmentBonus, Mode=TwoWay}"
+                              MinValue="0"
+                              VerticalAlignment="Center"
+                              Grid.Row="1"
+                              Grid.Column="2" />
             <Label Content="{Binding Mage.Hitpoints.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Hitpoints.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="1"
@@ -255,15 +104,16 @@
             <Label Content="{Binding Mage.Endurance.DisplayName}"
                    Grid.Row="2"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Endurance.Base}"
-                   Grid.Row="2"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Endurance.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Endurance.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="2"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Endurance.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Endurance.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="2"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown Value="{Binding Mage.Endurance.EquipmentBonus, Mode=TwoWay}"
+                              MinValue="0"
+                              VerticalAlignment="Center"
+                              Grid.Row="2"
+                              Grid.Column="2" />
             <Label Content="{Binding Mage.Endurance.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Endurance.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="2"
@@ -272,15 +122,16 @@
             <Label Content="{Binding Mage.Mana.DisplayName}"
                    Grid.Row="3"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Mana.Base}"
-                   Grid.Row="3"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Mana.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Mana.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="3"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Mana.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Mana.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="3"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown Value="{Binding Mage.Mana.EquipmentBonus, Mode=TwoWay}"
+                              MinValue="0"
+                              VerticalAlignment="Center"
+                              Grid.Row="3"
+                              Grid.Column="2" />
             <Label Content="{Binding Mage.Mana.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Mana.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="3"
@@ -294,15 +145,16 @@
             <Label Content="{Binding Mage.Wisdom.DisplayName}"
                    Grid.Row="5"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Wisdom.Base}"
-                   Grid.Row="5"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Wisdom.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Wisdom.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="5"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Wisdom.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Wisdom.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="5"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown Value="{Binding Mage.Wisdom.EquipmentBonus, Mode=TwoWay}"
+                              MinValue="0"
+                              VerticalAlignment="Center"
+                              Grid.Row="5"
+                              Grid.Column="2" />
             <Label Content="{Binding Mage.Wisdom.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Wisdom.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="5"
@@ -311,15 +163,16 @@
             <Label Content="{Binding Mage.Intuition.DisplayName}"
                    Grid.Row="6"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Intuition.Base}"
-                   Grid.Row="6"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Intuition.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Intuition.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="6"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Intuition.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Intuition.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="6"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown Value="{Binding Mage.Intuition.EquipmentBonus, Mode=TwoWay}"
+                              MinValue="0"
+                              VerticalAlignment="Center"
+                              Grid.Row="6"
+                              Grid.Column="2" />
             <Label Content="{Binding Mage.Intuition.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Intuition.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="6"
@@ -328,15 +181,16 @@
             <Label Content="{Binding Mage.Agility.DisplayName}"
                    Grid.Row="7"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Agility.Base}"
-                   Grid.Row="7"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Agility.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Agility.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="7"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Agility.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Agility.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="7"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown Value="{Binding Mage.Agility.EquipmentBonus, Mode=TwoWay}"
+                              MinValue="0"
+                              VerticalAlignment="Center"
+                              Grid.Row="7"
+                              Grid.Column="2" />
             <Label Content="{Binding Mage.Agility.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Agility.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="7"
@@ -345,15 +199,16 @@
             <Label Content="{Binding Mage.Strength.DisplayName}"
                    Grid.Row="8"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Strength.Base}"
-                   Grid.Row="8"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Strength.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Strength.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="8"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Strength.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Strength.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="8"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown Value="{Binding Mage.Strength.EquipmentBonus, Mode=TwoWay}"
+                              MinValue="0"
+                              VerticalAlignment="Center"
+                              Grid.Row="8"
+                              Grid.Column="2" />
             <Label Content="{Binding Mage.Strength.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Strength.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="8"
@@ -367,15 +222,16 @@
             <Label Content="{Binding Mage.Dagger.DisplayName}"
                    Grid.Row="10"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Dagger.Base}"
-                   Grid.Row="10"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Dagger.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Dagger.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="10"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Dagger.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Dagger.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="10"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown Value="{Binding Mage.Dagger.EquipmentBonus, Mode=TwoWay}"
+                              MinValue="0"
+                              VerticalAlignment="Center"
+                              Grid.Row="10"
+                              Grid.Column="2" />
             <Label Content="{Binding Mage.Dagger.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Dagger.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="10"
@@ -384,15 +240,15 @@
             <Label Content="{Binding Mage.HandToHand.DisplayName}"
                    Grid.Row="11"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.HandToHand.Base}"
-                   Grid.Row="11"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.HandToHand.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.HandToHand.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="11"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.HandToHand.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.HandToHand.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="11"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown  Value="{Binding Mage.HandToHand.EquipmentBonus, Mode=TwoWay}"
+                               VerticalAlignment="Center"
+                               Grid.Row="11"
+                               Grid.Column="2" />
             <Label Content="{Binding Mage.HandToHand.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.HandToHand.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="11"
@@ -401,15 +257,16 @@
             <Label Content="{Binding Mage.Staff.DisplayName}"
                    Grid.Row="12"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Staff.Base}"
-                   Grid.Row="12"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Staff.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Staff.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="12"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Staff.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Staff.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="12"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown Value="{Binding Mage.Staff.EquipmentBonus, Mode=TwoWay}"
+                              MinValue="0"
+                              VerticalAlignment="Center"
+                              Grid.Row="12"
+                              Grid.Column="2" />
             <Label Content="{Binding Mage.Staff.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Staff.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="12"
@@ -423,15 +280,16 @@
             <Label Content="{Binding Mage.Bless.DisplayName}"
                    Grid.Row="14"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Bless.Base}"
-                   Grid.Row="14"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Bless.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Bless.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="14"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Bless.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Bless.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="14"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown Value="{Binding Mage.Bless.EquipmentBonus, Mode=TwoWay}"
+                              MinValue="0"
+                              VerticalAlignment="Center"
+                              Grid.Row="14"
+                              Grid.Column="2" />
             <Label Content="{Binding Mage.Bless.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Bless.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="14"
@@ -440,15 +298,16 @@
             <Label Content="{Binding Mage.Heal.DisplayName}"
                    Grid.Row="15"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Heal.Base}"
-                   Grid.Row="15"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Heal.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Heal.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="15"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Heal.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Heal.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="15"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown  Value="{Binding Mage.Heal.EquipmentBonus, Mode=TwoWay}"
+                               MinValue="0"
+                               VerticalAlignment="Center"
+                               Grid.Row="15"
+                               Grid.Column="2" />
             <Label Content="{Binding Mage.Heal.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Heal.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="15"
@@ -457,15 +316,16 @@
             <Label Content="{Binding Mage.Freeze.DisplayName}"
                    Grid.Row="16"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Freeze.Base}"
-                   Grid.Row="16"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Freeze.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Freeze.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="16"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Freeze.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Freeze.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="16"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown  Value="{Binding Mage.Freeze.EquipmentBonus, Mode=TwoWay}"
+                               MinValue="0"
+                               VerticalAlignment="Center"
+                               Grid.Row="16"
+                               Grid.Column="2" />
             <Label Content="{Binding Mage.Freeze.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Freeze.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="16"
@@ -474,15 +334,16 @@
             <Label Content="{Binding Mage.MagicShield.DisplayName}"
                    Grid.Row="17"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.MagicShield.Base}"
-                   Grid.Row="17"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.MagicShield.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.MagicShield.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="17"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.MagicShield.Base, Mode=OneWay}"
+                              MinValue="{Binding Mage.MagicShield.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="17"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown  Value="{Binding Mage.MagicShield.EquipmentBonus, Mode=TwoWay}"
+                               MinValue="0"
+                               VerticalAlignment="Center"
+                               Grid.Row="17"
+                               Grid.Column="2" />
             <Label Content="{Binding Mage.MagicShield.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.MagicShield.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="17"
@@ -491,15 +352,16 @@
             <Label Content="{Binding Mage.Lightning.DisplayName}"
                    Grid.Row="18"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Lightning.Base}"
-                   Grid.Row="18"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Lightning.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Lightning.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="18"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Lightning.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Lightning.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="18"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown  Value="{Binding Mage.Lightning.EquipmentBonus, Mode=TwoWay}"
+                               MinValue="0"
+                               VerticalAlignment="Center"
+                               Grid.Row="18"
+                               Grid.Column="2" />
             <Label Content="{Binding Mage.Lightning.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Lightning.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="18"
@@ -508,15 +370,16 @@
             <Label Content="{Binding Mage.Fire.DisplayName}"
                    Grid.Row="19"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Fire.Base}"
-                   Grid.Row="19"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Fire.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Fire.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="19"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Fire.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Fire.Start, Mode=TwoWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="19"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown Value="{Binding Mage.Fire.EquipmentBonus, Mode=TwoWay}"
+                              MinValue="0"
+                              VerticalAlignment="Center"
+                              Grid.Row="19"
+                              Grid.Column="2" />
             <Label Content="{Binding Mage.Fire.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Fire.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="19"
@@ -525,15 +388,16 @@
             <Label Content="{Binding Mage.Pulse.DisplayName}"
                    Grid.Row="20"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Pulse.Base}"
-                   Grid.Row="20"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Pulse.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Pulse.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="20"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Pulse.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Pulse.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="20"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown Value="{Binding Mage.Pulse.EquipmentBonus, Mode=TwoWay}"
+                              MinValue="0"
+                              VerticalAlignment="Center"
+                              Grid.Row="20"
+                              Grid.Column="2" />
             <Label Content="{Binding Mage.Pulse.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Pulse.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="20"
@@ -542,15 +406,16 @@
             <Label Content="{Binding Mage.Bartering.DisplayName}"
                    Grid.Row="21"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Bartering.Base}"
-                   Grid.Row="21"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Bartering.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Bartering.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="21"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Bartering.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Bartering.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="21"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown  Value="{Binding Mage.Bartering.EquipmentBonus, Mode=TwoWay}"
+                               MinValue="0"
+                               VerticalAlignment="Center"
+                               Grid.Row="21"
+                               Grid.Column="2" />
             <Label Content="{Binding Mage.Bartering.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Bartering.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="21"
@@ -559,15 +424,16 @@
             <Label Content="{Binding Mage.Perception.DisplayName}"
                    Grid.Row="22"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Perception.Base}"
-                   Grid.Row="22"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Perception.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Perception.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="22"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Perception.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Perception.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="22"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown Value="{Binding Mage.Perception.EquipmentBonus, Mode=TwoWay}"
+                              MinValue="0"
+                              VerticalAlignment="Center"
+                              Grid.Row="22"
+                              Grid.Column="2" />
             <Label Content="{Binding Mage.Perception.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Perception.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="22"
@@ -576,15 +442,16 @@
             <Label Content="{Binding Mage.Stealth.DisplayName}"
                    Grid.Row="23"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Stealth.Base}"
-                   Grid.Row="23"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Stealth.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Stealth.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="23"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Stealth.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Stealth.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="23"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown  Value="{Binding Mage.Stealth.EquipmentBonus, Mode=TwoWay}"
+                               MinValue="0"
+                               VerticalAlignment="Center"
+                               Grid.Row="23"
+                               Grid.Column="2" />
             <Label Content="{Binding Mage.Stealth.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Stealth.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="23"
@@ -593,15 +460,16 @@
             <Label Content="{Binding Mage.Meditate.DisplayName}"
                    Grid.Row="24"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Meditate.Base}"
-                   Grid.Row="24"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Meditate.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Meditate.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="24"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Meditate.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Meditate.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="24"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown  Value="{Binding Mage.Meditate.EquipmentBonus, Mode=TwoWay}"
+                               MinValue="0"
+                               VerticalAlignment="Center"
+                               Grid.Row="24"
+                               Grid.Column="2" />
             <Label Content="{Binding Mage.Meditate.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Meditate.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="24"
@@ -610,15 +478,16 @@
             <Label Content="{Binding Mage.Immunity.DisplayName}"
                    Grid.Row="25"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Immunity.Base}"
-                   Grid.Row="25"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Immunity.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Immunity.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="25"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Immunity.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Immunity.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="25"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown Value="{Binding Mage.Immunity.EquipmentBonus, Mode=TwoWay}"
+                              MinValue="0"
+                              VerticalAlignment="Center"
+                              Grid.Row="25"
+                              Grid.Column="2" />
             <Label Content="{Binding Mage.Immunity.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Immunity.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="25"
@@ -627,15 +496,16 @@
             <Label Content="{Binding Mage.Profession.DisplayName}"
                    Grid.Row="26"
                    Grid.Column="0" />
-            <Label Content="{Binding Mage.Profession.Base}"
-                   Grid.Row="26"
-                   Grid.Column="1" />
-            <Slider Value="{Binding Mage.Profession.Base, Mode=TwoWay}"
-                    Minimum="{Binding Mage.Profession.Start, Mode=TwoWay}"
-                    Maximum="{Binding Mage.MaxBase, Mode=OneWay}"
-                    VerticalAlignment="Center"
-                    Grid.Row="26"
-                    Grid.Column="2" />
+            <n:UIntegerUpDown Value="{Binding Mage.Profession.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Profession.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              Grid.Row="26"
+                              Grid.Column="1" />
+            <!--<n:UIntegerUpDown Value="{Binding Mage.Profession.EquipmentBonus, Mode=TwoWay}"
+                              MinValue="0"
+                              VerticalAlignment="Center"
+                              Grid.Row="26"
+                              Grid.Column="2" />-->
             <Label Content="{Binding Mage.Profession.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.MissingProfessionBases, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="26"

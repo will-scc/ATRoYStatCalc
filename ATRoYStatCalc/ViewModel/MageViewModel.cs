@@ -1,47 +1,27 @@
 ﻿using ATRoYStatCalc.Model;
 using GalaSoft.MvvmLight;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace ATRoYStatCalc.ViewModel
 {
     public class MageViewModel : ViewModelBase
     {
-        private Mage _mage = new Mage();
-        public Mage Mage
-        {
-            get => _mage;
-            set
-            {
-                _mage = value;
-                RaisePropertyChanged("Mage");
-            }
-        }
-
-        private EquipmentSet _equipmentSet = new EquipmentSet();
-        public EquipmentSet EquipmentSet
-        {
-            get => _equipmentSet;
-            set
-            {
-                _equipmentSet = value;
-                RaisePropertyChanged("EquipmentSet");
-            }
-        }
+        public Mage Mage { get; set; } = new Mage(true);
 
         public MageViewModel()
         {
-            foreach(Skill skill in Mage.Skills)
+            Parallel.ForEach(Mage.Attributes, attribute =>
+            {
+                attribute.PropertyChanged += Base_PropertyChanged;
+            });
+
+            Parallel.ForEach(Mage.Skills, skill =>
             {
                 skill.PropertyChanged += Base_PropertyChanged;
-            }
-
-            foreach(EquipmentPiece equipmentPiece in EquipmentSet.EquipmentPieces)
-            {
-                equipmentPiece.First.PropertyChanged += Equipment_PropertyChanged;
-                equipmentPiece.Second.PropertyChanged += Equipment_PropertyChanged;
-                equipmentPiece.Third.PropertyChanged += Equipment_PropertyChanged;
-                equipmentPiece.Fourth.PropertyChanged += Equipment_PropertyChanged;
-            }
+            });
 
             Mage.UpdateCharacter();
         }
@@ -54,52 +34,14 @@ namespace ATRoYStatCalc.ViewModel
             }
         }
 
-        private void Equipment_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        public async Task Export()
         {
-            UpdateEquipmentBonuses();
-            Mage.UpdateCharacter();
-        }
-
-        private void UpdateEquipmentBonuses()
-        {
-            foreach (Skill skill in Mage.Skills)
+            string jsonString = JsonConvert.SerializeObject(new MageBuild()
             {
-                skill.EquipmentBonus = 0;
-            }
+                Stats = Mage
+            });
 
-            foreach (EquipmentPiece equipmentPiece in EquipmentSet.EquipmentPieces)
-            {
-                Skill firstSkill = Mage.Skills.FirstOrDefault(x => x.DisplayName == equipmentPiece.First.Stat);
-                if (firstSkill != null)
-                {
-                    firstSkill.EquipmentBonus += equipmentPiece.First.Value;
-                }
-
-                Skill secondSkill = Mage.Skills.FirstOrDefault(x => x.DisplayName == equipmentPiece.Second.Stat);
-                if (secondSkill != null)
-                {
-                    secondSkill.EquipmentBonus += equipmentPiece.Second.Value;
-                }
-
-                Skill thirdSkill = Mage.Skills.FirstOrDefault(x => x.DisplayName == equipmentPiece.Third.Stat);
-                if (thirdSkill != null)
-                {
-                    thirdSkill.EquipmentBonus += equipmentPiece.Third.Value;
-                }
-
-                Skill fourthSkill = Mage.Skills.FirstOrDefault(x => x.DisplayName == equipmentPiece.Fourth.Stat);
-                if (fourthSkill != null)
-                {
-                    fourthSkill.EquipmentBonus += equipmentPiece.Fourth.Value;
-                }
-            }
-
-        }
-
-
-        public void Save()
-        {
-
+            await File.WriteAllTextAsync($"{Mage.CharacterName}.bmag", jsonString);
         }
     }
 }
