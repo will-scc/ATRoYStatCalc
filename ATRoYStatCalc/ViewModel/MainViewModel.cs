@@ -45,24 +45,24 @@ namespace ATRoYStatCalc.ViewModel
         });
 
         private ICommand _export;
-        public ICommand Export => _export ??= new RelayCommand(() =>
+        public ICommand Export => _export ??= new RelayCommand(async () =>
         {
             if (CurrentView.GetType() == typeof(MageViewModel))
             {
                 MageViewModel temp = (MageViewModel)CurrentView;
-                //await temp.Export();
+                await temp.Export();
             }
 
             if (CurrentView.GetType() == typeof(WarriorViewModel))
             {
                 WarriorViewModel temp = (WarriorViewModel)CurrentView;
-                //await temp.Export();
+                await temp.Export();
             }
 
             if (CurrentView.GetType() == typeof(SeyanViewModel))
             {
                 SeyanViewModel temp = (SeyanViewModel)CurrentView;
-                //await temp.Export();
+                await temp.Export();
             }
         });
 
@@ -72,7 +72,7 @@ namespace ATRoYStatCalc.ViewModel
 
             OpenFileDialog ofd = new OpenFileDialog
             {
-                Filter = "Build Files|*.mage;*.warrior;*.seyan",
+                Filter = "Build Files|*.bmag;*.bwar;*.bsey",
                 Multiselect = false
             };
 
@@ -85,28 +85,24 @@ namespace ATRoYStatCalc.ViewModel
 
                 switch (ext)
                 {
-                    case "mage":
+                    case "bmag":
                         MageBuild mageBuild = JsonConvert.DeserializeObject<MageBuild>(json);
                         MageViewModel _m = SimpleIoc.Default.GetInstance<MageViewModel>();
                         _m.Mage = mageBuild.Stats;
-                        //_m.EquipmentSet = mageBuild.Equipment;
                         CurrentView = _m;
                         break;
 
-                    case "warrior":
+                    case "bwar":
                         WarriorBuild warriorBuild = JsonConvert.DeserializeObject<WarriorBuild>(json);
                         WarriorViewModel _w = SimpleIoc.Default.GetInstance<WarriorViewModel>();
                         _w.Warrior = warriorBuild.Stats;
-                        //_w.EquipmentSet = warriorBuild.Equipment;
                         CurrentView = _w;
                         break;
 
-                    case "seyan":
+                    case "bsey":
                         SeyanBuild seyanBuild = JsonConvert.DeserializeObject<SeyanBuild>(json);
                         SeyanViewModel _s = SimpleIoc.Default.GetInstance<SeyanViewModel>();
                         _s.Seyan = seyanBuild.Stats;
-                        //_s.EquipmentSet = seyanBuild.Equipment;
-                        //_s.SyncCharacter();
                         CurrentView = _s;
                         break;
                 }

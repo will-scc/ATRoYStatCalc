@@ -687,26 +687,181 @@
             <Label Content="{Binding Seyan.Profession.DisplayName}"
                    Grid.Row="36"
                    Grid.Column="0" />
-            <n:UIntegerUpDown Value="{Binding Seyan.Profession.Base, Mode=TwoWay}"
-                              MinValue="{Binding Seyan.Profession.Start, Mode=OneWay}"
-                              MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
-                              Grid.Row="36"
-                              Grid.Column="1" />
-            <!--<n:UIntegerUpDown Value="{Binding Seyan.Profession.Base, Mode=TwoWay}"
-                              MinValue="0"
-                              VerticalAlignment="Center"
-                              Grid.Row="36"
-                              Grid.Column="2" />-->
+            <Label Content="{Binding Seyan.Profession.Base, Mode=TwoWay}"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.Row="36"
+                   Grid.Column="1" />
             <Label Content="{Binding Seyan.Profession.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.MissingProfessionBases, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Grid.Row="36"
                    Grid.Column="3" />
         </Grid>
 
-        <Grid Grid.Row="1"
-              Grid.Column="2">
-            <Label />
+        <StackPanel x:Name="Overview"
+                    Grid.Column="3"
+                    Grid.Row="1"
+                    Margin="5">
+            <GroupBox Header="Overview"
+                      FontWeight="Bold"
+                      Padding="5">
+                <Grid Margin="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-        </Grid>
+                    <Label Content="Level:"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Right"
+                           Grid.Row="1"
+                           Grid.Column="0" />
+
+                    <Label Content="{Binding Seyan.CurrentLevel, Mode=OneWay}"
+                           Grid.Row="1"
+                           Grid.Column="1" />
+                    <Label Content="Experience:"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Right"
+                           Grid.Row="2"
+                           Grid.Column="0" />
+                    <Label Content="{Binding Seyan.CurrentExp, Mode=OneWay}"
+                           Grid.Row="2"
+                           Grid.Column="1" />
+
+                    <Label Content="Armour Value:"
+                           HorizontalAlignment="Right"
+                           FontWeight="Bold"
+                           Grid.Row="3"
+                           Grid.Column="0" />
+                    <Label Content="{Binding Seyan.ArmourValue, Mode=OneWay}"
+                           Grid.Row="3"
+                           Grid.Column="1" />
+
+                    <Label Content="Weapon Value:"
+                           HorizontalAlignment="Right"
+                           FontWeight="Bold"
+                           Grid.Row="4"
+                           Grid.Column="0" />
+                    <Label Content="{Binding Seyan.WeaponValue, Mode=OneWay}"
+                           Grid.Row="4"
+                           Grid.Column="1" />
+
+                    <Label Content="Speed:"
+                           HorizontalAlignment="Right"
+                           FontWeight="Bold"
+                           Grid.Row="5"
+                           Grid.Column="0" />
+                    <Label Content="{Binding Seyan.Speed, Mode=OneWay}"
+                           Grid.Row="5"
+                           Grid.Column="1" />
+
+                    <Label Content="Offense:"
+                           HorizontalAlignment="Right"
+                           FontWeight="Bold"
+                           Grid.Row="6"
+                           Grid.Column="0" />
+                    <Label Content="{Binding Seyan.Offence, Mode=OneWay}"
+                           Grid.Row="6"
+                           Grid.Column="1" />
+
+                    <Label Content="Defense:"
+                           HorizontalAlignment="Right"
+                           FontWeight="Bold"
+                           Grid.Row="7"
+                           Grid.Column="0" />
+                    <Label Content="{Binding Seyan.Defence, Mode=OneWay}"
+                           Grid.Row="7"
+                           Grid.Column="1" />
+                </Grid>
+
+            </GroupBox>
+
+            <GroupBox Header="Tactics"
+                      FontWeight="Bold"
+                      Padding="5"
+                      Margin="5">
+                <StackPanel>
+                    <CheckBox Content="Show Tactics Bonus"
+                              IsChecked="{Binding Seyan.IncludeTactics, Mode=TwoWay}"/>
+                </StackPanel>
+
+            </GroupBox>
+
+            <GroupBox Header="Warcry"
+                      FontWeight="Bold"
+                      Padding="5"
+                      Margin="5">
+
+            </GroupBox>
+
+            <GroupBox Header="Bless"
+                      FontWeight="Bold"
+                      Padding="5"
+                      Margin="5">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="5">
+                    <Label Content="Blessed"
+                           VerticalAlignment="Center" />
+                    <CheckBox IsChecked="{Binding Seyan.Blessed, Mode=TwoWay}"
+                              VerticalAlignment="Center" />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Other"
+                      FontWeight="Bold"
+                      Padding="5"
+                      Margin="5">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Margin="5">
+                        <Label Content="Light/Dark Warrior"/>
+                        <n:UIntegerUpDown Value="{Binding Seyan.WarriorBonus, Mode=TwoWay}"
+                                          MinValue="0"
+                                          MaxValue="30"
+                                          StepSize="3"
+                                          VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Margin="5">
+                        <Label Content="Athlete"
+                               HorizontalAlignment="Right" 
+                               VerticalAlignment="Center"/>
+                        <n:UIntegerUpDown Value="{Binding Seyan.AthleteBonus, Mode=TwoWay}"
+                                          MinValue="0"
+                                          MaxValue="30"
+                                          StepSize="3"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Margin="5">
+                        <Label Content="Hardcore"
+                               VerticalAlignment="Center"/>
+                        <CheckBox IsChecked="{Binding Seyan.HardCore, Mode=TwoWay}"
+                                  VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    
+                </StackPanel>
+            </GroupBox>
+
+        </StackPanel>
     </Grid>
 </UserControl>

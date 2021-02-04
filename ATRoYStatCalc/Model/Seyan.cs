@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ATRoYStatCalc.Model
 {
@@ -11,60 +12,69 @@ namespace ATRoYStatCalc.Model
         public bool MaxExpExceeded => CurrentExp > MaxExp;
         public int MaxBase => 202;
         public bool HardCore { get; set; } = false;
-        public bool MasterAthlete { get; set; }
-        public bool MasterWarrior { get; set; }
-        public long CurrentExp { get; set; }
+        public long CurrentExp { get; set; } = 0;
         public int CurrentLevel { get; set; } = 2;
+        public double WeaponValue { get; set; }
+        public double ArmourValue { get; set; }
+        public int Offence { get; set; }
+        public int Defence { get; set; }
         public int Speed { get; set; }
         
+        public int AthleteBonus { get; set; }
+        public int WarriorBonus { get; set; }
+        public bool IncludeTactics { get; set; } = false;
+        public bool Blessed { get; set; } = true;
         public bool MissingProfessionBases => Profession.Base < Profession.Mod;
 
+        #region "Attributes"
         public List<Attribute> Attributes { get; set; } = new List<Attribute>();
-        public Attribute Wisdom { get; set; } = new Attribute(false)
+        public Attribute Wisdom { get; set; } = new Attribute(true)
         {
             DisplayName = "Wisdom",
             Start = 10,
             Base = 10,
             Cost = 2
         };
-        public Attribute Intuition { get; set; } = new Attribute(false)
+        public Attribute Intuition { get; set; } = new Attribute(true)
         {
             DisplayName = "Intuition",
             Start = 10,
             Base = 10,
             Cost = 2
         };
-        public Attribute Agility { get; set; } = new Attribute(false)
+        public Attribute Agility { get; set; } = new Attribute(true)
         {
             DisplayName = "Agility",
             Start = 10,
             Base = 10,
             Cost = 2
         };
-        public Attribute Strength { get; set; } = new Attribute(false)
+        public Attribute Strength { get; set; } = new Attribute(true)
         {
             DisplayName = "Strength",
             Start = 10,
             Base = 10,
             Cost = 2
         };
+        #endregion
 
+        #region "Skills"
         public List<Skill> Skills { get; set; } = new List<Skill>();
-        public Skill Hitpoints { get; set; } = new Skill(true)
+        public Skill Hitpoints { get; set; } = new Skill(true, true)
         {
             DisplayName = "Hitpoints",
             Start = 10,
             Base = 10,
             Cost = 3
         };
-        public Skill Endurance { get; set; } = new Skill(true)
+        public Skill Endurance { get; set; } = new Skill(true, true)
         {
             DisplayName = "Endurance",
             Start = 10,
             Base = 10,
             Cost = 3
         };
-        public Skill Mana { get; set; } = new Skill(true)
+        public Skill Mana { get; set; } = new Skill(true, true)
         {
             DisplayName = "Mana",
             Start = 10,
@@ -254,6 +264,7 @@ namespace ATRoYStatCalc.Model
             Base = 1,
             Cost = 3
         };
+        #endregion
 
         public Seyan(bool initialize = false)
         {
@@ -300,64 +311,11 @@ namespace ATRoYStatCalc.Model
 
         public void UpdateCharacter()
         {
+            Profession.Base = AthleteBonus + WarriorBonus;
+
             CalculateLevel();
             CalculateAttributeBonuses();
-        }
-
-        private void CalculateAttributeBonuses()
-        {
-            //Unblessed attributes (WIAS) used to calculate bless mod
-            foreach (Attribute attribute in Attributes)
-            {
-                attribute.BlessBonus = 0;
-            }
-            
-            Bless.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-
-            //Now apply bless mod to attributes for Skills
-            foreach (Attribute attribute in Attributes)
-            {
-                attribute.BlessBonus = Bless.Mod / 4;
-            }
-
-            Dagger.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-            HandToHand.AttributeBonus = (Agility.Mod + Strength.Mod + Strength.Mod) / 5;
-            Sword.AttributeBonus = (Intuition.Mod + Intuition.Mod + Agility.Mod) / 5;
-            TwoHanded.AttributeBonus = (Agility.Mod + Agility.Mod + Strength.Mod) / 5;
-            
-            ArmorSkill.AttributeBonus = (Agility.Mod + Agility.Mod + Strength.Mod) / 5;
-            Attack.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-            Parry.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-            Warcry.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-            Tactics.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-            SurroundHit.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-            BodyControl.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-            SpeedSkill.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-
-            Bless.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Heal.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Freeze.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            MagicShield.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Lightning.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Fire.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Pulse.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-
-            Bartering.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Perception.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Stealth.AttributeBonus = (Agility.Mod + Agility.Mod + Intuition.Mod) / 5;
-            Regenerate.AttributeBonus = (Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5;
-            Meditate.AttributeBonus = (Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5;
-            Immunity.AttributeBonus = (Intuition.Mod + Intuition.Mod + Strength.Mod) / 5;
-
-            if (MasterAthlete)
-            {
-                Profession.EquipmentBonus += 30;
-            }
-
-            if (MasterWarrior)
-            {
-                Profession.EquipmentBonus += 30;
-            }
+            CalculateAncillaryStats();
         }
 
         private void CalculateLevel()
@@ -386,6 +344,102 @@ namespace ATRoYStatCalc.Model
 
             CurrentExp = totalSpentExp;
             CurrentLevel = HelperFuncs.GetLevelFromExp(CurrentExp);
+        }
+
+        private void CalculateAttributeBonuses()
+        {
+
+            //Unblessed attributes (WIAS) used to calculate bless attribute mod
+            foreach (Attribute attribute in Attributes)
+            {
+                attribute.BlessBonus = 0;
+            }
+            
+            Bless.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5) + GetTacticsSkillBonus();
+
+            //Now apply bless mod to attributes for Skills
+            //This whole bit looks overly complicated but does give the right numbers...
+            if (Blessed)
+            {
+                foreach (Attribute attribute in Attributes)
+                {
+                    attribute.BlessBonus = (int)Math.Ceiling((double)Bless.Mod / 4);
+                }
+
+                Bless.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5) + GetTacticsSkillBonus();
+
+                foreach (Attribute attribute in Attributes)
+                {
+                    attribute.BlessBonus = (int)Math.Ceiling((double)Bless.Mod / 4);
+                    attribute.WarriorBonus = WarriorBonus / 2;
+                }
+
+                Bless.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5) + GetTacticsSkillBonus();
+            }
+
+            Dagger.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
+            HandToHand.AttributeBonus = (Agility.Mod + Strength.Mod + Strength.Mod) / 5;
+            Sword.AttributeBonus = (Intuition.Mod + Intuition.Mod + Agility.Mod) / 5;
+            TwoHanded.AttributeBonus = (Agility.Mod + Agility.Mod + Strength.Mod) / 5;
+            
+            ArmorSkill.AttributeBonus = (Agility.Mod + Agility.Mod + Strength.Mod) / 5;
+            Attack.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + GetTacticsSkillBonus();
+            Parry.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + GetTacticsSkillBonus();
+            Warcry.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + GetTacticsSkillBonus();
+            Tactics.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
+            SurroundHit.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
+            BodyControl.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
+            SpeedSkill.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
+            
+            Heal.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
+            Freeze.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5) + GetTacticsSkillBonus();
+            MagicShield.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
+            Lightning.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5) + GetTacticsSkillBonus();
+            Fire.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5) + GetTacticsSkillBonus();
+            Pulse.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
+
+            Bartering.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
+            Perception.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
+            Stealth.AttributeBonus = (Agility.Mod + Agility.Mod + Intuition.Mod) / 5;
+            Regenerate.AttributeBonus = (Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5;
+            Meditate.AttributeBonus = (Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5;
+            Immunity.AttributeBonus = ((Intuition.Mod + Intuition.Mod + Strength.Mod) / 5) + GetTacticsSkillBonus(true);
+        }
+
+        private void CalculateAncillaryStats()
+        {
+            //Could also have flat speed boost from some eq
+            Speed = ((Agility.Mod * 3) / 5) + (AthleteBonus * 3) + (SpeedSkill.Mod / 3); 
+
+            WeaponValue = (BodyControl.Mod / 4);
+            ArmourValue = (BodyControl.Mod + ArmorSkill.Mod) * 0.25;
+
+            List<Skill> weaponSkills = new List<Skill>()
+            {
+                Dagger,
+                HandToHand,
+                Sword,
+                TwoHanded
+            };
+
+            int weaponSkillMod = weaponSkills.Max(s => s.Mod);
+
+            Offence = (Attack.Mod * 2) + weaponSkillMod + GetTacticsOffDefBonus();
+            Defence = (Parry.Mod * 2) + weaponSkillMod + GetTacticsOffDefBonus();
+        }
+
+        private int GetTacticsSkillBonus(bool IsImmunity = false)
+        {
+            return IncludeTactics
+                ? IsImmunity
+                    ? (int)Math.Floor((double)Tactics.Mod / 8)
+                    : (int)Math.Floor(Tactics.Mod / 8.08)
+                : 0;
+        }
+
+        private int GetTacticsOffDefBonus()
+        {
+            return IncludeTactics ? (int)Math.Floor(Tactics.Mod * 0.375) : 0;
         }
 
         private int RaiseCost(Attribute Attribute, int NextLevel)

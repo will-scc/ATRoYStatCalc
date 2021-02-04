@@ -564,7 +564,8 @@
                    Grid.Column="3" />
         </Grid>
 
-        <StackPanel Grid.Column="3"
+        <StackPanel x:Name="Overview"
+                    Grid.Column="3"
                     Grid.Row="1"
                     Margin="5">
             <GroupBox Header="Overview"
@@ -683,10 +684,13 @@
                       Margin="5">
                 <StackPanel Orientation="Vertical">
                     <CheckBox Content="Hardcore" 
+                              IsChecked="{Binding Warrior.HardCore}"
                               Margin="5"/>
                     <CheckBox Content="Light/Dark Warrior"
+                              IsChecked="{Binding Warrior.MasterWarrior}"
                               Margin="5" />
                     <CheckBox Content="Athlete"
+                              IsChecked="{Binding Warrior.MasterAthlete}"
                               Margin="5" />
                 </StackPanel>
             </GroupBox>
