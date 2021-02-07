@@ -1,32 +1,40 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-
+using Newtonsoft.Json;
 namespace ATRoYStatCalc.Model
 {
     public class Seyan : ObservableObject
     {
         public const long MaxExp = 1600000000;
+        public const int MaxBase = 202;
         public string CharacterName { get; set; } = "Unnamed Character";
         public bool MaxExpExceeded => CurrentExp > MaxExp;
-        public int MaxBase => 202;
+        public bool PvP { get; set; }
         public bool HardCore { get; set; } = false;
-        public long CurrentExp { get; set; } = 0;
-        public int CurrentLevel { get; set; } = 2;
+        public long CurrentExp { get; set; }
+        public double CurrentLevel { get; set; }
         public double WeaponValue { get; set; }
         public double ArmourValue { get; set; }
+        public int Speed { get; set; }
         public int Offence { get; set; }
         public int Defence { get; set; }
-        public int Speed { get; set; }
-        
         public int AthleteBonus { get; set; }
-        public int WarriorBonus { get; set; }
-        public bool IncludeTactics { get; set; } = false;
-        public bool Blessed { get; set; } = true;
+        public int TimeWarriorBonus { get; set; }
+        public int ClanWarriorBonus { get; set; }
+        public bool IncludeTactics { get; set; }
+        public int TacticsOffDefBonus { get; set; }
+        public int TacticsSkillBonus { get; set; }
+        public int TacticsImmunityBonus { get; set; }
+        public bool Blessed { get; set; }
+        public int BlessBonus { get; set; }
+        public bool BlessBonusMaxed { get; set; }
         public bool MissingProfessionBases => Profession.Base < Profession.Mod;
 
         #region "Attributes"
+        [JsonIgnore]
         public List<Attribute> Attributes { get; set; } = new List<Attribute>();
         public Attribute Wisdom { get; set; } = new Attribute(true)
         {
@@ -59,6 +67,7 @@ namespace ATRoYStatCalc.Model
         #endregion
 
         #region "Skills"
+        [JsonIgnore]
         public List<Skill> Skills { get; set; } = new List<Skill>();
         public Skill Hitpoints { get; set; } = new Skill(true, true)
         {
@@ -81,7 +90,6 @@ namespace ATRoYStatCalc.Model
             Base = 10,
             Cost = 3
         };
-
         public Skill Dagger { get; set; } = new Skill(true)
         {
             DisplayName = "Dagger",
@@ -266,53 +274,50 @@ namespace ATRoYStatCalc.Model
         };
         #endregion
 
-        public Seyan(bool initialize = false)
-        {
-            //when deserializing from json the list already gets created with these skills
-            //so need to add only if not existing
-            if (initialize)
-            {
-                Attributes.AddDistinctAttribute(Wisdom);
-                Attributes.AddDistinctAttribute(Intuition);
-                Attributes.AddDistinctAttribute(Agility);
-                Attributes.AddDistinctAttribute(Strength);
+        public Seyan() { }
 
-                Skills.AddDistinctSkill(Hitpoints);
-                Skills.AddDistinctSkill(Endurance);
-                Skills.AddDistinctSkill(Mana);
-                Skills.AddDistinctSkill(Dagger);
-                Skills.AddDistinctSkill(HandToHand);
-                Skills.AddDistinctSkill(Sword);
-                Skills.AddDistinctSkill(TwoHanded);
-                Skills.AddDistinctSkill(ArmorSkill);
-                Skills.AddDistinctSkill(Attack);
-                Skills.AddDistinctSkill(Parry);
-                Skills.AddDistinctSkill(Warcry);
-                Skills.AddDistinctSkill(Tactics);
-                Skills.AddDistinctSkill(SurroundHit);
-                Skills.AddDistinctSkill(BodyControl);
-                Skills.AddDistinctSkill(SpeedSkill);
-                Skills.AddDistinctSkill(Regenerate);
-                Skills.AddDistinctSkill(Bless);
-                Skills.AddDistinctSkill(Heal);
-                Skills.AddDistinctSkill(Freeze);
-                Skills.AddDistinctSkill(MagicShield);
-                Skills.AddDistinctSkill(Lightning);
-                Skills.AddDistinctSkill(Fire);
-                Skills.AddDistinctSkill(Pulse);
-                Skills.AddDistinctSkill(Meditate);
-                Skills.AddDistinctSkill(Bartering);
-                Skills.AddDistinctSkill(Perception);
-                Skills.AddDistinctSkill(Stealth);
-                Skills.AddDistinctSkill(Immunity);
-                Skills.AddDistinctSkill(Profession);
-            }
+        //Required for setup
+        //Must be done this way to work when deserializing from json
+        public void SetupSkills()
+        {
+            Attributes.AddDistinctAttribute(Wisdom);
+            Attributes.AddDistinctAttribute(Intuition);
+            Attributes.AddDistinctAttribute(Agility);
+            Attributes.AddDistinctAttribute(Strength);
+
+            Skills.AddDistinctSkill(Hitpoints);
+            Skills.AddDistinctSkill(Endurance);
+            Skills.AddDistinctSkill(Mana);
+            Skills.AddDistinctSkill(Dagger);
+            Skills.AddDistinctSkill(HandToHand);
+            Skills.AddDistinctSkill(Sword);
+            Skills.AddDistinctSkill(TwoHanded);
+            Skills.AddDistinctSkill(ArmorSkill);
+            Skills.AddDistinctSkill(Attack);
+            Skills.AddDistinctSkill(Parry);
+            Skills.AddDistinctSkill(Warcry);
+            Skills.AddDistinctSkill(Tactics);
+            Skills.AddDistinctSkill(SurroundHit);
+            Skills.AddDistinctSkill(BodyControl);
+            Skills.AddDistinctSkill(SpeedSkill);
+            Skills.AddDistinctSkill(Regenerate);
+            Skills.AddDistinctSkill(Bless);
+            Skills.AddDistinctSkill(Heal);
+            Skills.AddDistinctSkill(Freeze);
+            Skills.AddDistinctSkill(MagicShield);
+            Skills.AddDistinctSkill(Lightning);
+            Skills.AddDistinctSkill(Fire);
+            Skills.AddDistinctSkill(Pulse);
+            Skills.AddDistinctSkill(Meditate);
+            Skills.AddDistinctSkill(Bartering);
+            Skills.AddDistinctSkill(Perception);
+            Skills.AddDistinctSkill(Stealth);
+            Skills.AddDistinctSkill(Immunity);
+            Skills.AddDistinctSkill(Profession);
         }
 
         public void UpdateCharacter()
         {
-            Profession.Base = AthleteBonus + WarriorBonus;
-
             CalculateLevel();
             CalculateAttributeBonuses();
             CalculateAncillaryStats();
@@ -353,6 +358,7 @@ namespace ATRoYStatCalc.Model
             foreach (Attribute attribute in Attributes)
             {
                 attribute.BlessBonus = 0;
+                attribute.WarriorBonus = TimeWarriorBonus / 2;
             }
             
             Bless.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5) + GetTacticsSkillBonus();
@@ -371,7 +377,6 @@ namespace ATRoYStatCalc.Model
                 foreach (Attribute attribute in Attributes)
                 {
                     attribute.BlessBonus = (int)Math.Ceiling((double)Bless.Mod / 4);
-                    attribute.WarriorBonus = WarriorBonus / 2;
                 }
 
                 Bless.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5) + GetTacticsSkillBonus();
@@ -408,6 +413,8 @@ namespace ATRoYStatCalc.Model
 
         private void CalculateAncillaryStats()
         {
+            Profession.Base = AthleteBonus + TimeWarriorBonus;
+
             //Could also have flat speed boost from some eq
             Speed = ((Agility.Mod * 3) / 5) + (AthleteBonus * 3) + (SpeedSkill.Mod / 3); 
 
@@ -426,14 +433,22 @@ namespace ATRoYStatCalc.Model
 
             Offence = (Attack.Mod * 2) + weaponSkillMod + GetTacticsOffDefBonus();
             Defence = (Parry.Mod * 2) + weaponSkillMod + GetTacticsOffDefBonus();
+
+            TacticsOffDefBonus = (int)Math.Floor(Tactics.Mod * 0.375);
+            TacticsSkillBonus = (int)Math.Floor((double)Tactics.Mod / 8);
+            TacticsImmunityBonus = (int)Math.Floor(Tactics.Mod / 8.08);
+
+            BlessBonus = (int)Math.Ceiling((double)Bless.Mod / 4);
+
+            BlessBonusMaxed = Attributes.Count(a => a.MaxBlessModExceeded) == 4;
         }
 
         private int GetTacticsSkillBonus(bool IsImmunity = false)
         {
             return IncludeTactics
                 ? IsImmunity
-                    ? (int)Math.Floor((double)Tactics.Mod / 8)
-                    : (int)Math.Floor(Tactics.Mod / 8.08)
+                    ? (int)Math.Floor(Tactics.Mod / 8.08)
+                    : (int)Math.Floor((double)Tactics.Mod / 8)
                 : 0;
         }
 

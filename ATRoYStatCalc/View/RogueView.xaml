@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ATRoYStatCalc.View.WarriorView"
+﻿<UserControl x:Class="ATRoYStatCalc.View.RogueView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -8,7 +8,7 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
              d:Background="White"
-             DataContext="{Binding WarriorView, Source={StaticResource ViewModelLocator}}">
+             DataContext="{Binding RogueView, Source={StaticResource ViewModelLocator}}">
     <Grid Margin="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -22,8 +22,8 @@
         <StackPanel Orientation="Horizontal"
                     Grid.Row="0"
                     Grid.ColumnSpan="2">
-            <Label Content="Warrior - " />
-            <TextBox Text="{Binding Warrior.CharacterName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            <Label Content="Rogue - " />
+            <TextBox Text="{Binding Rogue.CharacterName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      VerticalAlignment="Center"/>
         </StackPanel>
 
@@ -94,22 +94,22 @@
                    Grid.Row="0"
                    Grid.Column="3" />
 
-            <Label Content="{Binding Warrior.Hitpoints.DisplayName}"
+            <Label Content="{Binding Rogue.Hitpoints.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Column="0"
                    Grid.Row="1"/>
 
-            <n:UIntegerUpDown Value="{Binding Warrior.Hitpoints.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.Hitpoints.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Hitpoints.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.Hitpoints.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               VerticalAlignment="Center"
                               Margin="1"
                               Grid.Column="1"
                               Grid.Row="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Hitpoints.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Hitpoints.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -117,35 +117,35 @@
                               Margin="1"
                               Grid.Column="2"
                               Grid.Row="1" />
-            <Label Content="{Binding Warrior.Hitpoints.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Hitpoints.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Hitpoints.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Hitpoints.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    Grid.Column="3"
                    Grid.Row="1"/>
 
-            <Label Content="{Binding Warrior.Endurance.DisplayName}"
+            <Label Content="{Binding Rogue.Endurance.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="2"
                    Grid.Column="0"/>
-            <n:UIntegerUpDown Value="{Binding Warrior.Endurance.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.Endurance.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Endurance.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.Endurance.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="2"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Endurance.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Endurance.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               VerticalAlignment="Center"
                               Grid.Row="2"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.Endurance.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Endurance.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Endurance.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Endurance.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="2"
@@ -158,21 +158,21 @@
                    Grid.Row="3"
                    Grid.Column="0"/>
 
-            <Label Content="{Binding Warrior.Wisdom.DisplayName}"
+            <Label Content="{Binding Rogue.Wisdom.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="4"
                    Grid.Column="0"/>
-            <n:UIntegerUpDown Value="{Binding Warrior.Wisdom.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.Wisdom.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Wisdom.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.Wisdom.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="4"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Wisdom.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Wisdom.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -180,28 +180,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="4"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.Wisdom.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Wisdom.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Wisdom.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Wisdom.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="4"
                    Grid.Column="3"/>
 
-            <Label Content="{Binding Warrior.Intuition.DisplayName}"
+            <Label Content="{Binding Rogue.Intuition.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="5"
                    Grid.Column="0"/>
-            <n:UIntegerUpDown Value="{Binding Warrior.Intuition.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.Intuition.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Intuition.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.Intuition.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="5"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Intuition.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Intuition.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -209,28 +209,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="5"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.Intuition.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Intuition.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Intuition.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Intuition.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="5"
                    Grid.Column="3" />
 
-            <Label Content="{Binding Warrior.Agility.DisplayName}"
+            <Label Content="{Binding Rogue.Agility.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="6"
                    Grid.Column="0"/>
-            <n:UIntegerUpDown Value="{Binding Warrior.Agility.Base}"
-                              MinValue="{Binding Warrior.Agility.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Agility.Base}"
+                              MinValue="{Binding Rogue.Agility.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="6"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Agility.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Agility.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -238,28 +238,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="6"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.Agility.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Agility.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Agility.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Agility.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="6"
                    Grid.Column="3"/>
 
-            <Label Content="{Binding Warrior.Strength.DisplayName}"
+            <Label Content="{Binding Rogue.Strength.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="7"
                    Grid.Column="0"/>
-            <n:UIntegerUpDown Value="{Binding Warrior.Strength.Base}"
-                              MinValue="{Binding Warrior.Strength.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Strength.Base}"
+                              MinValue="{Binding Rogue.Strength.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="7"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Strength.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Strength.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -267,8 +267,8 @@
                               VerticalAlignment="Center"
                               Grid.Row="7"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.Strength.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Strength.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Strength.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Strength.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="7"
@@ -281,21 +281,21 @@
                    Grid.Row="8"
                    Grid.Column="0" />
 
-            <Label Content="{Binding Warrior.Dagger.DisplayName}"
+            <Label Content="{Binding Rogue.Dagger.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="9"
                    Grid.Column="0"/>
-            <n:UIntegerUpDown Value="{Binding Warrior.Dagger.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.Dagger.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Dagger.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.Dagger.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="9"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Dagger.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Dagger.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -303,28 +303,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="9"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.Dagger.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Dagger.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Dagger.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Dagger.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="9"
                    Grid.Column="3" />
 
-            <Label Content="{Binding Warrior.HandToHand.DisplayName}"
+            <Label Content="{Binding Rogue.HandToHand.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="10"
                    Grid.Column="0" />
-            <n:UIntegerUpDown Value="{Binding Warrior.HandToHand.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.HandToHand.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.HandToHand.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.HandToHand.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="10"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.HandToHand.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.HandToHand.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -332,28 +332,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="10"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.HandToHand.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.HandToHand.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.HandToHand.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.HandToHand.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="10"
                    Grid.Column="3" />
 
-            <Label Content="{Binding Warrior.Sword.DisplayName}"
+            <Label Content="{Binding Rogue.Sword.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="11"
                    Grid.Column="0"/>
-            <n:UIntegerUpDown Value="{Binding Warrior.Sword.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.Sword.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Sword.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.Sword.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="11"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Sword.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Sword.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -361,28 +361,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="11"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.Sword.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Sword.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Sword.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Sword.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="11"
                    Grid.Column="3" />
 
-            <Label Content="{Binding Warrior.TwoHanded.DisplayName}"
+            <Label Content="{Binding Rogue.TwoHanded.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="12"
                    Grid.Column="0" />
-            <n:UIntegerUpDown Value="{Binding Warrior.TwoHanded.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.TwoHanded.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.TwoHanded.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.TwoHanded.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="12"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.TwoHanded.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.TwoHanded.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -390,8 +390,8 @@
                               VerticalAlignment="Center"
                               Grid.Row="12"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.TwoHanded.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.TwoHanded.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.TwoHanded.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.TwoHanded.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="12"
@@ -404,21 +404,21 @@
                    Grid.Row="13"
                    Grid.Column="0" />
 
-            <Label Content="{Binding Warrior.Rage.DisplayName}"
+            <Label Content="{Binding Rogue.Rage.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="14"
                    Grid.Column="0"/>
-            <n:UIntegerUpDown Value="{Binding Warrior.Rage.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.Rage.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Rage.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.Rage.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="14"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Rage.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Rage.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -426,28 +426,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="14"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.Rage.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Rage.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Rage.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Rage.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="14"
                    Grid.Column="3"/>
 
-            <Label Content="{Binding Warrior.ArmorSkill.DisplayName}"
+            <Label Content="{Binding Rogue.ArmorSkill.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="15"
                    Grid.Column="0" />
-            <n:UIntegerUpDown Value="{Binding Warrior.ArmorSkill.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.ArmorSkill.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.ArmorSkill.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.ArmorSkill.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="15"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.ArmorSkill.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.ArmorSkill.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -455,28 +455,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="15"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.ArmorSkill.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.ArmorSkill.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.ArmorSkill.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.ArmorSkill.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="15"
                    Grid.Column="3" />
 
-            <Label Content="{Binding Warrior.Attack.DisplayName}"
+            <Label Content="{Binding Rogue.Attack.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="16"
                    Grid.Column="0" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Attack.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.Attack.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Attack.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.Attack.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="16"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Attack.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Attack.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -484,28 +484,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="16"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.Attack.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Attack.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Attack.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Attack.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="16"
                    Grid.Column="3" />
 
-            <Label Content="{Binding Warrior.Parry.DisplayName}"
+            <Label Content="{Binding Rogue.Parry.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="17"
                    Grid.Column="0" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Parry.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.Parry.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Parry.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.Parry.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="17"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Parry.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Parry.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -513,28 +513,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="17"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.Parry.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Parry.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Parry.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Parry.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="17"
                    Grid.Column="3"/>
 
-            <Label Content="{Binding Warrior.Warcry.DisplayName}"
+            <Label Content="{Binding Rogue.Warcry.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="18"
                    Grid.Column="0" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Warcry.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.Warcry.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Warcry.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.Warcry.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="18"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Warcry.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Warcry.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -542,28 +542,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="18"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.Warcry.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Warcry.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Warcry.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Warcry.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="18"
                    Grid.Column="3" />
 
-            <Label Content="{Binding Warrior.Tactics.DisplayName}"
+            <Label Content="{Binding Rogue.Tactics.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="19"
                    Grid.Column="0"/>
-            <n:UIntegerUpDown Value="{Binding Warrior.Tactics.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.Tactics.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Tactics.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.Tactics.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="19"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Tactics.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Tactics.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -571,28 +571,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="19"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.Tactics.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Tactics.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Tactics.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Tactics.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="19"
                    Grid.Column="3" />
 
-            <Label Content="{Binding Warrior.SurroundHit.DisplayName}"
+            <Label Content="{Binding Rogue.SurroundHit.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="20"
                    Grid.Column="0" />
-            <n:UIntegerUpDown Value="{Binding Warrior.SurroundHit.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.SurroundHit.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.SurroundHit.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.SurroundHit.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="20"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.SurroundHit.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.SurroundHit.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -600,28 +600,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="20"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.SurroundHit.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.SurroundHit.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.SurroundHit.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.SurroundHit.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="20"
                    Grid.Column="3" />
 
-            <Label Content="{Binding Warrior.BodyControl.DisplayName}"
+            <Label Content="{Binding Rogue.BodyControl.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="21"
                    Grid.Column="0" />
-            <n:UIntegerUpDown Value="{Binding Warrior.BodyControl.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.BodyControl.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.BodyControl.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.BodyControl.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="21"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.BodyControl.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.BodyControl.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -629,28 +629,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="21"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.BodyControl.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.BodyControl.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.BodyControl.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.BodyControl.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="21"
                    Grid.Column="3" />
 
-            <Label Content="{Binding Warrior.SpeedSkill.DisplayName}"
+            <Label Content="{Binding Rogue.SpeedSkill.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="22"
                    Grid.Column="0" />
-            <n:UIntegerUpDown Value="{Binding Warrior.SpeedSkill.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.SpeedSkill.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.SpeedSkill.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.SpeedSkill.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="22"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.SpeedSkill.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.SpeedSkill.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -658,28 +658,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="22"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.SpeedSkill.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.SpeedSkill.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.SpeedSkill.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.SpeedSkill.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="22"
                    Grid.Column="3" />
 
-            <Label Content="{Binding Warrior.Regenerate.DisplayName}"
+            <Label Content="{Binding Rogue.Regenerate.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="23"
                    Grid.Column="0" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Regenerate.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.Regenerate.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Regenerate.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.Regenerate.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="23"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Regenerate.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Regenerate.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -687,28 +687,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="23"
                     Grid.Column="2" />
-            <Label Content="{Binding Warrior.Regenerate.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Regenerate.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Regenerate.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Regenerate.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="23"
                    Grid.Column="3" />
 
-            <Label Content="{Binding Warrior.Bartering.DisplayName}"
+            <Label Content="{Binding Rogue.Bartering.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="24"
                    Grid.Column="0" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Bartering.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.Bartering.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Bartering.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.Bartering.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="24"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Bartering.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Bartering.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -716,28 +716,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="24"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.Bartering.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Bartering.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Bartering.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Bartering.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="24"
                    Grid.Column="3" />
 
-            <Label Content="{Binding Warrior.Perception.DisplayName}"
+            <Label Content="{Binding Rogue.Perception.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="25"
                    Grid.Column="0" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Perception.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.Perception.Start, Mode=TwoWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Perception.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.Perception.Start, Mode=TwoWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="25"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Perception.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Perception.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -745,28 +745,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="25"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.Perception.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Perception.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Perception.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Perception.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="25"
                    Grid.Column="4" />
 
-            <Label Content="{Binding Warrior.Stealth.DisplayName}"
+            <Label Content="{Binding Rogue.Stealth.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="26"
                    Grid.Column="0" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Stealth.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.Stealth.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Stealth.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.Stealth.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="26"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Stealth.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Stealth.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -774,28 +774,28 @@
                               VerticalAlignment="Center"
                               Grid.Row="26"
                               Grid.Column="2" />
-            <Label Content="{Binding Warrior.Stealth.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Stealth.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Stealth.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Stealth.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="26"
                    Grid.Column="3" />
 
-            <Label Content="{Binding Warrior.Immunity.DisplayName}"
+            <Label Content="{Binding Rogue.Immunity.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="27"
                    Grid.Column="0" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Immunity.Base, Mode=TwoWay}"
-                              MinValue="{Binding Warrior.Immunity.Start, Mode=OneWay}"
-                              MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Immunity.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.Immunity.Start, Mode=OneWay}"
+                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="27"
                    Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Warrior.Immunity.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Immunity.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -803,20 +803,20 @@
                               VerticalAlignment="Center"
                               Grid.Row="27"
                     Grid.Column="2" />
-            <Label Content="{Binding Warrior.Immunity.Mod, Mode=OneWay}"
-                   Foreground="{Binding Warrior.Immunity.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Immunity.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Immunity.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="27"
                    Grid.Column="3"/>
 
-            <Label Content="{Binding Warrior.Profession.DisplayName}"
+            <Label Content="{Binding Rogue.Profession.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="28"
                    Grid.Column="0" />
            
-            <Label Content="{Binding Warrior.Profession.Base, Mode=OneWay}"
+            <Label Content="{Binding Rogue.Profession.Base, Mode=OneWay}"
                    Grid.Row="28"
                    Grid.Column="3" />
         </Grid>
@@ -850,7 +850,7 @@
                            Grid.Row="1"
                            Grid.Column="0" />
 
-                    <Label Content="{Binding Warrior.CurrentLevel, Mode=OneWay}"
+                    <Label Content="{Binding Rogue.CurrentLevel, Mode=OneWay}"
                            ContentStringFormat="N2"
                            Grid.Row="1"
                            Grid.Column="1" />
@@ -859,7 +859,7 @@
                            HorizontalAlignment="Right"
                            Grid.Row="2"
                            Grid.Column="0" />
-                    <Label Content="{Binding Warrior.CurrentExp, Mode=OneWay}"
+                    <Label Content="{Binding Rogue.CurrentExp, Mode=OneWay}"
                            Grid.Row="2"
                            Grid.Column="1" />
 
@@ -869,7 +869,7 @@
                            FontWeight="Bold"
                            Grid.Row="3"
                            Grid.Column="0" />
-                    <Label Content="{Binding Warrior.ArmourValue, Mode=OneWay}"
+                    <Label Content="{Binding Rogue.ArmourValue, Mode=OneWay}"
                            ToolTip="This is in addition to AV from equipment."
                            Grid.Row="3"
                            Grid.Column="1" />
@@ -880,7 +880,7 @@
                            FontWeight="Bold"
                            Grid.Row="4"
                            Grid.Column="0" />
-                    <Label Content="{Binding Warrior.WeaponValue, Mode=OneWay}"
+                    <Label Content="{Binding Rogue.WeaponValue, Mode=OneWay}"
                            ToolTip="This is in addition to WV from weapon."
                            Grid.Row="4"
                            Grid.Column="1" />
@@ -890,7 +890,7 @@
                            FontWeight="Bold"
                            Grid.Row="5"
                            Grid.Column="0" />
-                    <Label Content="{Binding Warrior.Speed, Mode=OneWay}"
+                    <Label Content="{Binding Rogue.Speed, Mode=OneWay}"
                            Grid.Row="5"
                            Grid.Column="1" />
 
@@ -899,7 +899,7 @@
                            FontWeight="Bold"
                            Grid.Row="6"
                            Grid.Column="0" />
-                    <Label Content="{Binding Warrior.Offence, Mode=OneWay}"
+                    <Label Content="{Binding Rogue.Offence, Mode=OneWay}"
                            Grid.Row="6"
                            Grid.Column="1" />
 
@@ -908,7 +908,7 @@
                            FontWeight="Bold"
                            Grid.Row="7"
                            Grid.Column="0" />
-                    <Label Content="{Binding Warrior.Defence, Mode=OneWay}"
+                    <Label Content="{Binding Rogue.Defence, Mode=OneWay}"
                            Grid.Row="7"
                            Grid.Column="1" />
                 </Grid>
@@ -922,13 +922,13 @@
                 <StackPanel HorizontalAlignment="Right"
                             Orientation="Vertical"
                             Margin="5">
-                    <Label Content="{Binding Warrior.TacticsSkillBonus, Mode=OneWay}"
+                    <Label Content="{Binding Rogue.TacticsSkillBonus, Mode=OneWay}"
                            ContentStringFormat="Skill Bonus: {0}"
                            HorizontalAlignment="Right" />
-                    <Label Content="{Binding Warrior.TacticsImmunityBonus, Mode=OneWay}"
+                    <Label Content="{Binding Rogue.TacticsImmunityBonus, Mode=OneWay}"
                            ContentStringFormat="Immunity Bonus: {0}"
                            HorizontalAlignment="Right" />
-                    <Label Content="{Binding Warrior.TacticsOffDefBonus, Mode=OneWay}"
+                    <Label Content="{Binding Rogue.TacticsOffDefBonus, Mode=OneWay}"
                            ContentStringFormat="Off/Def Bonus: {0}"
                            HorizontalAlignment="Right" />
                     <StackPanel Orientation="Horizontal"
@@ -936,7 +936,7 @@
                                 Margin="5">
                         <Label Content="Include Bonus"
                                VerticalAlignment="Center" />
-                        <CheckBox IsChecked="{Binding Warrior.IncludeTactics, Mode=TwoWay}"
+                        <CheckBox IsChecked="{Binding Rogue.IncludeTactics, Mode=TwoWay}"
                                   Command="{Binding UpdateCharacter}"
                                   VerticalAlignment="Center" />
                     </StackPanel>
@@ -967,7 +967,7 @@
                         <Label Content="Athlete"
                                HorizontalAlignment="Right"
                                VerticalAlignment="Center" />
-                        <n:UIntegerUpDown Value="{Binding Warrior.AthleteBonus, Mode=TwoWay}"
+                        <n:UIntegerUpDown Value="{Binding Rogue.AthleteBonus, Mode=TwoWay}"
                                           MinValue="0"
                                           MaxValue="30"
                                           StepSize="3">
@@ -1003,8 +1003,8 @@
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Center"
                                 Margin="5">
-                        <Label Content="Light/Dark Warrior" />
-                        <n:UIntegerUpDown Value="{Binding Warrior.TimeWarriorBonus, Mode=TwoWay}"
+                        <Label Content="Light/Dark Rogue" />
+                        <n:UIntegerUpDown Value="{Binding Rogue.TimeRogueBonus, Mode=TwoWay}"
                                           MinValue="0"
                                           MaxValue="30"
                                           StepSize="3"
@@ -1022,7 +1022,7 @@
                                 Margin="5">
                         <Label Content="Hardcore"
                                VerticalAlignment="Center" />
-                        <CheckBox IsChecked="{Binding Warrior.HardCore, Mode=TwoWay}"
+                        <CheckBox IsChecked="{Binding Rogue.HardCore, Mode=TwoWay}"
                                   Command="{Binding UpdateCharacter}"
                                   VerticalAlignment="Center" />
                     </StackPanel>

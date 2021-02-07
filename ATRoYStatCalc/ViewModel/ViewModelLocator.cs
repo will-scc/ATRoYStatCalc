@@ -1,8 +1,6 @@
 ﻿using CommonServiceLocator;
 using GalaSoft.MvvmLight.Ioc;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ATRoYStatCalc.ViewModel
 {
@@ -15,6 +13,7 @@ namespace ATRoYStatCalc.ViewModel
             SimpleIoc.Default.Register<WarriorViewModel>();
             SimpleIoc.Default.Register<MageViewModel>();
             SimpleIoc.Default.Register<SeyanViewModel>();
+            SimpleIoc.Default.Register<RogueViewModel>();
         }
 
         public MainViewModel MainPage => SimpleIoc.Default.GetInstance<MainViewModel>();
@@ -24,5 +23,7 @@ namespace ATRoYStatCalc.ViewModel
         public MageViewModel MageView => SimpleIoc.Default.GetInstance<MageViewModel>();
 
         public SeyanViewModel SeyanView => SimpleIoc.Default.GetInstance<SeyanViewModel>();
+
+        public RogueViewModel RogueView => SimpleIoc.Default.GetInstance<RogueViewModel>();
     }
 }

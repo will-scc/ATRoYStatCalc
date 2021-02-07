@@ -1,18 +1,25 @@
 ﻿using ATRoYStatCalc.Model;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using Microsoft.Win32;
 using Newtonsoft.Json;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace ATRoYStatCalc.ViewModel
 {
     public class SeyanViewModel : ViewModelBase
     {
-        public Seyan Seyan { get; set; } = new Seyan(true);
+        public Seyan Seyan { get; set; } = new Seyan();
+        public SeyanViewModel() { }
 
-        public SeyanViewModel()
+        public void Setup()
         {
+            Seyan.SetupSkills();
+
             Parallel.ForEach(Seyan.Attributes, attributes =>
             {
                 attributes.PropertyChanged += Base_PropertyChanged;
@@ -26,9 +33,17 @@ namespace ATRoYStatCalc.ViewModel
             Seyan.UpdateCharacter();
         }
 
+        private ICommand _updateCharacter;
+        public ICommand UpdateCharacter => _updateCharacter ??= new RelayCommand(() =>
+        {
+            Seyan.UpdateCharacter();
+        });
+
         private void Base_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Base")
+            //Need to be careful to prevent StackOverFlow exceptions
+            //UpdateCharacter triggers PropertyChanged
+            if (e.PropertyName == "Base" || e.PropertyName == "EquipmentBonus")
             {
                 Seyan.UpdateCharacter();
             }
@@ -36,12 +51,19 @@ namespace ATRoYStatCalc.ViewModel
 
         public async Task Export()
         {
-            string jsonString = JsonConvert.SerializeObject(new SeyanBuild()
+            SaveFileDialog fileDialog = new SaveFileDialog
             {
-                Stats = Seyan
-            });
+                Filter = "Bel Build Files|*.bsey",
+                Title = "Save a Seyan Build File"
+            };
 
-            await File.WriteAllTextAsync($"{Seyan.CharacterName}.bsey", jsonString);
+            fileDialog.ShowDialog();
+
+            if (fileDialog.FileName != "")
+            {
+                string jsonString = JsonConvert.SerializeObject(Seyan);
+                await File.WriteAllTextAsync($"{fileDialog.FileName}", jsonString);
+            }
         }
     }
 }

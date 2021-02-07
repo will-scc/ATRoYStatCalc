@@ -1,7 +1,16 @@
-﻿namespace ATRoYStatCalc.Model
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace ATRoYStatCalc.Model
 {
     public class Mage : BaseClass
     {
+        public bool Blessed { get; set; }
+        public int BlessBonus { get; set; }
+        public bool BlessBonusMaxed { get; set; }
+
+        #region "Skills"
         public Skill Mana { get; set; } = new Skill(false)
         {
             DisplayName = "Mana",
@@ -79,43 +88,61 @@
             Base = 1,
             Cost = 1
         };
+        #endregion
+        public Mage() { }
 
-        public Mage(bool initialize = false)
+        public override void SetupSkills()
         {
-            if (initialize)
-            {
-                Skills.AddDistinctSkill(Mana);
-                Skills.AddDistinctSkill(Staff);
-                Skills.AddDistinctSkill(Bless);
-                Skills.AddDistinctSkill(Heal);
-                Skills.AddDistinctSkill(Freeze);
-                Skills.AddDistinctSkill(MagicShield);
-                Skills.AddDistinctSkill(Lightning);
-                Skills.AddDistinctSkill(Fire);
-                Skills.AddDistinctSkill(Pulse);
-                Skills.AddDistinctSkill(Duration);
-                Skills.AddDistinctSkill(Meditate);
-            }
+            base.SetupSkills();
+
+            Skills.AddDistinctSkill(Mana);
+            Skills.AddDistinctSkill(Staff);
+            Skills.AddDistinctSkill(Bless);
+            Skills.AddDistinctSkill(Heal);
+            Skills.AddDistinctSkill(Freeze);
+            Skills.AddDistinctSkill(MagicShield);
+            Skills.AddDistinctSkill(Lightning);
+            Skills.AddDistinctSkill(Fire);
+            Skills.AddDistinctSkill(Pulse);
+            Skills.AddDistinctSkill(Duration);
+            Skills.AddDistinctSkill(Meditate);
         }
 
         public override void UpdateCharacter()
         {
             CalculateLevel();
             CalculateAttributeBonuses();
+            CalculateAncillaryStats();
         }
 
         public override void CalculateAttributeBonuses()
         {
+            //Unblessed attributes (WIAS) used to calculate bless attribute mod
             foreach (Attribute attribute in Attributes)
             {
                 attribute.BlessBonus = 0;
+                attribute.WarriorBonus = TimeWarriorBonus / 2;
             }
 
-            Bless.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
+            Bless.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
 
-            foreach (Attribute attribute in Attributes)
+            //Now apply bless mod to attributes for Skills
+            //This whole bit looks overly complicated but does give the right numbers...
+            if (Blessed)
             {
-                attribute.BlessBonus = Bless.Mod / 4;
+                foreach (Attribute attribute in Attributes)
+                {
+                    attribute.BlessBonus = (int)Math.Ceiling((double)Bless.Mod / 4);
+                }
+
+                Bless.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+
+                foreach (Attribute attribute in Attributes)
+                {
+                    attribute.BlessBonus = (int)Math.Ceiling((double)Bless.Mod / 4);
+                }
+
+                Bless.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
             }
 
             base.CalculateAttributeBonuses();
@@ -132,6 +159,36 @@
 
             Duration.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Strength.Mod) / 5;
             Meditate.AttributeBonus = (Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5;
+        }
+
+        public override void CalculateAncillaryStats()
+        {
+            base.CalculateAncillaryStats();
+            
+            Speed = ((Agility.Mod * 3) / 5) + (AthleteBonus * 3);
+
+            WeaponValue = 0; //Mage only gets wv from wep
+
+            double spellAvg = SpellsAverageMod();
+
+            ArmourValue = (spellAvg * 17.5) / 20;
+
+            List<Skill> weaponSkills = new List<Skill>()
+            {
+                Dagger,
+                Staff,
+                HandToHand
+            };
+
+            int weaponSkillMod = weaponSkills.Max(s => s.Mod);
+
+            Offence = (int)Math.Floor(weaponSkillMod + (spellAvg * 2) - Math.Truncate(CurrentLevel));
+            Defence = weaponSkillMod + (MagicShield.Mod * 2);
+        }
+
+        private double SpellsAverageMod()
+        {
+            return (Lightning.Mod + Fire.Mod + Freeze.Mod + Heal.Mod + Bless.Mod + MagicShield.Mod + Pulse.Mod) / 7;
         }
     }
 }

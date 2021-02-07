@@ -10,39 +10,40 @@ using System.Windows.Input;
 
 namespace ATRoYStatCalc.ViewModel
 {
-    public class WarriorViewModel : ViewModelBase
+    public class RogueViewModel : ViewModelBase
     {
-        public Warrior Warrior { get; set; } = new Warrior();
+        public Rogue Rogue { get; set; } = new Rogue();
 
-        public WarriorViewModel() { }
+        public RogueViewModel() { }
 
         public void Setup()
         {
-            Warrior.SetupSkills();
+            Rogue.SetupSkills();
 
-            Parallel.ForEach(Warrior.Attributes, attribute =>
+            Parallel.ForEach(Rogue.Attributes, attribute =>
             {
                 attribute.PropertyChanged += Base_PropertyChanged;
             });
 
-            Parallel.ForEach(Warrior.Skills, skill =>
+            Parallel.ForEach(Rogue.Skills, skill =>
             {
                 skill.PropertyChanged += Base_PropertyChanged;
             });
 
-            Warrior.UpdateCharacter();
+            Rogue.UpdateCharacter();
         }
 
         private ICommand _updateCharacter;
         public ICommand UpdateCharacter => _updateCharacter ??= new RelayCommand(() =>
         {
-            Warrior.UpdateCharacter();
+            Rogue.UpdateCharacter();
         });
+
         private void Base_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Base")
             {
-                Warrior.UpdateCharacter();
+                Rogue.UpdateCharacter();
             }
         }
 
@@ -50,15 +51,15 @@ namespace ATRoYStatCalc.ViewModel
         {
             SaveFileDialog fileDialog = new SaveFileDialog
             {
-                Filter = "Bel Build Files|*.bwar",
-                Title = "Save a Warrior Build File"
+                Filter = "Bel Build Files|*.brog",
+                Title = "Save a Rogue Build File"
             };
 
             fileDialog.ShowDialog();
 
             if (fileDialog.FileName != "")
             {
-                string jsonString = JsonConvert.SerializeObject(Warrior);
+                string jsonString = JsonConvert.SerializeObject(Rogue);
                 await File.WriteAllTextAsync($"{fileDialog.FileName}", jsonString);
             }
         }

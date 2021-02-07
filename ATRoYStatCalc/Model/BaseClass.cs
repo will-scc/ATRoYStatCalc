@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -7,21 +8,25 @@ namespace ATRoYStatCalc.Model
     public class BaseClass : ObservableObject
     {
         public const long MaxExp = 1600000000;
+        public int MaxBase { get; } = 230;
         public string CharacterName { get; set; } = "Unnamed Character";
         public bool MaxExpExceeded => CurrentExp > MaxExp;
-        public int MaxBase => 230;
         public bool PvP { get; set; }
         public bool HardCore { get; set; } = false;
-        public bool MasterAthlete { get; set; } = false;
-        public bool MasterWarrior { get; set; } = false;
-        public long CurrentExp { get; set; } = 0;
-        public int CurrentLevel { get; set; } = 1;
-        public virtual int Speed => MasterAthlete 
-            ? ((Agility.Mod + Agility.Mod + Strength.Mod) / 5) + (30 * 3) 
-            : ((Agility.Mod + Agility.Mod + Strength.Mod) / 5);
-        
+        public long CurrentExp { get; set; }
+        public double CurrentLevel { get; set; }
+        public double WeaponValue { get; set; }
+        public double ArmourValue { get; set; }
+        public int Speed { get; set; }
+        public int Offence { get; set; }
+        public int Defence { get; set; }
+        public int AthleteBonus { get; set; }
+        public int TimeWarriorBonus { get; set; }
+        public int ClanWarriorBonus { get; set; }
         public bool MissingProfessionBases => Profession.Base < Profession.Mod;
-
+        
+        #region "Attributes"
+        [JsonIgnore]
         public List<Attribute> Attributes { get; set; } = new List<Attribute>();
         public Attribute Wisdom { get; set; } = new Attribute(false)
         {
@@ -51,7 +56,10 @@ namespace ATRoYStatCalc.Model
             Base = 10,
             Cost = 2
         };
+        #endregion
 
+        #region "Skills"
+        [JsonIgnore]
         public List<Skill> Skills { get; set; } = new List<Skill>();
         public Skill Hitpoints { get; set; } = new Skill(false)
         {
@@ -116,55 +124,37 @@ namespace ATRoYStatCalc.Model
             Base = 1,
             Cost = 3
         };
+        #endregion
 
-        public BaseClass(bool initialize = false)
+        public BaseClass() { }
+
+        //Required for setup
+        //Must be done this way to work when deserializing from json
+        public virtual void SetupSkills()
         {
-            if (initialize)
-            {
-                Attributes.AddDistinctAttribute(Wisdom);
-                Attributes.AddDistinctAttribute(Intuition);
-                Attributes.AddDistinctAttribute(Agility);
-                Attributes.AddDistinctAttribute(Strength);
+            Attributes.AddDistinctAttribute(Wisdom);
+            Attributes.AddDistinctAttribute(Intuition);
+            Attributes.AddDistinctAttribute(Agility);
+            Attributes.AddDistinctAttribute(Strength);
 
-                Skills.AddDistinctSkill(Hitpoints);
-                Skills.AddDistinctSkill(Endurance);
-                Skills.AddDistinctSkill(Dagger);
-                Skills.AddDistinctSkill(HandToHand);
-                Skills.AddDistinctSkill(Bartering);
-                Skills.AddDistinctSkill(Perception);
-                Skills.AddDistinctSkill(Stealth);
-                Skills.AddDistinctSkill(Immunity);
-                Skills.AddDistinctSkill(Profession);
-            }
+            Skills.AddDistinctSkill(Hitpoints);
+            Skills.AddDistinctSkill(Endurance);
+            Skills.AddDistinctSkill(Dagger);
+            Skills.AddDistinctSkill(HandToHand);
+            Skills.AddDistinctSkill(Bartering);
+            Skills.AddDistinctSkill(Perception);
+            Skills.AddDistinctSkill(Stealth);
+            Skills.AddDistinctSkill(Immunity);
+            Skills.AddDistinctSkill(Profession);
         }
 
         public virtual void UpdateCharacter()
         {
             CalculateLevel();
             CalculateAttributeBonuses();
+            CalculateAncillaryStats();
         }
-
-        public virtual void CalculateAttributeBonuses()
-        {
-            Dagger.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-            HandToHand.AttributeBonus = (Agility.Mod + Strength.Mod + Strength.Mod) / 5;
-
-            Bartering.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Perception.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Stealth.AttributeBonus = (Agility.Mod + Agility.Mod + Intuition.Mod) / 5;
-            Immunity.AttributeBonus = (Intuition.Mod + Intuition.Mod + Strength.Mod) / 5;
-
-            if (MasterAthlete)
-            {
-                Profession.EquipmentBonus += 30;
-            }
-
-            if (MasterWarrior)
-            {
-                Profession.EquipmentBonus += 30;
-            }
-        }
-      
+       
         public void CalculateLevel()
         {
             long totalSpentExp = 0;
@@ -191,6 +181,22 @@ namespace ATRoYStatCalc.Model
 
             CurrentExp = totalSpentExp;
             CurrentLevel = HelperFuncs.GetLevelFromExp(CurrentExp);
+        }
+        
+        public virtual void CalculateAttributeBonuses()
+        {
+            Dagger.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
+            HandToHand.AttributeBonus = (Agility.Mod + Strength.Mod + Strength.Mod) / 5;
+
+            Bartering.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
+            Perception.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
+            Stealth.AttributeBonus = (Agility.Mod + Agility.Mod + Intuition.Mod) / 5;
+            Immunity.AttributeBonus = (Intuition.Mod + Intuition.Mod + Strength.Mod) / 5;
+        }
+
+        public virtual void CalculateAncillaryStats()
+        {
+            Profession.Base = AthleteBonus + TimeWarriorBonus;
         }
 
         public int RaiseCost(Skill Skill, int NextLevel)

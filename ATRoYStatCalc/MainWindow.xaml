@@ -10,7 +10,7 @@
         DataContext="{Binding MainPage, Source={StaticResource ViewModelLocator}}"
         Title="Belgarath's Stat Calculator"
         Height="800"
-        Width="1080">
+        Width="550">
     <Window.Resources>
         <DataTemplate DataType="{x:Type vm:MageViewModel}">
             <view:MageView/>
@@ -21,6 +21,9 @@
         <DataTemplate DataType="{x:Type vm:SeyanViewModel}">
             <view:SeyanView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:RogueViewModel}">
+            <view:RogueView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -30,9 +33,9 @@
         <Menu Grid.Row="0">
             <MenuItem Header="File">
                 <MenuItem Header="Import"
-                          Command="{Binding Import}"/>
+                          Command="{Binding Import, Mode=OneWay}"/>
                 <MenuItem Header="Export"
-                          Command="{Binding Export}"/>
+                          Command="{Binding Export, Mode=OneWay}"/>
             </MenuItem>
             <MenuItem Header="New Build">
                 <MenuItem Header="Warrior"
@@ -42,7 +45,7 @@
                 <MenuItem Header="Seyan'Du"
                           Command="{Binding SetSeyanView}" />
                 <MenuItem Header="Rogue"
-                          IsEnabled="False" />
+                          Command="{Binding SetRogueView}" />
             </MenuItem>
         </Menu>
         <ScrollViewer Grid.Row="1"

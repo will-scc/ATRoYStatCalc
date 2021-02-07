@@ -4,15 +4,22 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Microsoft.Win32;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 
 namespace ATRoYStatCalc.ViewModel
 {
     public class MageViewModel : ViewModelBase
     {
-        public Mage Mage { get; set; } = new Mage(true);
+        public Mage Mage { get; set; } = new Mage();
 
-        public MageViewModel()
+        public MageViewModel() { }
+
+        public void Setup()
         {
+            Mage.SetupSkills();
+
             Parallel.ForEach(Mage.Attributes, attribute =>
             {
                 attribute.PropertyChanged += Base_PropertyChanged;
@@ -26,6 +33,12 @@ namespace ATRoYStatCalc.ViewModel
             Mage.UpdateCharacter();
         }
 
+        private ICommand _updateCharacter;
+        public ICommand UpdateCharacter => _updateCharacter ??= new RelayCommand(() =>
+        {
+            Mage.UpdateCharacter();
+        });
+
         private void Base_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Base")
@@ -36,12 +49,19 @@ namespace ATRoYStatCalc.ViewModel
 
         public async Task Export()
         {
-            string jsonString = JsonConvert.SerializeObject(new MageBuild()
+            SaveFileDialog fileDialog = new SaveFileDialog
             {
-                Stats = Mage
-            });
+                Filter = "Bel Build Files|*.bmag",
+                Title = "Save a Mage Build File"
+            };
 
-            await File.WriteAllTextAsync($"{Mage.CharacterName}.bmag", jsonString);
+            fileDialog.ShowDialog();
+
+            if (fileDialog.FileName != "")
+            {
+                string jsonString = JsonConvert.SerializeObject(Mage);
+                await File.WriteAllTextAsync($"{fileDialog.FileName}", jsonString);
+            }
         }
     }
 }

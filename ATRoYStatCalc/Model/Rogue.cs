@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ATRoYStatCalc.Model
 {
-    public class Warrior : BaseClass
+    public class Rogue : BaseClass
     {
         public bool IncludeTactics { get; set; }
         public int TacticsOffDefBonus { get; set; }
@@ -19,9 +19,9 @@ namespace ATRoYStatCalc.Model
             Base = 1,
             Cost = 1
         };
-        public Skill TwoHanded { get; set; } = new Skill(false)
+        public Skill Archery { get; set; } = new Skill(false)
         {
-            DisplayName = "TwoHanded",
+            DisplayName = "Archery",
             Start = 1,
             Base = 1,
             Cost = 1
@@ -97,14 +97,14 @@ namespace ATRoYStatCalc.Model
             Cost = 1
         };
         #endregion
-        public Warrior() { }
+        public Rogue() { }
 
         public override void SetupSkills()
         {
             base.SetupSkills();
 
             Skills.AddDistinctSkill(Sword);
-            Skills.AddDistinctSkill(TwoHanded);
+            Skills.AddDistinctSkill(Archery);
             Skills.AddDistinctSkill(Rage);
             Skills.AddDistinctSkill(ArmorSkill);
             Skills.AddDistinctSkill(Attack);
@@ -122,7 +122,7 @@ namespace ATRoYStatCalc.Model
             base.CalculateAttributeBonuses();
 
             Sword.AttributeBonus = (Intuition.Mod + Intuition.Mod + Agility.Mod) / 5;
-            TwoHanded.AttributeBonus = (Agility.Mod + Agility.Mod + Strength.Mod) / 5;
+            Archery.AttributeBonus = (Intuition.Mod + Intuition.Mod + Strength.Mod) / 5;
             ArmorSkill.AttributeBonus = (Agility.Mod + Agility.Mod + Strength.Mod) / 5;
             Attack.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + GetTacticsSkillBonus();
             Parry.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) +GetTacticsSkillBonus();
@@ -150,7 +150,7 @@ namespace ATRoYStatCalc.Model
                 Dagger,
                 HandToHand,
                 Sword,
-                TwoHanded
+                Archery
             };
 
             int weaponSkillMod = weaponSkills.Max(s => s.Mod);

@@ -4,44 +4,46 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Win32;
 using Newtonsoft.Json;
-using System.IO;
-using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using System.IO;
 
 namespace ATRoYStatCalc.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private ViewModelBase _currentView;
-        public ViewModelBase CurrentView
-        {
-            get => _currentView;
-            set
-            {
-                _currentView = value;
-                RaisePropertyChanged("CurrentView");
-            }
-        }
-
+        public ViewModelBase CurrentView { get; set; }
         public MainViewModel() { }
 
         private ICommand _setMageView;
         public ICommand SetMageView => _setMageView ??= new RelayCommand(() =>
         {
-            CurrentView = SimpleIoc.Default.GetInstance<MageViewModel>();
+            MageViewModel mvm = SimpleIoc.Default.GetInstance<MageViewModel>();
+            mvm.Setup();
+            CurrentView = mvm;
         });
 
         private ICommand _setWarriorView;
         public ICommand SetWarriorView => _setWarriorView ??= new RelayCommand(() =>
         {
-            CurrentView = SimpleIoc.Default.GetInstance<WarriorViewModel>();
+            WarriorViewModel wvm = SimpleIoc.Default.GetInstance<WarriorViewModel>();
+            wvm.Setup();
+            CurrentView = wvm;
         });
 
         private ICommand _setSeyanView;
         public ICommand SetSeyanView => _setSeyanView ??= new RelayCommand(() =>
         {
-            CurrentView = SimpleIoc.Default.GetInstance<SeyanViewModel>();
+            SeyanViewModel svm = SimpleIoc.Default.GetInstance<SeyanViewModel>();
+            svm.Setup();
+            CurrentView = svm;
+        });
+
+        private ICommand _setRogueView;
+        public ICommand SetRogueView => _setRogueView ??= new RelayCommand(() =>
+        {
+            RogueViewModel rvm = SimpleIoc.Default.GetInstance<RogueViewModel>();
+            rvm.Setup();
+            CurrentView = rvm;
         });
 
         private ICommand _export;
@@ -64,15 +66,25 @@ namespace ATRoYStatCalc.ViewModel
                 SeyanViewModel temp = (SeyanViewModel)CurrentView;
                 await temp.Export();
             }
-        });
+
+            if (CurrentView.GetType() == typeof(RogueViewModel))
+            {
+                RogueViewModel temp = (RogueViewModel)CurrentView;
+                await temp.Export();
+            }
+        }, Export_CanExecute);
+
+        public bool Export_CanExecute()
+        {
+            return CurrentView != null;
+        }
 
         private ICommand _import;
         public ICommand Import => _import ??= new RelayCommand(async () =>
         {
-
             OpenFileDialog ofd = new OpenFileDialog
             {
-                Filter = "Build Files|*.bmag;*.bwar;*.bsey",
+                Filter = "Bel Build Files|*.bmag;*.bwar;*.bsey",
                 Multiselect = false
             };
 
@@ -86,24 +98,31 @@ namespace ATRoYStatCalc.ViewModel
                 switch (ext)
                 {
                     case "bmag":
-                        MageBuild mageBuild = JsonConvert.DeserializeObject<MageBuild>(json);
-                        MageViewModel _m = SimpleIoc.Default.GetInstance<MageViewModel>();
-                        _m.Mage = mageBuild.Stats;
-                        CurrentView = _m;
+                        MageViewModel mvm = SimpleIoc.Default.GetInstance<MageViewModel>();
+                        CurrentView = mvm;
+                        mvm.Mage = JsonConvert.DeserializeObject<Mage>(json);
+                        mvm.Setup();
                         break;
 
                     case "bwar":
-                        WarriorBuild warriorBuild = JsonConvert.DeserializeObject<WarriorBuild>(json);
-                        WarriorViewModel _w = SimpleIoc.Default.GetInstance<WarriorViewModel>();
-                        _w.Warrior = warriorBuild.Stats;
-                        CurrentView = _w;
+                        WarriorViewModel wvm = SimpleIoc.Default.GetInstance<WarriorViewModel>();
+                        CurrentView = wvm;
+                        wvm.Warrior = JsonConvert.DeserializeObject<Warrior>(json);
+                        wvm.Setup();
                         break;
 
                     case "bsey":
-                        SeyanBuild seyanBuild = JsonConvert.DeserializeObject<SeyanBuild>(json);
-                        SeyanViewModel _s = SimpleIoc.Default.GetInstance<SeyanViewModel>();
-                        _s.Seyan = seyanBuild.Stats;
-                        CurrentView = _s;
+                        SeyanViewModel svm = SimpleIoc.Default.GetInstance<SeyanViewModel>();
+                        CurrentView = svm;
+                        svm.Seyan = JsonConvert.DeserializeObject<Seyan>(json);
+                        svm.Setup();
+                        break;
+
+                    case "bwog":
+                        RogueViewModel rvm = SimpleIoc.Default.GetInstance<RogueViewModel>();
+                        CurrentView = rvm;
+                        rvm.Rogue = JsonConvert.DeserializeObject<Rogue>(json);
+                        rvm.Setup();
                         break;
                 }
             }

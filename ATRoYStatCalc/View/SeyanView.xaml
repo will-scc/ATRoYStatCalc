@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ATRoYStatCalc.View"
              xmlns:n="clr-namespace:NumericUpDownLib;assembly=NumericUpDownLib"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
              d:Background="White"
              DataContext="{Binding SeyanView, Source={StaticResource ViewModelLocator}}">
@@ -14,7 +15,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
@@ -29,7 +29,7 @@
 
         <Grid Margin="5"
               Grid.Row="1"
-              Grid.Column="1">
+              Grid.Column="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
@@ -94,612 +94,798 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Hitpoints.DisplayName}"
+                   Margin="1"
+                   VerticalAlignment="Center"
                    Grid.Row="1"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Hitpoints.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Hitpoints.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              SelectAllTextOnFocus="True"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="1"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Hitpoints.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              HorizontalAlignment="Center"
                               VerticalAlignment="Center"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="1"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Hitpoints.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Hitpoints.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   VerticalAlignment="Center"
+                   Margin="1"
                    Grid.Row="1"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Endurance.DisplayName}"
+                   Margin="1"
                    Grid.Row="2"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Endurance.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Endurance.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
+                              SelectAllTextOnFocus="True"
                               Grid.Row="2"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Endurance.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="2"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Endurance.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Endurance.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="2"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Mana.DisplayName}"
+                   Margin="1"
                    Grid.Row="3"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Mana.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Mana.Start, Mode=TwoWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="3"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Mana.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="3"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Mana.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Mana.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="3"
                    Grid.Column="3" />
 
             <Label Content="Attributes"
                    FontWeight="Bold"
+                   Margin="1"
                    Grid.Row="4"
                    Grid.Column="0" />
 
             <Label Content="{Binding Seyan.Wisdom.DisplayName}"
+                   Margin="1"
                    Grid.Row="5"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Wisdom.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Wisdom.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="5"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Wisdom.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
+                              Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="5"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Wisdom.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Wisdom.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="5"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Intuition.DisplayName}"
+                   Margin="1"
                    Grid.Row="6"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Intuition.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Intuition.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="6"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Intuition.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="6"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Intuition.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Intuition.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="6"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Agility.DisplayName}"
+                   Margin="1"
                    Grid.Row="7"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Agility.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Agility.Start, Mode=TwoWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="7"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Agility.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="7"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Agility.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Agility.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="7"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Strength.DisplayName}"
+                   Margin="1"
                    Grid.Row="8"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Strength.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Strength.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="8"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Strength.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="8"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Strength.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Strength.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="8"
                    Grid.Column="3" />
 
             <Label Content="Weapon Skills"
                    FontWeight="Bold"
+                   Margin="1"
                    Grid.Row="9"
                    Grid.Column="0" />
 
             <Label Content="{Binding Seyan.Dagger.DisplayName}"
+                   Margin="1"
                    Grid.Row="10"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Dagger.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Dagger.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="10"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Dagger.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="10"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Dagger.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Dagger.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="10"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.HandToHand.DisplayName}"
+                   Margin="1"
                    Grid.Row="11"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.HandToHand.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.HandToHand.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="11"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.HandToHand.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="11"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.HandToHand.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.HandToHand.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="11"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Sword.DisplayName}"
+                   Margin="1"
                    Grid.Row="12"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Sword.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Sword.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="12"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Sword.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="12"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Sword.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Sword.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="12"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.TwoHanded.DisplayName}"
+                   Margin="1"
                    Grid.Row="13"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.TwoHanded.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.TwoHanded.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="13"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.TwoHanded.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="13"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.TwoHanded.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.TwoHanded.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="13"
                    Grid.Column="3" />
 
             <Label Content="Skills"
                    FontWeight="Bold"
+                   Margin="1"
                    Grid.Row="14"
                    Grid.Column="0" />
 
             <Label Content="{Binding Seyan.ArmorSkill.DisplayName}"
+                   Margin="1"
                    Grid.Row="15"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.ArmorSkill.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.ArmorSkill.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="15"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.ArmorSkill.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="15"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.ArmorSkill.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.ArmorSkill.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="15"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Attack.DisplayName}"
-                   Grid.Row="16"
+                   Margin="1" Grid.Row="16"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Attack.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Attack.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
-                              Grid.Row="16"
+                              IsReadOnly="False"
+                              Margin="1" Grid.Row="16"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Attack.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
-                              Grid.Row="16"
+                              Margin="1" Grid.Row="16"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Attack.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Attack.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="16"
+                   Margin="1"  Grid.Row="16"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Parry.DisplayName}"
-                   Grid.Row="17"
+                   Margin="1" Grid.Row="17"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Parry.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Parry.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
-                              Grid.Row="17"
+                              IsReadOnly="False"
+                              Margin="1" Grid.Row="17"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Parry.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
-                              Grid.Row="17"
+                              Margin="1" Grid.Row="17"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Parry.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Parry.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="17"
+                   Margin="1" Grid.Row="17"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Warcry.DisplayName}"
-                   Grid.Row="18"
+                   Margin="1" Grid.Row="18"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Warcry.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Warcry.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
-                              Grid.Row="18"
+                              IsReadOnly="False"
+                              Margin="1" Grid.Row="18"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Warcry.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
-                              Grid.Row="18"
+                              Margin="1" Grid.Row="18"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Warcry.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Warcry.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Grid.Row="18"
+                   Margin="1" Grid.Row="18"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Tactics.DisplayName}"
+                   Margin="1"
                    Grid.Row="19"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Tactics.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Tactics.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="19"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Tactics.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="19"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Tactics.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Tactics.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="19"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.SurroundHit.DisplayName}"
+                   Margin="1"
                    Grid.Row="20"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.SurroundHit.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.SurroundHit.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="20"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.SurroundHit.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="20"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.SurroundHit.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.SurroundHit.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="20"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.BodyControl.DisplayName}"
+                   Margin="1"
                    Grid.Row="21"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.BodyControl.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.BodyControl.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="21"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.BodyControl.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="21"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.BodyControl.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.BodyControl.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="21"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.SpeedSkill.DisplayName}"
+                   Margin="1"
                    Grid.Row="22"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.SpeedSkill.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.SpeedSkill.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="22"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.SpeedSkill.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="22"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.SpeedSkill.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.SpeedSkill.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="22"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Bless.DisplayName}"
+                   Margin="1"
                    Grid.Row="23"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Bless.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Bless.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="23"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Bless.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="23"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Bless.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Bless.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="23"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Heal.DisplayName}"
+                   Margin="1"
                    Grid.Row="24"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Heal.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Heal.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="24"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Heal.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="24"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Heal.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Heal.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="24"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Freeze.DisplayName}"
+                   Margin="1"
                    Grid.Row="25"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Freeze.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Freeze.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="25"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Freeze.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="25"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Freeze.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Freeze.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="25"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.MagicShield.DisplayName}"
+                   Margin="1"
                    Grid.Row="26"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.MagicShield.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.MagicShield.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="26"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.MagicShield.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="26"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.MagicShield.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.MagicShield.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="26"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Lightning.DisplayName}"
+                   Margin="1"
                    Grid.Row="27"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Lightning.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Lightning.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="27"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Lightning.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="27"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Lightning.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Lightning.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="27"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Fire.DisplayName}"
+                   Margin="1"
                    Grid.Row="28"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Fire.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Fire.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="28"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Fire.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="28"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Fire.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Fire.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="28"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Pulse.DisplayName}"
+                   Margin="1"
                    Grid.Row="29"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Pulse.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Pulse.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="29"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Pulse.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="29"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Pulse.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Pulse.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="29"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Bartering.DisplayName}"
+                   Margin="1"
                    Grid.Row="30"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Bartering.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Bartering.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="30"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Bartering.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="30"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Bartering.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Bartering.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="30"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Perception.DisplayName}"
+                   Margin="1"
                    Grid.Row="31"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Perception.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Perception.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="31"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Perception.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="31"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Perception.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Perception.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="31"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Stealth.DisplayName}"
+                   Margin="1"
                    Grid.Row="32"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Stealth.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Stealth.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="32"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Stealth.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="32"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Stealth.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Stealth.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="32"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Regenerate.DisplayName}"
+                   Margin="1"
                    Grid.Row="33"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Regenerate.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Regenerate.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="33"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Regenerate.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="33"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Regenerate.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Regenerate.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="33"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Meditate.DisplayName}"
+                   Margin="1"
                    Grid.Row="34"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Meditate.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Meditate.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="34"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Meditate.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="34"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Meditate.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Meditate.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="34"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Immunity.DisplayName}"
+                   Margin="1"
                    Grid.Row="35"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Immunity.Base, Mode=TwoWay}"
                               MinValue="{Binding Seyan.Immunity.Start, Mode=OneWay}"
                               MaxValue="{Binding Seyan.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              Margin="1"
                               Grid.Row="35"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Seyan.Immunity.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
+                              IsReadOnly="False"
                               VerticalAlignment="Center"
+                              Margin="1"
                               Grid.Row="35"
                               Grid.Column="2" />
             <Label Content="{Binding Seyan.Immunity.Mod, Mode=OneWay}"
                    Foreground="{Binding Seyan.Immunity.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
                    Grid.Row="35"
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Profession.DisplayName}"
+                   Margin="1"
                    Grid.Row="36"
                    Grid.Column="0" />
-            <Label Content="{Binding Seyan.Profession.Base, Mode=TwoWay}"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
-                   Grid.Row="36"
-                   Grid.Column="1" />
-            <Label Content="{Binding Seyan.Profession.Mod, Mode=OneWay}"
-                   Foreground="{Binding Seyan.MissingProfessionBases, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Seyan.Profession.Base, Mode=OneWay}"
+                   Margin="1"
                    Grid.Row="36"
                    Grid.Column="3" />
         </Grid>
 
         <StackPanel x:Name="Overview"
-                    Grid.Column="3"
+                    Grid.Column="1"
                     Grid.Row="1"
                     Margin="5">
             <GroupBox Header="Overview"
@@ -728,6 +914,7 @@
                            Grid.Column="0" />
 
                     <Label Content="{Binding Seyan.CurrentLevel, Mode=OneWay}"
+                           ContentStringFormat="N2"
                            Grid.Row="1"
                            Grid.Column="1" />
                     <Label Content="Experience:"
@@ -740,20 +927,24 @@
                            Grid.Column="1" />
 
                     <Label Content="Armour Value:"
+                           ToolTip="This is in addition to AV from equipment."
                            HorizontalAlignment="Right"
                            FontWeight="Bold"
                            Grid.Row="3"
                            Grid.Column="0" />
                     <Label Content="{Binding Seyan.ArmourValue, Mode=OneWay}"
+                           ToolTip="This is in addition to AV from equipment."
                            Grid.Row="3"
                            Grid.Column="1" />
 
                     <Label Content="Weapon Value:"
+                           ToolTip="This is in addition to WV from weapon."
                            HorizontalAlignment="Right"
                            FontWeight="Bold"
                            Grid.Row="4"
                            Grid.Column="0" />
                     <Label Content="{Binding Seyan.WeaponValue, Mode=OneWay}"
+                           ToolTip="This is in addition to WV from weapon."
                            Grid.Row="4"
                            Grid.Column="1" />
 
@@ -791,9 +982,27 @@
                       FontWeight="Bold"
                       Padding="5"
                       Margin="5">
-                <StackPanel>
-                    <CheckBox Content="Show Tactics Bonus"
-                              IsChecked="{Binding Seyan.IncludeTactics, Mode=TwoWay}"/>
+                <StackPanel HorizontalAlignment="Right"
+                            Orientation="Vertical"
+                            Margin="5">
+                    <Label Content="{Binding Seyan.TacticsSkillBonus, Mode=OneWay}"
+                           ContentStringFormat="Skill Bonus: {0}"
+                           HorizontalAlignment="Right"/>
+                    <Label Content="{Binding Seyan.TacticsImmunityBonus, Mode=OneWay}"
+                           ContentStringFormat="Immunity Bonus: {0}"
+                           HorizontalAlignment="Right" />
+                    <Label Content="{Binding Seyan.TacticsOffDefBonus, Mode=OneWay}"
+                           ContentStringFormat="Off/Def Bonus: {0}"
+                           HorizontalAlignment="Right" />
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Margin="5">
+                        <Label Content="Include Bonus"
+                               VerticalAlignment="Center" />
+                        <CheckBox IsChecked="{Binding Seyan.IncludeTactics, Mode=TwoWay}"
+                                  Command="{Binding UpdateCharacter}"
+                                  VerticalAlignment="Center" />
+                    </StackPanel>
                 </StackPanel>
 
             </GroupBox>
@@ -802,20 +1011,32 @@
                       FontWeight="Bold"
                       Padding="5"
                       Margin="5">
-
+                <Label Content="In Progress"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontStyle="Italic"
+                       FontWeight="Normal"/>
             </GroupBox>
 
             <GroupBox Header="Bless"
                       FontWeight="Bold"
                       Padding="5"
                       Margin="5">
-                <StackPanel Orientation="Horizontal"
+                <StackPanel Orientation="Vertical"
                             HorizontalAlignment="Right"
                             Margin="5">
-                    <Label Content="Blessed"
-                           VerticalAlignment="Center" />
-                    <CheckBox IsChecked="{Binding Seyan.Blessed, Mode=TwoWay}"
-                              VerticalAlignment="Center" />
+                    <Label Content="{Binding Seyan.BlessBonus}"
+                           Foreground="{Binding Seyan.BlessBonusMaxed, Converter={StaticResource BoolToRed}}"
+                           ContentStringFormat="Bonus: {0}"
+                           HorizontalAlignment="Right"/>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <Label Content="Blessed"
+                               VerticalAlignment="Center" />
+                        <CheckBox IsChecked="{Binding Seyan.Blessed, Mode=TwoWay}"
+                                  VerticalAlignment="Center"
+                                  Command="{Binding UpdateCharacter}" />
+                    </StackPanel>
                 </StackPanel>
             </GroupBox>
 
@@ -828,33 +1049,66 @@
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Center"
                                 Margin="5">
-                        <Label Content="Light/Dark Warrior"/>
-                        <n:UIntegerUpDown Value="{Binding Seyan.WarriorBonus, Mode=TwoWay}"
-                                          MinValue="0"
-                                          MaxValue="30"
-                                          StepSize="3"
-                                          VerticalAlignment="Center"/>
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Margin="5">
                         <Label Content="Athlete"
                                HorizontalAlignment="Right" 
                                VerticalAlignment="Center"/>
                         <n:UIntegerUpDown Value="{Binding Seyan.AthleteBonus, Mode=TwoWay}"
                                           MinValue="0"
                                           MaxValue="30"
-                                          StepSize="3"/>
+                                          StepSize="3">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="ValueChanged">
+                                    <i:InvokeCommandAction Command="{Binding UpdateCharacter}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </n:UIntegerUpDown>
                     </StackPanel>
 
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Margin="5"
+                                IsEnabled="False">
+                        <Label Content="Assassin"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Center" />
+                        <n:UIntegerUpDown Value="0"
+                                          MinValue="0"
+                                          MaxValue="30"
+                                          StepSize="3">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="ValueChanged">
+                                    <i:InvokeCommandAction Command="{Binding UpdateCharacter}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </n:UIntegerUpDown>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Margin="5">
+                        <Label Content="Light/Dark Warrior" />
+                        <n:UIntegerUpDown Value="{Binding Seyan.TimeWarriorBonus, Mode=TwoWay}"
+                                          MinValue="0"
+                                          MaxValue="30"
+                                          StepSize="3"
+                                          VerticalAlignment="Center">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="ValueChanged">
+                                    <i:InvokeCommandAction Command="{Binding UpdateCharacter}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </n:UIntegerUpDown>
+                    </StackPanel>
+                    
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Right"
                                 Margin="5">
                         <Label Content="Hardcore"
                                VerticalAlignment="Center"/>
                         <CheckBox IsChecked="{Binding Seyan.HardCore, Mode=TwoWay}"
+                                  Command="{Binding UpdateCharacter}"
                                   VerticalAlignment="Center"/>
                     </StackPanel>
 
