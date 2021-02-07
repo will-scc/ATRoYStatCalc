@@ -221,7 +221,7 @@
                    VerticalAlignment="Center"
                    Grid.Row="6"
                    Grid.Column="0"/>
-            <n:UIntegerUpDown Value="{Binding Rogue.Agility.Base}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Agility.Base, Mode=TwoWay}"
                               MinValue="{Binding Rogue.Agility.Start, Mode=OneWay}"
                               MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
@@ -250,7 +250,7 @@
                    VerticalAlignment="Center"
                    Grid.Row="7"
                    Grid.Column="0"/>
-            <n:UIntegerUpDown Value="{Binding Rogue.Strength.Base}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Strength.Base, Mode=TwoWay}"
                               MinValue="{Binding Rogue.Strength.Start, Mode=OneWay}"
                               MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"

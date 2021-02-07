@@ -41,7 +41,7 @@ namespace ATRoYStatCalc.ViewModel
 
         private void Base_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Base")
+            if (e.PropertyName == "Base" || e.PropertyName == "EquipmentBonus")
             {
                 Mage.UpdateCharacter();
             }

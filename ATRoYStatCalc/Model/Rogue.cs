@@ -125,7 +125,7 @@ namespace ATRoYStatCalc.Model
             Archery.AttributeBonus = (Intuition.Mod + Intuition.Mod + Strength.Mod) / 5;
             ArmorSkill.AttributeBonus = (Agility.Mod + Agility.Mod + Strength.Mod) / 5;
             Attack.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + GetTacticsSkillBonus();
-            Parry.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) +GetTacticsSkillBonus();
+            Parry.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + GetTacticsSkillBonus();
             Warcry.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + GetTacticsSkillBonus();
             Tactics.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
             SurroundHit.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;

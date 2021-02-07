@@ -221,7 +221,7 @@
                    VerticalAlignment="Center"
                    Grid.Row="6"
                    Grid.Column="0"/>
-            <n:UIntegerUpDown Value="{Binding Warrior.Agility.Base}"
+            <n:UIntegerUpDown Value="{Binding Warrior.Agility.Base, Mode=TwoWay}"
                               MinValue="{Binding Warrior.Agility.Start, Mode=OneWay}"
                               MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
@@ -250,7 +250,7 @@
                    VerticalAlignment="Center"
                    Grid.Row="7"
                    Grid.Column="0"/>
-            <n:UIntegerUpDown Value="{Binding Warrior.Strength.Base}"
+            <n:UIntegerUpDown Value="{Binding Warrior.Strength.Base, Mode=TwoWay}"
                               MinValue="{Binding Warrior.Strength.Start, Mode=OneWay}"
                               MaxValue="{Binding Warrior.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
