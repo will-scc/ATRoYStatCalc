@@ -65,6 +65,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Label Content="Stat"
@@ -447,7 +448,7 @@
                    Margin="1"
                    Grid.Row="17"
                    Grid.Column="0" />
-            <n:UIntegerUpDown Value="{Binding Mage.MagicShield.Base, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Mage.MagicShield.Base, Mode=TwoWay}"
                               MinValue="{Binding Mage.MagicShield.Start, Mode=OneWay}"
                               MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
@@ -547,9 +548,35 @@
                    Grid.Row="20"
                    Grid.Column="3" />
 
-            <Label Content="{Binding Mage.Bartering.DisplayName}"
+            <Label Content="{Binding Mage.Duration.DisplayName}"
                    Margin="1"
                    Grid.Row="21"
+                   Grid.Column="0" />
+            <n:UIntegerUpDown Value="{Binding Mage.Duration.Base, Mode=TwoWay}"
+                              MinValue="{Binding Mage.Duration.Start, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              IsReadOnly="False"
+                              SelectAllTextOnFocus="True"
+                              Margin="1"
+                              Grid.Row="21"
+                              Grid.Column="1" />
+            <n:UIntegerUpDown Value="{Binding Mage.Duration.EquipmentBonus, Mode=TwoWay}"
+                              MinValue="0"
+                              IsReadOnly="False"
+                              SelectAllTextOnFocus="True"
+                              VerticalAlignment="Center"
+                              Margin="1"
+                              Grid.Row="21"
+                              Grid.Column="2" />
+            <Label Content="{Binding Mage.Duration.Mod, Mode=OneWay}"
+                   Foreground="{Binding Mage.Duration.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+                   Margin="1"
+                   Grid.Row="21"
+                   Grid.Column="3" />
+            
+            <Label Content="{Binding Mage.Bartering.DisplayName}"
+                   Margin="1"
+                   Grid.Row="22"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Mage.Bartering.Base, Mode=TwoWay}"
                               MinValue="{Binding Mage.Bartering.Start, Mode=OneWay}"
@@ -557,7 +584,7 @@
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
-                              Grid.Row="21"
+                              Grid.Row="22"
                               Grid.Column="1" />
             <n:UIntegerUpDown  Value="{Binding Mage.Bartering.EquipmentBonus, Mode=TwoWay}"
                                MinValue="0"
@@ -565,17 +592,17 @@
                                SelectAllTextOnFocus="True"
                                VerticalAlignment="Center"
                                Margin="1"
-                               Grid.Row="21"
+                               Grid.Row="22"
                                Grid.Column="2" />
             <Label Content="{Binding Mage.Bartering.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Bartering.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
-                   Grid.Row="21"
+                   Grid.Row="22"
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Perception.DisplayName}"
                    Margin="1"
-                   Grid.Row="22"
+                   Grid.Row="23"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Mage.Perception.Base, Mode=TwoWay}"
                               MinValue="{Binding Mage.Perception.Start, Mode=OneWay}"
@@ -583,7 +610,7 @@
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
-                              Grid.Row="22"
+                              Grid.Row="23"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Mage.Perception.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
@@ -591,17 +618,17 @@
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
-                              Grid.Row="22"
+                              Grid.Row="23"
                               Grid.Column="2" />
             <Label Content="{Binding Mage.Perception.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Perception.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
-                   Grid.Row="22"
+                   Grid.Row="23"
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Stealth.DisplayName}"
                    Margin="1"
-                   Grid.Row="23"
+                   Grid.Row="24"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Mage.Stealth.Base, Mode=TwoWay}"
                               MinValue="{Binding Mage.Stealth.Start, Mode=OneWay}"
@@ -609,7 +636,7 @@
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
-                              Grid.Row="23"
+                              Grid.Row="24"
                               Grid.Column="1" />
             <n:UIntegerUpDown  Value="{Binding Mage.Stealth.EquipmentBonus, Mode=TwoWay}"
                                MinValue="0"
@@ -617,17 +644,17 @@
                                SelectAllTextOnFocus="True"
                                VerticalAlignment="Center"
                                Margin="1"
-                               Grid.Row="23"
+                               Grid.Row="24"
                                Grid.Column="2" />
             <Label Content="{Binding Mage.Stealth.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Stealth.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
-                   Grid.Row="23"
+                   Grid.Row="24"
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Meditate.DisplayName}"
                    Margin="1"
-                   Grid.Row="24"
+                   Grid.Row="25"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Mage.Meditate.Base, Mode=TwoWay}"
                               MinValue="{Binding Mage.Meditate.Start, Mode=OneWay}"
@@ -635,7 +662,7 @@
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
-                              Grid.Row="24"
+                              Grid.Row="25"
                               Grid.Column="1" />
             <n:UIntegerUpDown  Value="{Binding Mage.Meditate.EquipmentBonus, Mode=TwoWay}"
                                MinValue="0"
@@ -643,17 +670,17 @@
                                SelectAllTextOnFocus="True"
                                VerticalAlignment="Center"
                                Margin="1"
-                               Grid.Row="24"
+                               Grid.Row="25"
                                Grid.Column="2" />
             <Label Content="{Binding Mage.Meditate.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Meditate.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
-                   Grid.Row="24"
+                   Grid.Row="25"
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Immunity.DisplayName}"
                    Margin="1"
-                   Grid.Row="25"
+                   Grid.Row="26"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Mage.Immunity.Base, Mode=TwoWay}"
                               MinValue="{Binding Mage.Immunity.Start, Mode=OneWay}"
@@ -661,7 +688,7 @@
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
-                              Grid.Row="25"
+                              Grid.Row="26"
                               Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Mage.Immunity.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
@@ -669,21 +696,21 @@
                               SelectAllTextOnFocus="True"
                               VerticalAlignment="Center"
                               Margin="1"
-                              Grid.Row="25"
+                              Grid.Row="26"
                               Grid.Column="2" />
             <Label Content="{Binding Mage.Immunity.Mod, Mode=OneWay}"
                    Foreground="{Binding Mage.Immunity.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
-                   Grid.Row="25"
+                   Grid.Row="26"
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Profession.DisplayName}"
                    Margin="1"
-                   Grid.Row="26"
+                   Grid.Row="27"
                    Grid.Column="0" />
             <Label Content="{Binding Mage.Profession.Base, Mode=OneWay}"
                    Margin="1"
-                   Grid.Row="26"
+                   Grid.Row="27"
                    Grid.Column="3" />
         </Grid>
 

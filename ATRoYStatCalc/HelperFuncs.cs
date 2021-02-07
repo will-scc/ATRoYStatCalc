@@ -31,33 +31,33 @@ namespace ATRoYStatCalc
 
         public static double GetLevelFromExp(long CurrentExp)
         {
-            if (CurrentExp < 1)
-            {
-                return 1;
-            }
-            else
-            {
-                double CurrentLevel = Math.Max(1, Math.Sqrt(Math.Sqrt(CurrentExp)));
-                int FlooredCurrentLevel = (int)Math.Floor(CurrentLevel);
-                
-                double netRequiredExp = RequiredExp(FlooredCurrentLevel, FlooredCurrentLevel + 1);
-                double remainingExp = CurrentExp - TotalExperience(FlooredCurrentLevel - 1);
+            //if (CurrentExp < 1)
+            //{
+            //    return 1;
+            //}
+            //else
+            //{
+            //    double CurrentLevel = Math.Max(1, Math.Sqrt(Math.Sqrt(CurrentExp)));
+            //    int FlooredCurrentLevel = (int)Math.Floor(CurrentLevel);
 
-                int percentage = (int)Math.Truncate((netRequiredExp / remainingExp) * 100);
-                
-                if (double.TryParse($"{FlooredCurrentLevel}.{percentage}", out double result))
-                {
-                    return result;
-                }
-                else
-                {
-                    return FlooredCurrentLevel;
-                }
-            }
+            //    double netRequiredExp = RequiredExp(FlooredCurrentLevel, FlooredCurrentLevel + 1);
+            //    double remainingExp = CurrentExp - TotalExperience(FlooredCurrentLevel - 1);
 
-            //return CurrentExp < 1
-            //    ? 1
-            //    : Math.Max(1, Math.Sqrt(Math.Sqrt(CurrentExp)));
+            //    int percentage = (int)Math.Truncate((netRequiredExp / remainingExp) * 100);
+
+            //    if (double.TryParse($"{FlooredCurrentLevel}.{percentage}", out double result))
+            //    {
+            //        return result;
+            //    }
+            //    else
+            //    {
+            //        return FlooredCurrentLevel;
+            //    }
+            //}
+
+            return CurrentExp < 1
+                ? 1
+                : Math.Max(1, Math.Sqrt(Math.Sqrt(CurrentExp)));
         }
 
         public static double RequiredExp(int CurrentLevel, int NextLevel)

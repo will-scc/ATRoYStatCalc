@@ -61,14 +61,14 @@ namespace ATRoYStatCalc.Model
         #region "Skills"
         [JsonIgnore]
         public List<Skill> Skills { get; set; } = new List<Skill>();
-        public Skill Hitpoints { get; set; } = new Skill(false)
+        public Skill Hitpoints { get; set; } = new Skill(false, true)
         {
             DisplayName = "Hitpoints",
             Start = 10,
             Base = 10,
             Cost = 3
         };
-        public Skill Endurance { get; set; } = new Skill(false)
+        public Skill Endurance { get; set; } = new Skill(false, true)
         {
             DisplayName = "Endurance",
             Start = 10,
@@ -201,7 +201,7 @@ namespace ATRoYStatCalc.Model
 
         public int RaiseCost(Skill Skill, int NextLevel)
         {
-            int maxNonPTMBase = HardCore ? 120 : 100;
+            int maxNonPTMBase = HardCore ? 122 : 115;
             int nr = NextLevel - Skill.Start + 1 + 5;
 
             if (NextLevel < maxNonPTMBase)

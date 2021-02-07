@@ -11,7 +11,7 @@ namespace ATRoYStatCalc.Model
         public bool BlessBonusMaxed { get; set; }
 
         #region "Skills"
-        public Skill Mana { get; set; } = new Skill(false)
+        public Skill Mana { get; set; } = new Skill(false, true)
         {
             DisplayName = "Mana",
             Start = 10,
@@ -184,6 +184,9 @@ namespace ATRoYStatCalc.Model
 
             Offence = (int)Math.Floor(weaponSkillMod + (spellAvg * 2) - Math.Truncate(CurrentLevel));
             Defence = weaponSkillMod + (MagicShield.Mod * 2);
+
+            BlessBonus = (int)Math.Ceiling((double)Bless.Mod / 4);
+            BlessBonusMaxed = Attributes.Count(a => a.MaxBlessModExceeded) == 4;
         }
 
         private double SpellsAverageMod()

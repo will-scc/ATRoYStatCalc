@@ -439,7 +439,6 @@ namespace ATRoYStatCalc.Model
             TacticsImmunityBonus = (int)Math.Floor(Tactics.Mod / 8.08);
 
             BlessBonus = (int)Math.Ceiling((double)Bless.Mod / 4);
-
             BlessBonusMaxed = Attributes.Count(a => a.MaxBlessModExceeded) == 4;
         }
 

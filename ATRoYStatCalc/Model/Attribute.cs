@@ -18,14 +18,12 @@ namespace ATRoYStatCalc.Model
         public int BlessBonus { get; set; }
         public int EquipmentBonus { get; set; }
         public int WarriorBonus { get; set; }
-        public int Mod => Base + Math.Min(EquipmentBonus + BlessBonus, MaxMod) + WarriorBonus;
+        public int Mod => Base + Math.Min(EquipmentBonus, MaxMod) + Math.Min(BlessBonus, MaxMod) + WarriorBonus;
         public int MaxMod => IsSeyan
                     ? (int)Math.Floor((double)(Base * 0.725))
                     : (int)Math.Floor((double)(Base * 0.50));
-
         public bool MaxEquipmentModExceeded => EquipmentBonus > MaxMod;
-        public bool MaxBlessModExceeded => BlessBonus > MaxMod - EquipmentBonus;
-        public bool MaxModExceeded => BlessBonus + EquipmentBonus > MaxMod;
-       
+        public bool MaxBlessModExceeded => BlessBonus > MaxMod;
+        public bool MaxModExceeded => MaxEquipmentModExceeded && MaxBlessModExceeded;
     }
 }
