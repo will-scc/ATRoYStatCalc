@@ -368,13 +368,13 @@
                    Grid.Row="11"
                    Grid.Column="3" />
 
-            <Label Content="{Binding Rogue.TwoHanded.DisplayName}"
+            <Label Content="{Binding Rogue.Archery.DisplayName}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="12"
                    Grid.Column="0" />
-            <n:UIntegerUpDown Value="{Binding Rogue.TwoHanded.Base, Mode=TwoWay}"
-                              MinValue="{Binding Rogue.TwoHanded.Start, Mode=OneWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Archery.Base, Mode=TwoWay}"
+                              MinValue="{Binding Rogue.Archery.Start, Mode=OneWay}"
                               MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -382,7 +382,7 @@
                               VerticalAlignment="Center"
                               Grid.Row="12"
                               Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Rogue.TwoHanded.EquipmentBonus, Mode=TwoWay}"
+            <n:UIntegerUpDown Value="{Binding Rogue.Archery.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
@@ -390,8 +390,8 @@
                               VerticalAlignment="Center"
                               Grid.Row="12"
                               Grid.Column="2" />
-            <Label Content="{Binding Rogue.TwoHanded.Mod, Mode=OneWay}"
-                   Foreground="{Binding Rogue.TwoHanded.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
+            <Label Content="{Binding Rogue.Archery.Mod, Mode=OneWay}"
+                   Foreground="{Binding Rogue.Archery.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="12"
@@ -1004,7 +1004,7 @@
                                 VerticalAlignment="Center"
                                 Margin="5">
                         <Label Content="Light/Dark Rogue" />
-                        <n:UIntegerUpDown Value="{Binding Rogue.TimeRogueBonus, Mode=TwoWay}"
+                        <n:UIntegerUpDown Value="{Binding Rogue.TimeWarriorBonus, Mode=TwoWay}"
                                           MinValue="0"
                                           MaxValue="30"
                                           StepSize="3"

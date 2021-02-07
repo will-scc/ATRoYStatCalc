@@ -5,11 +5,18 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <StartupObject>ATRoYStatCalc.App</StartupObject>
-    <Authors>Will_SCC (Belgarath)</Authors>
+    <Authors>Belgarath (will-scc)</Authors>
     <Product>Astonia: The Return of Yendor Stat Calculator</Product>
-    <Description>A build, equipment and stat calculator for Astonia: The Return of Yendor by Belgarath</Description>
+    <Description>A stat calculator for Astonia: The Return of Yendor by Belgarath</Description>
     <PackageProjectUrl>https://github.com/will-scc/ATRoYStatCalc</PackageProjectUrl>
     <NeutralLanguage />
+    <ApplicationIcon>iconfinder_calculator-math-tool-school_2824440.ico</ApplicationIcon>
+    <AssemblyName>ATRoYStatCalc</AssemblyName>
+    <Copyright>Belgarath (will-scc) 2020</Copyright>
+    <PackageIcon>iconfinder_calculator-math-tool-school_2824440.ico</PackageIcon>
+    <RepositoryUrl>https://github.com/will-scc/ATRoYStatCalc</RepositoryUrl>
+    <SignAssembly>true</SignAssembly>
+    <Company>will-scc</Company>
   </PropertyGroup>
 
   <ItemGroup>
@@ -43,6 +50,13 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\Downloads\iconfinder_calculator-math-tool-school_2824440.ico">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
