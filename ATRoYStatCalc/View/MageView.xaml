@@ -12,7 +12,7 @@
     <Grid Margin="5">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -95,7 +95,7 @@
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Mage.Hitpoints.Base, Mode=TwoWay}"
                               MinValue="{Binding Mage.Hitpoints.Start, Mode=OneWay}"
-                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxNonPTMBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
@@ -116,12 +116,13 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Endurance.DisplayName}"
+                   
                    Margin="1"
                    Grid.Row="2"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Mage.Endurance.Base, Mode=TwoWay}"
                               MinValue="{Binding Mage.Endurance.Start, Mode=OneWay}"
-                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxNonPTMBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
@@ -147,7 +148,7 @@
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Mage.Mana.Base, Mode=TwoWay}"
                               MinValue="{Binding Mage.Mana.Start, Mode=OneWay}"
-                              MaxValue="{Binding Mage.MaxBase, Mode=OneWay}"
+                              MaxValue="{Binding Mage.MaxNonPTMBase, Mode=OneWay}"
                               IsReadOnly="False"
                               SelectAllTextOnFocus="True"
                               Margin="1"
@@ -174,6 +175,7 @@
                    Grid.Column="0" />
 
             <Label Content="{Binding Mage.Wisdom.DisplayName}"
+                   ToolTip="Modifies:&#x0a;Bless (1), Heal (1), Freeze (1), Magic Shield (1), Lightning (1), Fire (1), Pulse (1), Duration (1)&#x0a;Bartering (1), Perception (1), Meditation (1)"
                    Margin="1"
                    Grid.Row="5"
                    Grid.Column="0" />
@@ -200,6 +202,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Intuition.DisplayName}"
+                   ToolTip="Modifies:&#x0a;Dagger (1), Staff (1), Bless (2), Heal (2), Freeze (2), Magic Shield (2), Lightning (2), Fire (2), Pulse (2), Duration (1)&#x0a;Stealth (1), Perception (1), Bartering (2), Immunity (2)"
                    Margin="1"
                    Grid.Row="6"
                    Grid.Column="0" />
@@ -226,6 +229,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Agility.DisplayName}"
+                   ToolTip="Modifies:&#x0a;Dagger(1), Staff (1), Hand to Hand (1)&#x0a;Stealth (2)"
                    Margin="1"
                    Grid.Row="7"
                    Grid.Column="0" />
@@ -252,6 +256,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Strength.DisplayName}"
+                   ToolTip="Modifies:&#x0a;Dagger (1), Hand to Hand (2), Staff (2)&#x0a;Duration (1)&#x0a;Immunity (1)"
                    Margin="1"
                    Grid.Row="8"
                    Grid.Column="0" />
@@ -284,6 +289,7 @@
                    Grid.Column="0" />
 
             <Label Content="{Binding Mage.Dagger.DisplayName}"
+                   ToolTip="Modified by Agility/Intuition/Strength"
                    Margin="1"
                    Grid.Row="10"
                    Grid.Column="0" />
@@ -310,6 +316,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.HandToHand.DisplayName}"
+                   ToolTip="Modified by Agility/Strength/Strength"
                    Margin="1"
                    Grid.Row="11"
                    Grid.Column="0" />
@@ -335,6 +342,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Staff.DisplayName}"
+                   ToolTip="Modified by Agility/Intuition/Strength"
                    Margin="1"
                    Grid.Row="12"
                    Grid.Column="0" />
@@ -367,6 +375,7 @@
                    Grid.Column="0" />
 
             <Label Content="{Binding Mage.Bless.DisplayName}"
+                   ToolTip="Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    Grid.Row="14"
                    Grid.Column="0" />
@@ -393,6 +402,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Heal.DisplayName}"
+                   ToolTip="Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    Grid.Row="15"
                    Grid.Column="0" />
@@ -419,6 +429,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Freeze.DisplayName}"
+                   ToolTip="Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    Grid.Row="16"
                    Grid.Column="0" />
@@ -445,6 +456,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.MagicShield.DisplayName}"
+                   ToolTip="Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    Grid.Row="17"
                    Grid.Column="0" />
@@ -471,6 +483,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Lightning.DisplayName}"
+                   ToolTip="Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    Grid.Row="18"
                    Grid.Column="0" />
@@ -497,6 +510,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Fire.DisplayName}"
+                   ToolTip="Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    Grid.Row="19"
                    Grid.Column="0" />
@@ -523,6 +537,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Pulse.DisplayName}"
+                   ToolTip="Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    Grid.Row="20"
                    Grid.Column="0" />
@@ -549,6 +564,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Duration.DisplayName}"
+                   ToolTip="Modified by Wisdom/Intuition/Strength"
                    Margin="1"
                    Grid.Row="21"
                    Grid.Column="0" />
@@ -575,6 +591,7 @@
                    Grid.Column="3" />
             
             <Label Content="{Binding Mage.Bartering.DisplayName}"
+                   ToolTip="Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    Grid.Row="22"
                    Grid.Column="0" />
@@ -601,6 +618,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Perception.DisplayName}"
+                   ToolTip="Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    Grid.Row="23"
                    Grid.Column="0" />
@@ -627,6 +645,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Stealth.DisplayName}"
+                   ToolTip="Modified by Agility/Agility/Intuition"
                    Margin="1"
                    Grid.Row="24"
                    Grid.Column="0" />
@@ -653,6 +672,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Meditate.DisplayName}"
+                   ToolTip="Modified by Wisdom/Wisdom/Wisdom"
                    Margin="1"
                    Grid.Row="25"
                    Grid.Column="0" />
@@ -679,6 +699,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Mage.Immunity.DisplayName}"
+                   ToolTip="Modified by Intuition/Intuition/Strength"
                    Margin="1"
                    Grid.Row="26"
                    Grid.Column="0" />
@@ -723,6 +744,7 @@
                       Padding="5">
                 <Grid Margin="2">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
@@ -777,6 +799,13 @@
                            ToolTip="This is in addition to WV from weapon."
                            Grid.Row="4"
                            Grid.Column="1" />
+                    <n:DecimalUpDown Value="{Binding Mage.ExtraWeaponValue, Mode=TwoWay}"
+                                     MinValue="0"
+                                     StepSize="0.25"
+                                     IsReadOnly="False"
+                                     Margin="1"
+                                     Grid.Row="4"
+                                     Grid.Column="2" />
 
                     <Label Content="Speed:"
                            HorizontalAlignment="Right"
@@ -786,6 +815,12 @@
                     <Label Content="{Binding Mage.Speed, Mode=OneWay}"
                            Grid.Row="5"
                            Grid.Column="1" />
+                    <n:UIntegerUpDown Value="{Binding Mage.ExtraSpeed, Mode=TwoWay}"
+                                      MinValue="0"
+                                      IsReadOnly="False"
+                                      Margin="1"
+                                      Grid.Row="5"
+                                      Grid.Column="2" />
 
                     <Label Content="Offense:"
                            HorizontalAlignment="Right"
@@ -917,6 +952,32 @@
                 </StackPanel>
             </GroupBox>
 
+            <GroupBox Header="Combat Effectiveness"
+                      FontWeight="Bold"
+                      Padding="5"
+                      Margin="5">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <Label Content="Enemy Defence: " />
+                        <n:UIntegerUpDown Value="{Binding EnemyDefence, Mode=TwoWay}"
+                                          IsReadOnly="False"
+                                          IsDisplayLengthFixed="True"
+                                          DisplayLength="4"
+                                          MinValue="0" />
+                    </StackPanel>
+                    <Label Content="{Binding Accuracy, Mode=OneWay}"
+                           ContentStringFormat="Accuracy: {0}%"
+                           HorizontalAlignment="Right"
+                           FontWeight="Bold" />
+                    <Label Content="{Binding EffectiveArmour, Mode=OneWay}"
+                           ContentStringFormat="Enemy Effective Armour: {0}%"
+                           HorizontalAlignment="Right"
+                           FontWeight="Bold" />
+                </StackPanel>
+
+            </GroupBox>
+            
         </StackPanel>
     </Grid>
 

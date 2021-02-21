@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using System;
 using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
@@ -13,7 +14,10 @@ namespace ATRoYStatCalc.ViewModel
     public class WarriorViewModel : ViewModelBase
     {
         public Warrior Warrior { get; set; } = new Warrior();
-
+        public int EnemyDefence { get; set; } = 1000;
+        private Tuple<int, int> AccuracyAndArmour => HelperFuncs.GetAccuracyAndEffectiveArmour(Warrior.Offence - EnemyDefence);
+        public int Accuracy => AccuracyAndArmour.Item1;
+        public int EffectiveArmour => AccuracyAndArmour.Item2;
         public WarriorViewModel() { }
 
         public void Setup()

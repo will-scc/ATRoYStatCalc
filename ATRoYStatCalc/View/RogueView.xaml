@@ -99,7 +99,6 @@
                    VerticalAlignment="Center"
                    Grid.Column="0"
                    Grid.Row="1"/>
-
             <n:UIntegerUpDown Value="{Binding Rogue.Hitpoints.Base, Mode=TwoWay}"
                               MinValue="{Binding Rogue.Hitpoints.Start, Mode=OneWay}"
                               MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
@@ -159,6 +158,7 @@
                    Grid.Column="0"/>
 
             <Label Content="{Binding Rogue.Wisdom.DisplayName}"
+                   ToolTip="Modifies:&#x0a;Tactics (1)&#x0a;Bartering (1), Perception (1)"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="4"
@@ -188,6 +188,7 @@
                    Grid.Column="3"/>
 
             <Label Content="{Binding Rogue.Intuition.DisplayName}"
+                   ToolTip="Modifies:&#x0a;Dagger (1), Sword (2)&#x0a;Attack (1), Parry (1), Warcry (1), Tactics (1), Surround Hit (1), Speed Skill (1), Rage (1)&#x0a;Bartering (2), Perception (2), Stealth (1), Immunity (2)"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="5"
@@ -217,6 +218,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Rogue.Agility.DisplayName}"
+                   ToolTip="Modifies:&#x0a;Dagger (1), HandToHand (1), TwoHanded (2)&#x0a;Armour Skill (2), Attack (1), Parry (1), Warcry (1), Tactics (1), SurroundHit (1), Body Control (1), Speed Skill (1)&#x0a;Stealth (2)"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="6"
@@ -246,6 +248,7 @@
                    Grid.Column="3"/>
 
             <Label Content="{Binding Rogue.Strength.DisplayName}"
+                   ToolTip="Modifies:&#x0a;Dagger (1), HandToHand (2), TwoHanded (1)&#x0a;Armour Skill (1), Attack (1), Parry (1), Warcry (1), Tactics (1), Surround Hit (1), Body Control (1), Speed Skill (1), Rage (2)&#x0a;Immunity (1)"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="7"
@@ -282,6 +285,7 @@
                    Grid.Column="0" />
 
             <Label Content="{Binding Rogue.Dagger.DisplayName}"
+                   ToolTip="Modified by Agility/Intuition/Strength"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="9"
@@ -311,6 +315,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Rogue.HandToHand.DisplayName}"
+                   ToolTip="Modified by Agility/Strength/Strength"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="10"
@@ -340,6 +345,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Rogue.Sword.DisplayName}"
+                   ToolTip="Modified by Intuition/Intuition/Agility"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="11"
@@ -369,6 +375,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Rogue.Archery.DisplayName}"
+                   ToolTip="Modified by Intuition/Intuition/Strength"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="12"
@@ -405,6 +412,7 @@
                    Grid.Column="0" />
 
             <Label Content="{Binding Rogue.Rage.DisplayName}"
+                   ToolTip="Modified by Intuition/Strength/Strength"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="14"
@@ -434,6 +442,7 @@
                    Grid.Column="3"/>
 
             <Label Content="{Binding Rogue.ArmorSkill.DisplayName}"
+                   ToolTip="Modified by Agility/Agility/Strength"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="15"
@@ -463,6 +472,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Rogue.Attack.DisplayName}"
+                   ToolTip="Modified by Agility/Intuition/Strength"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="16"
@@ -492,6 +502,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Rogue.Parry.DisplayName}"
+                   ToolTip="Modified by Agility/Intuition/Strength"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="17"
@@ -521,6 +532,7 @@
                    Grid.Column="3"/>
 
             <Label Content="{Binding Rogue.Warcry.DisplayName}"
+                   ToolTip="Modified by Agility/Intuition/Strength"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="18"
@@ -550,6 +562,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Rogue.Tactics.DisplayName}"
+                   ToolTip="Modified by Wisdom/Agility/Strength"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="19"
@@ -579,6 +592,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Rogue.SurroundHit.DisplayName}"
+                   ToolTip="Modified by Agility/Intuition/Strength"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="20"
@@ -608,6 +622,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Rogue.BodyControl.DisplayName}"
+                   ToolTip="Modified by Agility/Intuition/Strength"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="21"
@@ -637,6 +652,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Rogue.SpeedSkill.DisplayName}"
+                   ToolTip="Modified by Agility/Intuition/Strength"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="22"
@@ -666,6 +682,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Rogue.Regenerate.DisplayName}"
+                   ToolTip="Modified by Strength/Strength/Strength"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="23"
@@ -695,6 +712,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Rogue.Bartering.DisplayName}"
+                   ToolTip="Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="24"
@@ -724,6 +742,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Rogue.Perception.DisplayName}"
+                   ToolTip="Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="25"
@@ -753,6 +772,7 @@
                    Grid.Column="4" />
 
             <Label Content="{Binding Rogue.Stealth.DisplayName}"
+                   ToolTip="Modified by Agility/Agility/Intuition"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="26"
@@ -782,6 +802,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Rogue.Immunity.DisplayName}"
+                   ToolTip="Modified by Intuition/Intuition/Strength"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="27"
@@ -794,7 +815,7 @@
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="27"
-                   Grid.Column="1" />
+                              Grid.Column="1" />
             <n:UIntegerUpDown Value="{Binding Rogue.Immunity.EquipmentBonus, Mode=TwoWay}"
                               MinValue="0"
                               IsReadOnly="False"
@@ -802,7 +823,7 @@
                               Margin="1"
                               VerticalAlignment="Center"
                               Grid.Row="27"
-                    Grid.Column="2" />
+                              Grid.Column="2" />
             <Label Content="{Binding Rogue.Immunity.Mod, Mode=OneWay}"
                    Foreground="{Binding Rogue.Immunity.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
                    Margin="1"
@@ -830,6 +851,7 @@
                       Padding="5">
                 <Grid Margin="2">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
@@ -873,6 +895,13 @@
                            ToolTip="This is in addition to AV from equipment."
                            Grid.Row="3"
                            Grid.Column="1" />
+                    <n:DecimalUpDown Value="{Binding Rogue.ExtraArmourValue, Mode=TwoWay}"
+                                     MinValue="0"
+                                     StepSize="0.25"
+                                     IsReadOnly="False"
+                                     Margin="1"
+                                     Grid.Row="3"
+                                     Grid.Column="2" />
 
                     <Label Content="Weapon Value:"
                            ToolTip="This is in addition to WV from weapon."
@@ -884,6 +913,13 @@
                            ToolTip="This is in addition to WV from weapon."
                            Grid.Row="4"
                            Grid.Column="1" />
+                    <n:DecimalUpDown Value="{Binding Rogue.ExtraArmourValue, Mode=TwoWay}"
+                                     MinValue="0"
+                                     StepSize="0.25"
+                                     IsReadOnly="False"
+                                     Margin="1"
+                                     Grid.Row="3"
+                                     Grid.Column="2" />
 
                     <Label Content="Speed:"
                            HorizontalAlignment="Right"
@@ -893,7 +929,13 @@
                     <Label Content="{Binding Rogue.Speed, Mode=OneWay}"
                            Grid.Row="5"
                            Grid.Column="1" />
-
+                    <n:UIntegerUpDown Value="{Binding Warrior.ExtraSpeed, Mode=TwoWay}"
+                                      MinValue="0"
+                                      IsReadOnly="False"
+                                      Margin="1"
+                                      Grid.Row="5"
+                                      Grid.Column="2" />
+                    
                     <Label Content="Offense:"
                            HorizontalAlignment="Right"
                            FontWeight="Bold"
@@ -1029,6 +1071,32 @@
 
 
                 </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Combat Effectiveness"
+                      FontWeight="Bold"
+                      Padding="5"
+                      Margin="5">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <Label Content="Enemy Defence: " />
+                        <n:UIntegerUpDown Value="{Binding EnemyDefence, Mode=TwoWay}"
+                                          IsReadOnly="False"
+                                          IsDisplayLengthFixed="True"
+                                          DisplayLength="4"
+                                          MinValue="0" />
+                    </StackPanel>
+                    <Label Content="{Binding Accuracy, Mode=OneWay}"
+                           ContentStringFormat="Accuracy: {0}%"
+                           HorizontalAlignment="Right"
+                           FontWeight="Bold" />
+                    <Label Content="{Binding EffectiveArmour, Mode=OneWay}"
+                           ContentStringFormat="Enemy Effective Armour: {0}%"
+                           HorizontalAlignment="Right"
+                           FontWeight="Bold" />
+                </StackPanel>
+
             </GroupBox>
 
         </StackPanel>

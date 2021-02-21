@@ -19,13 +19,27 @@ namespace ATRoYStatCalc.Model
         public int Cost { get; set; }
         public int AttributeBonus { get; set; }
         public int EquipmentBonus { get; set; }
-        public int Mod => Base + Math.Min(Math.Max(IsResource ? 0 : 15, AttributeBonus), MaxAttributeMod) + Math.Min(EquipmentBonus, MaxEquipmentMod);
+        public int LevelBonus { get; set; }
+        public int PtmBonus { get; set; }
+        public int Mod => CalculateMod();
+        public int CalculateMod()
+        {
+            double newMod = 0;
+
+            newMod += Base;
+            newMod += Math.Max(IsResource ? 0 : 15, Math.Min(AttributeBonus, MaxAttributeMod));
+            newMod += Math.Min(EquipmentBonus, MaxEquipmentMod);
+            newMod += LevelBonus;
+            newMod += PtmBonus;
+
+            return (int)newMod;
+        }
+
         public int MaxAttributeMod => Base * 2;
         public int MaxEquipmentMod => IsSeyan
                     ? (int)Math.Floor(Base * 0.725)
                     : (int)Math.Floor(Base * 0.50);
         public bool MaxAttributeModExceeded => AttributeBonus > MaxAttributeMod;
         public bool MaxEquipmentModExceeded => EquipmentBonus > MaxEquipmentMod;
-
     }
 }

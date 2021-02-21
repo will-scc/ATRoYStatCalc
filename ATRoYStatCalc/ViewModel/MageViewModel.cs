@@ -7,12 +7,17 @@ using Newtonsoft.Json;
 using Microsoft.Win32;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using System;
 
 namespace ATRoYStatCalc.ViewModel
 {
     public class MageViewModel : ViewModelBase
     {
         public Mage Mage { get; set; } = new Mage();
+        public int EnemyDefence { get; set; } = 1000;
+        private Tuple<int, int> AccuracyAndArmour => HelperFuncs.GetAccuracyAndEffectiveArmour(Mage.Offence - EnemyDefence);
+        public int Accuracy => AccuracyAndArmour.Item1;
+        public int EffectiveArmour => AccuracyAndArmour.Item2;
 
         public MageViewModel() { }
 

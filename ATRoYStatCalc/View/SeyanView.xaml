@@ -10,14 +10,14 @@
              d:Background="White"
              DataContext="{Binding SeyanView, Source={StaticResource ViewModelLocator}}">
     <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
 
         <StackPanel Orientation="Horizontal"
                     Grid.Row="0"
@@ -179,6 +179,7 @@
                    Grid.Column="0" />
 
             <Label Content="{Binding Seyan.Wisdom.DisplayName}"
+                   ToolTip="Modifies:&#x0a;Tactics (1)&#x0a;Heal (1), Freeze (1), Magic Shield (1), Lightning (1), Fire (1), Pulse (1)&#x0a;Bartering (1), Perception (1), Regenerate (3), Meditate (3)"
                    Margin="1"
                    Grid.Row="5"
                    Grid.Column="0" />
@@ -203,6 +204,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Intuition.DisplayName}"
+                   ToolTip="Modifies:&#x0a;Dagger (1), Sword (2)&#x0a;Attack (1), Parry (1), Warcry (1), Tactics (1), Surround Hit (1), Body Control (1), Speed Skill (1)&#x0a;Bless (2), Heal (2), Freeze (2), Magic Shield (2), Lightning (2), Fire (2), Pulse (2)&#x0a;Bartering (2), Perception (2), Stealth (1), Immunity (2)"
                    Margin="1"
                    Grid.Row="6"
                    Grid.Column="0" />
@@ -227,6 +229,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Agility.DisplayName}"
+                   ToolTip="Modifies:&#x0a;Dagger (1), Hand to Hand (1), Sword (1), Twohanded (2)&#x0a;Armour Skill (2), Attack (1), Parry (1), Warcry (1), Tactics (1), Surround Hit (1), Body Control (1), Speed Skill (1)&#x0a;Stealth (2)"
                    Margin="1"
                    Grid.Row="7"
                    Grid.Column="0" />
@@ -251,6 +254,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Strength.DisplayName}"
+                   ToolTip="Modifies:&#x0a;Dagger (1), Hand to Hand (2), Twohanded (1), Armour Skill (1), Attack (1), Parry (1), Warcry (1), Tactics (1), Surround Hit (1), Body Control (1), Speed Skill (1)&#x0a;Immunity (1)"
                    Margin="1"
                    Grid.Row="8"
                    Grid.Column="0" />
@@ -281,6 +285,7 @@
                    Grid.Column="0" />
 
             <Label Content="{Binding Seyan.Dagger.DisplayName}"
+                   ToolTip=" Modified by Agility/Intuition/Strength"
                    Margin="1"
                    Grid.Row="10"
                    Grid.Column="0" />
@@ -305,6 +310,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.HandToHand.DisplayName}"
+                   ToolTip=" Modified by Agility/Strength/Strength"
                    Margin="1"
                    Grid.Row="11"
                    Grid.Column="0" />
@@ -329,6 +335,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Sword.DisplayName}"
+                   ToolTip=" Modified by Intuition/Intuition/Agility"
                    Margin="1"
                    Grid.Row="12"
                    Grid.Column="0" />
@@ -353,6 +360,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.TwoHanded.DisplayName}"
+                   ToolTip=" Modified by Agility/Agility/Strength"
                    Margin="1"
                    Grid.Row="13"
                    Grid.Column="0" />
@@ -383,6 +391,7 @@
                    Grid.Column="0" />
 
             <Label Content="{Binding Seyan.ArmorSkill.DisplayName}"
+                   ToolTip=" Modified by Agility/Agility/Strength"
                    Margin="1"
                    Grid.Row="15"
                    Grid.Column="0" />
@@ -407,6 +416,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Attack.DisplayName}"
+                   ToolTip=" Modified by Agility/Intuition/Strength"
                    Margin="1" Grid.Row="16"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Attack.Base, Mode=TwoWay}"
@@ -427,6 +437,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Parry.DisplayName}"
+                   ToolTip=" Modified by Agility/Intuition/Strength"
                    Margin="1" Grid.Row="17"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Parry.Base, Mode=TwoWay}"
@@ -447,6 +458,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Warcry.DisplayName}"
+                   ToolTip=" Modified by Agility/Intuition/Strength"
                    Margin="1" Grid.Row="18"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Warcry.Base, Mode=TwoWay}"
@@ -467,6 +479,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Tactics.DisplayName}"
+                   ToolTip=" Modified by Agility/Intuition/Strength"
                    Margin="1"
                    Grid.Row="19"
                    Grid.Column="0" />
@@ -491,6 +504,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.SurroundHit.DisplayName}"
+                   ToolTip=" Modified by Agility/Intuition/Strength"
                    Margin="1"
                    Grid.Row="20"
                    Grid.Column="0" />
@@ -515,6 +529,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.BodyControl.DisplayName}"
+                   ToolTip=" Modified by Agility/Intuition/Strength"
                    Margin="1"
                    Grid.Row="21"
                    Grid.Column="0" />
@@ -539,6 +554,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.SpeedSkill.DisplayName}"
+                   ToolTip=" Modified by Agility/Intuition/Strength"
                    Margin="1"
                    Grid.Row="22"
                    Grid.Column="0" />
@@ -563,6 +579,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Bless.DisplayName}"
+                   ToolTip=" Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    Grid.Row="23"
                    Grid.Column="0" />
@@ -587,6 +604,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Heal.DisplayName}"
+                   ToolTip=" Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    Grid.Row="24"
                    Grid.Column="0" />
@@ -611,7 +629,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Freeze.DisplayName}"
-                   Margin="1"
+                   ToolTip=" Modified by Wisdom/Intuition/Intuition"
                    Grid.Row="25"
                    Grid.Column="0" />
             <n:UIntegerUpDown Value="{Binding Seyan.Freeze.Base, Mode=TwoWay}"
@@ -635,6 +653,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.MagicShield.DisplayName}"
+                   ToolTip=" Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    Grid.Row="26"
                    Grid.Column="0" />
@@ -659,6 +678,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Lightning.DisplayName}"
+                   ToolTip=" Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    Grid.Row="27"
                    Grid.Column="0" />
@@ -683,6 +703,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Fire.DisplayName}"
+                   ToolTip=" Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    Grid.Row="28"
                    Grid.Column="0" />
@@ -707,6 +728,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Pulse.DisplayName}"
+                   ToolTip=" Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    Grid.Row="29"
                    Grid.Column="0" />
@@ -731,6 +753,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Bartering.DisplayName}"
+                   ToolTip=" Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    Grid.Row="30"
                    Grid.Column="0" />
@@ -755,6 +778,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Perception.DisplayName}"
+                   ToolTip=" Modified by Wisdom/Intuition/Intuition"
                    Margin="1"
                    Grid.Row="31"
                    Grid.Column="0" />
@@ -779,6 +803,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Stealth.DisplayName}"
+                   ToolTip=" Modified by Agility/Agility/Intuition"
                    Margin="1"
                    Grid.Row="32"
                    Grid.Column="0" />
@@ -803,6 +828,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Regenerate.DisplayName}"
+                   ToolTip=" Modified by Wisdom/Wisdom/Wisdom"
                    Margin="1"
                    Grid.Row="33"
                    Grid.Column="0" />
@@ -827,6 +853,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Meditate.DisplayName}"
+                   ToolTip=" Modified by Wisdom/Wisdom/Wisdom"
                    Margin="1"
                    Grid.Row="34"
                    Grid.Column="0" />
@@ -851,6 +878,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Immunity.DisplayName}"
+                   ToolTip=" Modified by Intuition/Intuition/Strength"
                    Margin="1"
                    Grid.Row="35"
                    Grid.Column="0" />
@@ -895,6 +923,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -924,7 +953,8 @@
                            Grid.Column="0" />
                     <Label Content="{Binding Seyan.CurrentExp, Mode=OneWay}"
                            Grid.Row="2"
-                           Grid.Column="1" />
+                           Grid.Column="1"
+                           Grid.ColumnSpan="2"/>
 
                     <Label Content="Armour Value:"
                            ToolTip="This is in addition to AV from equipment."
@@ -936,6 +966,13 @@
                            ToolTip="This is in addition to AV from equipment."
                            Grid.Row="3"
                            Grid.Column="1" />
+                    <n:DecimalUpDown Value="{Binding Seyan.ExtraArmourValue, Mode=TwoWay}"
+                                     MinValue="0"
+                                     StepSize="0.25"
+                                     IsReadOnly="False"
+                                     Margin="1"
+                                     Grid.Row="3"
+                                     Grid.Column="2"/>
 
                     <Label Content="Weapon Value:"
                            ToolTip="This is in addition to WV from weapon."
@@ -947,6 +984,13 @@
                            ToolTip="This is in addition to WV from weapon."
                            Grid.Row="4"
                            Grid.Column="1" />
+                    <n:DecimalUpDown Value="{Binding Seyan.ExtraWeaponValue, Mode=TwoWay}"
+                                     MinValue="0"
+                                     StepSize="0.25"
+                                     IsReadOnly="False"
+                                     Margin="1"
+                                     Grid.Row="4"
+                                     Grid.Column="2" />
 
                     <Label Content="Speed:"
                            HorizontalAlignment="Right"
@@ -956,7 +1000,13 @@
                     <Label Content="{Binding Seyan.Speed, Mode=OneWay}"
                            Grid.Row="5"
                            Grid.Column="1" />
-
+                    <n:UIntegerUpDown Value="{Binding Seyan.ExtraSpeed, Mode=TwoWay}"
+                                      MinValue="0"
+                                      IsReadOnly="False"
+                                      Margin="1"
+                                      Grid.Row="5"
+                                      Grid.Column="2" />
+                    
                     <Label Content="Offense:"
                            HorizontalAlignment="Right"
                            FontWeight="Bold"
@@ -1114,6 +1164,32 @@
 
                     
                 </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Combat Effectiveness"
+                      FontWeight="Bold"
+                      Padding="5"
+                      Margin="5">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right">
+                        <Label Content="Enemy Defence: "/>
+                        <n:UIntegerUpDown Value="{Binding EnemyDefence, Mode=TwoWay}"
+                                          IsReadOnly="False"
+                                          IsDisplayLengthFixed="True"
+                                          DisplayLength="4"
+                                          MinValue="0"/>
+                    </StackPanel>
+                    <Label Content="{Binding Accuracy, Mode=OneWay}"
+                           ContentStringFormat="Accuracy: {0}%"
+                           HorizontalAlignment="Right"
+                           FontWeight="Bold" />
+                    <Label Content="{Binding EffectiveArmour, Mode=OneWay}"
+                           ContentStringFormat="Enemy Effective Armour: {0}%"
+                           HorizontalAlignment="Right"
+                           FontWeight="Bold" />
+                </StackPanel>
+                
             </GroupBox>
 
         </StackPanel>

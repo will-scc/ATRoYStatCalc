@@ -9,6 +9,7 @@ namespace ATRoYStatCalc.Model
     {
         public const long MaxExp = 1600000000;
         public int MaxBase { get; } = 230;
+        public int MaxNonPTMBase => HardCore ? 122 : 115;
         public string CharacterName { get; set; } = "Unnamed Character";
         public bool MaxExpExceeded => CurrentExp > MaxExp;
         public bool PvP { get; set; }
@@ -16,8 +17,11 @@ namespace ATRoYStatCalc.Model
         public long CurrentExp { get; set; }
         public double CurrentLevel { get; set; }
         public double WeaponValue { get; set; }
+        public double ExtraWeaponValue { get; set; }
         public double ArmourValue { get; set; }
+        public double ExtraArmourValue { get; set; }
         public int Speed { get; set; }
+        public int ExtraSpeed { get; set; }
         public int Offence { get; set; }
         public int Defence { get; set; }
         public int AthleteBonus { get; set; }
@@ -199,12 +203,12 @@ namespace ATRoYStatCalc.Model
             Profession.Base = AthleteBonus + TimeWarriorBonus;
         }
 
-        public int RaiseCost(Skill Skill, int NextLevel)
+        public virtual int RaiseCost(Skill Skill, int NextLevel)
         {
-            int maxNonPTMBase = HardCore ? 122 : 115;
+            
             int nr = NextLevel - Skill.Start + 1 + 5;
 
-            if (NextLevel < maxNonPTMBase)
+            if (NextLevel < MaxNonPTMBase)
             {
                 return Math.Max(1, nr * nr * nr * Skill.Cost / 10);
             }
@@ -216,7 +220,7 @@ namespace ATRoYStatCalc.Model
             }
         }
 
-        public int RaiseCost(Attribute Attribute, int NextLevel)
+        public virtual int RaiseCost(Attribute Attribute, int NextLevel)
         {
             int maxNonPTMBase = HardCore ? 122 : 115;
             int nr = NextLevel - Attribute.Start + 1 + 5;
@@ -231,6 +235,40 @@ namespace ATRoYStatCalc.Model
                 int ptmCost = 6000000;
                 return normalCost + ptmCost;
             }
+        }
+
+        public int GetPtmBonus()
+        {
+            int threshold = 225;
+            int start = 152;
+            int diff = 0;
+            int nStats = 0;
+
+            foreach (Skill skill in Skills)
+            {
+                if (skill.DisplayName != "Hitpoints" &&
+                    skill.DisplayName != "Endurance" &&
+                    skill.DisplayName != "Mana" &&
+                    skill.DisplayName != "Profession")
+                {
+                    if (skill.Base >= threshold) nStats++;
+                    if (skill.Base >= start) diff += skill.Base - start;
+                }
+            }
+
+            if (diff != 0 && nStats > 1)
+            {
+                int startDiff = (threshold - start) * 4;
+                if (startDiff < 1) startDiff = 1;
+
+                int boost = 11;
+                boost = (int)Math.Floor((double)(boost * diff) / startDiff);
+                boost = (int)Math.Floor((double)(boost * nStats) / 4);
+
+                return boost;
+            }
+
+            return 0;
         }
     }
 }

@@ -76,7 +76,7 @@ namespace ATRoYStatCalc.ViewModel
 
         public bool Export_CanExecute()
         {
-            return CurrentView != null;
+            return true; 
         }
 
         private ICommand _import;

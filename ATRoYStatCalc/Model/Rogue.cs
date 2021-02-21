@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,6 +13,7 @@ namespace ATRoYStatCalc.Model
         public int TacticsImmunityBonus { get; set; }
 
         #region "Skills"
+        [JsonIgnore]
         public Skill Sword { get; set; } = new Skill(false)
         {
             DisplayName = "Sword",
@@ -119,28 +121,56 @@ namespace ATRoYStatCalc.Model
 
         public override void CalculateAttributeBonuses()
         {
+            int levelBonus = 0;
+            if (CurrentLevel > 90)
+            {
+                levelBonus = 1;
+            }
+            else if (CurrentLevel > 140)
+            {
+                levelBonus = 2;
+            };
+
+            int ptmBonus = GetPtmBonus();
+            int tacBonus = GetTacticsSkillBonus(); //will be 0 if not shown
+            int tacImmBonus = GetTacticsSkillBonus(true); //will be 0 if not shown
+
             base.CalculateAttributeBonuses();
 
             Sword.AttributeBonus = (Intuition.Mod + Intuition.Mod + Agility.Mod) / 5;
             Archery.AttributeBonus = (Intuition.Mod + Intuition.Mod + Strength.Mod) / 5;
             ArmorSkill.AttributeBonus = (Agility.Mod + Agility.Mod + Strength.Mod) / 5;
-            Attack.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + GetTacticsSkillBonus();
-            Parry.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + GetTacticsSkillBonus();
-            Warcry.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + GetTacticsSkillBonus();
-            Tactics.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
+            Attack.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + tacBonus;
+            Parry.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + tacBonus;
+            Warcry.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + tacBonus;
+            Tactics.AttributeBonus = (Wisdom.Mod + Agility.Mod + Strength.Mod) / 5;
             SurroundHit.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
             BodyControl.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
             SpeedSkill.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
             Rage.AttributeBonus = (Strength.Mod + Strength.Mod + Intuition.Mod) / 5;
 
-            Immunity.AttributeBonus = ((Intuition.Mod + Intuition.Mod + Strength.Mod) / 5) + GetTacticsSkillBonus(true);
+            Regenerate.AttributeBonus = (Strength.Mod + Strength.Mod + Strength.Mod) / 5;
+            Immunity.AttributeBonus = ((Intuition.Mod + Intuition.Mod + Strength.Mod) / 5) + tacImmBonus;
+
+            foreach (Skill skill in Skills)
+            {
+                skill.LevelBonus = levelBonus;
+
+                if (skill.DisplayName != "Hitpoints" &&
+                    skill.DisplayName != "Endurance" &&
+                    skill.DisplayName != "Mana" &&
+                    skill.DisplayName != "Profession")
+                {
+                    skill.PtmBonus = ptmBonus;
+                }
+            }
         }
 
         public override void CalculateAncillaryStats()
         {
             base.CalculateAncillaryStats();
 
-            Speed = ((Agility.Mod * 3) / 5) + (AthleteBonus * 3) + (SpeedSkill.Mod / 3);
+            Speed = ((Agility.Mod + Agility.Mod + Strength.Mod) / 5) + (AthleteBonus * 3) + (SpeedSkill.Mod / 2);
 
             WeaponValue = (BodyControl.Mod / 4);
             ArmourValue = (BodyControl.Mod + ArmorSkill.Mod) * 0.25;
@@ -175,6 +205,40 @@ namespace ATRoYStatCalc.Model
         private int GetTacticsOffDefBonus()
         {
             return IncludeTactics ? (int)Math.Floor(Tactics.Mod * 0.375) : 0;
+        }
+
+        public override int RaiseCost(Skill Skill, int NextLevel)
+        {
+            int maxNonPTMBase = HardCore ? 122 : 115;
+            int nr = NextLevel - Skill.Start + 1 + 5;
+
+            if (NextLevel < maxNonPTMBase)
+            {
+                return (int)(Math.Max(1, nr * nr * nr * Skill.Cost / 10) / 1.245275);
+            }
+            else
+            {
+                int normalCost = (int)(Math.Max(1, nr * nr * nr * Skill.Cost / 10) / 1.245275);
+                int ptmCost = (int)(3000000 * 0.8771);
+                return 1 + normalCost + ptmCost;
+            }
+        }
+
+        public override int RaiseCost(Attribute Attribute, int NextLevel)
+        {
+            int maxNonPTMBase = HardCore ? 122 : 115;
+            int nr = NextLevel - Attribute.Start + 1 + 5;
+
+            if (NextLevel < maxNonPTMBase)
+            {
+                return (int)Math.Ceiling(Math.Max(1, nr * nr * nr * Attribute.Cost / 10) / 1.245275);
+            }
+            else
+            {
+                int normalCost = (int)(Math.Max(1, nr * nr * nr * Attribute.Cost / 10) / 1.245275);
+                int ptmCost = 6000000;
+                return 2 + normalCost + ptmCost;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,6 +12,7 @@ namespace ATRoYStatCalc.Model
         public bool BlessBonusMaxed { get; set; }
 
         #region "Skills"
+        [JsonIgnore]
         public Skill Mana { get; set; } = new Skill(false, true)
         {
             DisplayName = "Mana",
@@ -117,14 +119,29 @@ namespace ATRoYStatCalc.Model
 
         public override void CalculateAttributeBonuses()
         {
+            int levelBonus = 0;
+            if (CurrentLevel > 130)
+            {
+                levelBonus = 2;
+            }
+            else if (CurrentLevel > 140)
+            {
+                levelBonus = 3;
+            }
+
+            int ptmBonus = GetPtmBonus();
+
             //Unblessed attributes (WIAS) used to calculate bless attribute mod
             foreach (Attribute attribute in Attributes)
             {
-                attribute.BlessBonus = 0;
                 attribute.WarriorBonus = TimeWarriorBonus / 2;
+                attribute.LevelBonus = levelBonus;
+                attribute.BlessBonus = 0;
             }
 
             Bless.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            Bless.LevelBonus = levelBonus;
+            Bless.PtmBonus = 0;
 
             //Now apply bless mod to attributes for Skills
             //This whole bit looks overly complicated but does give the right numbers...
@@ -143,6 +160,7 @@ namespace ATRoYStatCalc.Model
                 }
 
                 Bless.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+                Bless.PtmBonus = ptmBonus;
             }
 
             base.CalculateAttributeBonuses();
@@ -159,6 +177,26 @@ namespace ATRoYStatCalc.Model
 
             Duration.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Strength.Mod) / 5;
             Meditate.AttributeBonus = (Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5;
+
+            //Arbitrary bonuses added for balance
+            //Makes PTMs less linear
+            foreach (Skill skill in Skills)
+            {
+                skill.LevelBonus = levelBonus;
+
+                if (skill.DisplayName == "Magic Shield" && CurrentLevel > 140)
+                {
+                    skill.LevelBonus -= 1;
+                }
+
+                if (skill.DisplayName != "Hitpoints" &&
+                    skill.DisplayName != "Endurance" &&
+                    skill.DisplayName != "Mana" &&
+                    skill.DisplayName != "Profession")
+                {
+                    skill.PtmBonus = ptmBonus;
+                }
+            }
         }
 
         public override void CalculateAncillaryStats()

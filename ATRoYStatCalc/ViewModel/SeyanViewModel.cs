@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -14,6 +15,11 @@ namespace ATRoYStatCalc.ViewModel
     public class SeyanViewModel : ViewModelBase
     {
         public Seyan Seyan { get; set; } = new Seyan();
+        public int EnemyDefence { get; set; } = 1000;
+        private Tuple<int, int> AccuracyAndArmour => HelperFuncs.GetAccuracyAndEffectiveArmour(Seyan.Offence - EnemyDefence);
+        public int Accuracy => AccuracyAndArmour.Item1;
+        public int EffectiveArmour => AccuracyAndArmour.Item2;
+
         public SeyanViewModel() { }
 
         public void Setup()
@@ -37,6 +43,9 @@ namespace ATRoYStatCalc.ViewModel
         public ICommand UpdateCharacter => _updateCharacter ??= new RelayCommand(() =>
         {
             Seyan.UpdateCharacter();
+            RaisePropertyChanged("AccuracyAndArmour");
+            RaisePropertyChanged("Accuracy");
+            RaisePropertyChanged("EffectiveArmour");
         });
 
         private void Base_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
