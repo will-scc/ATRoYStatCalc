@@ -60,7 +60,7 @@ namespace ATRoYStatCalc
             return totalExperience;
         }
 
-        public static async Task<T> ImportBuildAsync<T>() where T : ViewModelBase
+        public static async Task<ViewModelBase> ImportBuildAsync()
         {
             OpenFileDialog ofd = new OpenFileDialog
             {

@@ -86,8 +86,7 @@ namespace ATRoYStatCalc.ViewModel
         private ICommand _import;
         public ICommand Import => _import ??= new RelayCommand(async () =>
         {
-            CurrentView = HelperFuncs.ImportBuildAsync();
-
+            CurrentView = await HelperFuncs.ImportBuildAsync();
 
             OpenFileDialog ofd = new OpenFileDialog
             {

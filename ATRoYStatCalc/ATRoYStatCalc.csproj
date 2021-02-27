@@ -20,6 +20,13 @@
     <Version>1.0.3</Version>
   </PropertyGroup>
 
+
+	<ItemGroup> 
+		<Content Include="BuildFiles\**"> 
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> 
+		</Content> 
+	</ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.6" />
     <PackageReference Include="Dirkster.NumericUpDownLib" Version="2.4.2.2" />

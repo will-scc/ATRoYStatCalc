@@ -13,19 +13,20 @@ namespace ATRoYStatCalc.ViewModel
 
         public SplashScreenViewModel() 
         {
-            DirectoryInfo dir = new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "Build Files"));
-           
-            string[] buildExtensions = { ".bmag", ".bwar", ".bsey", ".brog" };
-
-            foreach (FileInfo file in dir.EnumerateFiles())
+            if (Directory.Exists(Path.Combine(Environment.CurrentDirectory, "BuildFiles")))
             {
-                if (file.Extension.In(buildExtensions))
+                DirectoryInfo dir = new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "BuildFiles"));
+
+                string[] buildExtensions = { ".bmag", ".bwar", ".bsey", ".brog" };
+
+                foreach (FileInfo file in dir.EnumerateFiles())
                 {
-                    BuildFiles.Add(file.Name);
+                    if (file.Extension.In(buildExtensions))
+                    {
+                        BuildFiles.Add(file.Name);
+                    }
                 }
             }
         }
-
-
     }
 }

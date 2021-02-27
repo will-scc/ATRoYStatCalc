@@ -4,7 +4,8 @@
              xmlns:vm="clr-namespace:ATRoYStatCalc.ViewModel"
              xmlns:c="clr-namespace:ATRoYStatCalc.Converters"
              xmlns:local="clr-namespace:ATRoYStatCalc"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow.xaml"
+             Startup="Application_Startup">
     <Application.Resources>
         <ResourceDictionary>
             <vm:ViewModelLocator x:Key="ViewModelLocator"/>
