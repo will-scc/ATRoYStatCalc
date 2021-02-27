@@ -1,7 +1,14 @@
 ﻿using ATRoYStatCalc.Model;
+using ATRoYStatCalc.ViewModel;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Ioc;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ATRoYStatCalc
 {
@@ -31,30 +38,6 @@ namespace ATRoYStatCalc
 
         public static double GetLevelFromExp(long CurrentExp)
         {
-            //if (CurrentExp < 1)
-            //{
-            //    return 1;
-            //}
-            //else
-            //{
-            //    double CurrentLevel = Math.Max(1, Math.Sqrt(Math.Sqrt(CurrentExp)));
-            //    int FlooredCurrentLevel = (int)Math.Floor(CurrentLevel);
-
-            //    double netRequiredExp = RequiredExp(FlooredCurrentLevel, FlooredCurrentLevel + 1);
-            //    double remainingExp = CurrentExp - TotalExperience(FlooredCurrentLevel - 1);
-
-            //    int percentage = (int)Math.Truncate((netRequiredExp / remainingExp) * 100);
-
-            //    if (double.TryParse($"{FlooredCurrentLevel}.{percentage}", out double result))
-            //    {
-            //        return result;
-            //    }
-            //    else
-            //    {
-            //        return FlooredCurrentLevel;
-            //    }
-            //}
-
             return CurrentExp < 1
                 ? 1
                 : Math.Max(1, Math.Sqrt(Math.Sqrt(CurrentExp)));
@@ -75,6 +58,53 @@ namespace ATRoYStatCalc
             }
 
             return totalExperience;
+        }
+
+        public static async Task<T> ImportBuildAsync<T>() where T : ViewModelBase
+        {
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Filter = "Bel Build Files|*.bmag;*.bwar;*.bsey;*.brog",
+                Multiselect = false,
+                InitialDirectory = Path.Combine(Environment.CurrentDirectory, "Build Files")
+            };
+
+            if (ofd.ShowDialog() == true)
+            {
+                string selectedFile = ofd.FileName;
+                string ext = ofd.FileName[(ofd.FileName.LastIndexOf('.') + 1)..].ToLower();
+
+                string json = await File.ReadAllTextAsync(selectedFile);
+
+                switch (ext)
+                {
+                    case "bmag":
+                        MageViewModel mvm = SimpleIoc.Default.GetInstance<MageViewModel>();
+                        mvm.Mage = JsonConvert.DeserializeObject<Mage>(json);
+                        mvm.Setup();
+                        return mvm;
+
+                    case "bwar":
+                        WarriorViewModel wvm = SimpleIoc.Default.GetInstance<WarriorViewModel>();
+                        wvm.Warrior = JsonConvert.DeserializeObject<Warrior>(json);
+                        wvm.Setup();
+                        return wvm;
+
+                    case "bsey":
+                        SeyanViewModel svm = SimpleIoc.Default.GetInstance<SeyanViewModel>();
+                        svm.Seyan = JsonConvert.DeserializeObject<Seyan>(json);
+                        svm.Setup();
+                        return svm;
+
+                    case "brog":
+                        RogueViewModel rvm = SimpleIoc.Default.GetInstance<RogueViewModel>();
+                        rvm.Rogue = JsonConvert.DeserializeObject<Rogue>(json);
+                        rvm.Setup();
+                        return rvm;
+                }
+            }
+
+            return null;
         }
 
         /// <summary>

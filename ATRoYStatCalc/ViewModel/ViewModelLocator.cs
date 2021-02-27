@@ -14,6 +14,7 @@ namespace ATRoYStatCalc.ViewModel
             SimpleIoc.Default.Register<MageViewModel>();
             SimpleIoc.Default.Register<SeyanViewModel>();
             SimpleIoc.Default.Register<RogueViewModel>();
+            SimpleIoc.Default.Register<SplashScreenViewModel>();
         }
 
         public MainViewModel MainPage => SimpleIoc.Default.GetInstance<MainViewModel>();
@@ -25,5 +26,7 @@ namespace ATRoYStatCalc.ViewModel
         public SeyanViewModel SeyanView => SimpleIoc.Default.GetInstance<SeyanViewModel>();
 
         public RogueViewModel RogueView => SimpleIoc.Default.GetInstance<RogueViewModel>();
+        
+        public SplashScreenViewModel SplashScreenView => SimpleIoc.Default.GetInstance<SplashScreenViewModel>();
     }
 }

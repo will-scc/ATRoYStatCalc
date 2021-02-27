@@ -12,7 +12,11 @@ namespace ATRoYStatCalc.ViewModel
     public class MainViewModel : ViewModelBase
     {
         public ViewModelBase CurrentView { get; set; }
-        public MainViewModel() { }
+
+        public MainViewModel() 
+        {
+            CurrentView = SimpleIoc.Default.GetInstance<SplashScreenViewModel>();
+        }
 
         private ICommand _setMageView;
         public ICommand SetMageView => _setMageView ??= new RelayCommand(() =>
@@ -82,9 +86,12 @@ namespace ATRoYStatCalc.ViewModel
         private ICommand _import;
         public ICommand Import => _import ??= new RelayCommand(async () =>
         {
+            CurrentView = HelperFuncs.ImportBuildAsync();
+
+
             OpenFileDialog ofd = new OpenFileDialog
             {
-                Filter = "Bel Build Files|*.bmag;*.bwar;*.bsey",
+                Filter = "Bel Build Files|*.bmag;*.bwar;*.bsey;*brog",
                 Multiselect = false
             };
 
@@ -118,7 +125,7 @@ namespace ATRoYStatCalc.ViewModel
                         svm.Setup();
                         break;
 
-                    case "bwog":
+                    case "brog":
                         RogueViewModel rvm = SimpleIoc.Default.GetInstance<RogueViewModel>();
                         CurrentView = rvm;
                         rvm.Rogue = JsonConvert.DeserializeObject<Rogue>(json);
