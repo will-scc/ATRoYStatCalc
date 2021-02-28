@@ -2,8 +2,11 @@
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Windows.Input;
 
 namespace ATRoYStatCalc.ViewModel
@@ -13,24 +16,28 @@ namespace ATRoYStatCalc.ViewModel
         public string Class { get; set; }
         public string FileName { get; set; }
         public string FilePath { get; set; }
+        public DateTime DateAccessed { get; set; }
     }
 
     public class SplashScreenViewModel : ViewModelBase
     {
-        public ObservableCollection<BuildFileSummary> BuildFiles { get; } = new ObservableCollection<BuildFileSummary>();
+        public string AppVersion { get; set; }
+        public ObservableCollection<BuildFileSummary> BuildFiles { get; set; }
         public BuildFileSummary SelectedFile { get; set; }
 
         public SplashScreenViewModel()
         {
-            if (Directory.Exists(Path.Combine(Environment.CurrentDirectory, "BuildFiles")))
+            AppVersion = "Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+            if (Directory.Exists("BuildFiles"))
             {
                 DirectoryInfo dir = new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "BuildFiles"));
 
-                string[] buildExtensions = { ".bmag", ".bwar", ".bsey", ".brog" };
+                List<BuildFileSummary> buildFileList = new List<BuildFileSummary>();
 
                 foreach (FileInfo file in dir.EnumerateFiles())
                 {
-                    if (file.Extension.In(buildExtensions))
+                    if (file.Extension.In(HelperFuncs.ValidBuildFileExtensions))
                     {
                         string type = "";
                         switch (file.Extension)
@@ -54,14 +61,18 @@ namespace ATRoYStatCalc.ViewModel
 
                         BuildFileSummary buildFile = new BuildFileSummary
                         {
-                            FileName = file.Name,
                             Class = type,
-                            FilePath = file.FullName
+                            FileName = Path.GetFileNameWithoutExtension(file.Name),
+                            FilePath = file.FullName,
+                            DateAccessed = file.LastAccessTimeUtc
                         };
 
-                        BuildFiles.Add(buildFile);
+                        buildFileList.Add(buildFile);
                     }
                 }
+
+                buildFileList.Sort((x, y) => y.DateAccessed.CompareTo(x.DateAccessed));
+                BuildFiles = new ObservableCollection<BuildFileSummary>(buildFileList);
             }
         }
 

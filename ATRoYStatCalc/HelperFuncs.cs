@@ -14,6 +14,14 @@ namespace ATRoYStatCalc
 {
     public static class HelperFuncs
     {
+        public static readonly string[] ValidBuildFileExtensions = new string[]
+        {
+            ".bmag",
+            ".bwar",
+            ".bsey",
+            ".brog"
+        };
+
         public static bool In(this string source, params string[] list)
         {
             if (null == source) throw new ArgumentNullException("source");

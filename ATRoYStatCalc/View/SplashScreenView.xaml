@@ -8,38 +8,118 @@
              DataContext="{Binding SplashScreenView, Source={StaticResource ViewModelLocator}}"
              d:DesignHeight="450" 
              d:DesignWidth="800">
-    <Grid>
+    <Grid HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid Width="250"
+              Grid.Column="0"
+              Grid.Row="0"
+              Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock FontSize="16"
+                       TextWrapping="WrapWithOverflow"
+                       Padding="15"
+                       Grid.Row="0">
+                <TextBlock.Text>
+                    Astonia: The Return of Yendor
+                </TextBlock.Text>
+            </TextBlock>
+            <Separator Margin="15,0,15,0"
+                       Grid.Row="1"/>
+            <TextBlock FontSize="14"
+                       TextWrapping="WrapWithOverflow"
+                       Padding="15"
+                       Grid.Row="2">
+                <TextBlock.Text>
+                    Select a build from the list, or create a new build.
+                </TextBlock.Text>
+            </TextBlock>
+            <Separator Margin="15,0,15,0"
+                       Grid.Row="3"/>
+            <TextBlock Text="{Binding AppVersion, Mode=OneWay}"
+                       FontSize="14"
+                       HorizontalAlignment="Center"
+                       Padding="15"
+                       Grid.Row="4"/>
+        </Grid>
+
+        <StackPanel Grid.Column="1"
+                    Grid.RowSpan="2"
+                    Margin="5"
+                    Orientation="Horizontal">
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+        </StackPanel>
+
+        <Label Content="No Recent Build Files"
+               Visibility="{Binding BuildFiles.Count, Converter={StaticResource CountToVisInv}}"
+               FontSize="16"
+               HorizontalAlignment="Stretch"
+               HorizontalContentAlignment="Center"
+               Padding="25"
+               Margin="5"
+               Grid.Row="0"
+               Grid.Column="2" />
+        
         <ListView ItemsSource="{Binding BuildFiles, Mode=OneWay}"
                   SelectedItem="{Binding SelectedFile, Mode=TwoWay}"
-                  Grid.Row="0">
+                  Visibility="{Binding BuildFiles.Count, Converter={StaticResource CountToVis}}"
+                  HorizontalContentAlignment="Stretch"
+                  VerticalContentAlignment="Stretch"
+                  Margin="0,10,0,0"
+                  Grid.Row="0"
+                  Grid.Column="2"
+                  BorderThickness="0">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Background="{Binding Class, Converter={StaticResource ClassToCol}}"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="75"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Label Content="{Binding Class, Mode=OneWay}"
                                FontSize="14"
+                               VerticalAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               Margin="5"
                                Grid.Column="0"/>
+                        <StackPanel Grid.Column="1"
+                                    Orientation="Horizontal">
+                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                        </StackPanel>
                         <Label Content="{Binding FileName, Mode=OneWay}"
                                FontSize="14"
+                               VerticalAlignment="Center"
+                               VerticalContentAlignment="Center"
+                               Margin="15,5,5,5"
                                Grid.Column="1"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Content="Load"
+        <Button Content="Load Selected File"
                 Command="{Binding Import}"
-                Grid.Row="1"/>
+                FontSize="16"
+                Padding="15"
+                Margin="5"
+                Grid.Row="1"
+                Grid.Column="2"/>
     </Grid>
 </UserControl>
