@@ -60,53 +60,6 @@ namespace ATRoYStatCalc
             return totalExperience;
         }
 
-        public static async Task<ViewModelBase> ImportBuildAsync()
-        {
-            OpenFileDialog ofd = new OpenFileDialog
-            {
-                Filter = "Bel Build Files|*.bmag;*.bwar;*.bsey;*.brog",
-                Multiselect = false,
-                InitialDirectory = Path.Combine(Environment.CurrentDirectory, "Build Files")
-            };
-
-            if (ofd.ShowDialog() == true)
-            {
-                string selectedFile = ofd.FileName;
-                string ext = ofd.FileName[(ofd.FileName.LastIndexOf('.') + 1)..].ToLower();
-
-                string json = await File.ReadAllTextAsync(selectedFile);
-
-                switch (ext)
-                {
-                    case "bmag":
-                        MageViewModel mvm = SimpleIoc.Default.GetInstance<MageViewModel>();
-                        mvm.Mage = JsonConvert.DeserializeObject<Mage>(json);
-                        mvm.Setup();
-                        return mvm;
-
-                    case "bwar":
-                        WarriorViewModel wvm = SimpleIoc.Default.GetInstance<WarriorViewModel>();
-                        wvm.Warrior = JsonConvert.DeserializeObject<Warrior>(json);
-                        wvm.Setup();
-                        return wvm;
-
-                    case "bsey":
-                        SeyanViewModel svm = SimpleIoc.Default.GetInstance<SeyanViewModel>();
-                        svm.Seyan = JsonConvert.DeserializeObject<Seyan>(json);
-                        svm.Setup();
-                        return svm;
-
-                    case "brog":
-                        RogueViewModel rvm = SimpleIoc.Default.GetInstance<RogueViewModel>();
-                        rvm.Rogue = JsonConvert.DeserializeObject<Rogue>(json);
-                        rvm.Setup();
-                        return rvm;
-                }
-            }
-
-            return null;
-        }
-
         /// <summary>
         /// Difference is PlayerOff-EnemyDef
         /// </summary>
