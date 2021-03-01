@@ -419,7 +419,7 @@ namespace ATRoYStatCalc.Model
             Bartering.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
             Perception.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
             Stealth.AttributeBonus = (Agility.Mod + Agility.Mod + Intuition.Mod) / 5;
-            Regenerate.AttributeBonus = (Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5;
+            Regenerate.AttributeBonus = (Strength.Mod + Strength.Mod + Strength.Mod) / 5;
             Meditate.AttributeBonus = (Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5;
             Immunity.AttributeBonus = ((Intuition.Mod + Intuition.Mod + Strength.Mod) / 5) + tacImmBonus;
 

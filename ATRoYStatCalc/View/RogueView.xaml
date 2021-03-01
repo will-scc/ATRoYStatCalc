@@ -411,36 +411,6 @@
                    Grid.Row="13"
                    Grid.Column="0" />
 
-            <Label Content="{Binding Rogue.Rage.DisplayName}"
-                   ToolTip="Modified by Intuition/Strength/Strength"
-                   Margin="1"
-                   VerticalAlignment="Center"
-                   Grid.Row="14"
-                   Grid.Column="0"/>
-            <n:UIntegerUpDown Value="{Binding Rogue.Rage.Base, Mode=TwoWay}"
-                              MinValue="{Binding Rogue.Rage.Start, Mode=OneWay}"
-                              MaxValue="{Binding Rogue.MaxBase, Mode=OneWay}"
-                              IsReadOnly="False"
-                              SelectAllTextOnFocus="True"
-                              Margin="1"
-                              VerticalAlignment="Center"
-                              Grid.Row="14"
-                              Grid.Column="1" />
-            <n:UIntegerUpDown Value="{Binding Rogue.Rage.EquipmentBonus, Mode=TwoWay}"
-                              MinValue="0"
-                              IsReadOnly="False"
-                              SelectAllTextOnFocus="True"
-                              Margin="1"
-                              VerticalAlignment="Center"
-                              Grid.Row="14"
-                              Grid.Column="2" />
-            <Label Content="{Binding Rogue.Rage.Mod, Mode=OneWay}"
-                   Foreground="{Binding Rogue.Rage.MaxEquipmentModExceeded, Mode=OneWay, Converter={StaticResource BoolToRed}}"
-                   Margin="1"
-                   VerticalAlignment="Center"
-                   Grid.Row="14"
-                   Grid.Column="3"/>
-
             <Label Content="{Binding Rogue.ArmorSkill.DisplayName}"
                    ToolTip="Modified by Agility/Agility/Strength"
                    Margin="1"
@@ -929,7 +899,7 @@
                     <Label Content="{Binding Rogue.Speed, Mode=OneWay}"
                            Grid.Row="5"
                            Grid.Column="1" />
-                    <n:UIntegerUpDown Value="{Binding Warrior.ExtraSpeed, Mode=TwoWay}"
+                    <n:UIntegerUpDown Value="{Binding Rogue.ExtraSpeed, Mode=TwoWay}"
                                       MinValue="0"
                                       IsReadOnly="False"
                                       Margin="1"

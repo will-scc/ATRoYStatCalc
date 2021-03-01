@@ -28,13 +28,6 @@ namespace ATRoYStatCalc.Model
             Base = 1,
             Cost = 1
         };
-        public Skill Rage { get; set; } = new Skill(false)
-        {
-            DisplayName = "Rage",
-            Start = 1,
-            Base = 1,
-            Cost = 1
-        };
         public Skill ArmorSkill { get; set; } = new Skill(false)
         {
             DisplayName = "Armor Skill",
@@ -107,7 +100,6 @@ namespace ATRoYStatCalc.Model
 
             Skills.AddDistinctSkill(Sword);
             Skills.AddDistinctSkill(Archery);
-            Skills.AddDistinctSkill(Rage);
             Skills.AddDistinctSkill(ArmorSkill);
             Skills.AddDistinctSkill(Attack);
             Skills.AddDistinctSkill(Parry);
@@ -147,7 +139,6 @@ namespace ATRoYStatCalc.Model
             SurroundHit.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
             BodyControl.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
             SpeedSkill.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-            Rage.AttributeBonus = (Strength.Mod + Strength.Mod + Intuition.Mod) / 5;
 
             Regenerate.AttributeBonus = (Strength.Mod + Strength.Mod + Strength.Mod) / 5;
             Immunity.AttributeBonus = ((Intuition.Mod + Intuition.Mod + Strength.Mod) / 5) + tacImmBonus;
