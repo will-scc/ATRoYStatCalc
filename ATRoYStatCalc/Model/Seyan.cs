@@ -398,7 +398,7 @@ namespace ATRoYStatCalc.Model
             Dagger.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
             HandToHand.AttributeBonus = (Agility.Mod + Strength.Mod + Strength.Mod) / 5;
             Sword.AttributeBonus = (Intuition.Mod + Intuition.Mod + Agility.Mod) / 5;
-            TwoHanded.AttributeBonus = (Agility.Mod + Agility.Mod + Strength.Mod) / 5;
+            TwoHanded.AttributeBonus = (Agility.Mod + Strength.Mod + Strength.Mod) / 5;
 
             ArmorSkill.AttributeBonus = (Agility.Mod + Agility.Mod + Strength.Mod) / 5;
             Attack.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + tacBonus;

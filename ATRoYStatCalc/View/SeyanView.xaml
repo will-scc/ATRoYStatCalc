@@ -229,7 +229,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Agility.DisplayName}"
-                   ToolTip="Modifies:&#x0a;Dagger (1), Hand to Hand (1), Sword (1), Twohanded (2)&#x0a;Armour Skill (2), Attack (1), Parry (1), Warcry (1), Tactics (1), Surround Hit (1), Body Control (1), Speed Skill (1)&#x0a;Stealth (2)"
+                   ToolTip="Modifies:&#x0a;Dagger (1), Hand to Hand (1), Sword (1), Twohanded (1)&#x0a;Armour Skill (2), Attack (1), Parry (1), Warcry (1), Tactics (1), Surround Hit (1), Body Control (1), Speed Skill (1)&#x0a;Stealth (2)"
                    Margin="1"
                    Grid.Row="7"
                    Grid.Column="0" />
@@ -254,7 +254,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.Strength.DisplayName}"
-                   ToolTip="Modifies:&#x0a;Dagger (1), Hand to Hand (2), Twohanded (1), Armour Skill (1), Attack (1), Parry (1), Warcry (1), Tactics (1), Surround Hit (1), Body Control (1), Speed Skill (1)&#x0a;Immunity (1)"
+                   ToolTip="Modifies:&#x0a;Dagger (1), Hand to Hand (2), Twohanded (2), Armour Skill (1), Attack (1), Parry (1), Warcry (1), Tactics (1), Surround Hit (1), Body Control (1), Speed Skill (1)&#x0a;Immunity (1)"
                    Margin="1"
                    Grid.Row="8"
                    Grid.Column="0" />
@@ -360,7 +360,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Seyan.TwoHanded.DisplayName}"
-                   ToolTip=" Modified by Agility/Agility/Strength"
+                   ToolTip=" Modified by Agility/Strength/Strength"
                    Margin="1"
                    Grid.Row="13"
                    Grid.Column="0" />

@@ -188,7 +188,7 @@
                    Grid.Column="3"/>
 
             <Label Content="{Binding Rogue.Intuition.DisplayName}"
-                   ToolTip="Modifies:&#x0a;Dagger (1), Sword (2)&#x0a;Attack (1), Parry (1), Warcry (1), Tactics (1), Surround Hit (1), Speed Skill (1), Rage (1)&#x0a;Bartering (2), Perception (2), Stealth (1), Immunity (2)"
+                   ToolTip="Modifies:&#x0a;Dagger (1), Sword (2), Archery (2),&#x0a;Attack (1), Parry (1), Warcry (1), Tactics (1), Surround Hit (1), Speed Skill (1), Rage (1)&#x0a;Bartering (2), Perception (2), Stealth (1), Immunity (2)"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="5"
@@ -248,7 +248,7 @@
                    Grid.Column="3"/>
 
             <Label Content="{Binding Rogue.Strength.DisplayName}"
-                   ToolTip="Modifies:&#x0a;Dagger (1), HandToHand (2), TwoHanded (1)&#x0a;Armour Skill (1), Attack (1), Parry (1), Warcry (1), Tactics (1), Surround Hit (1), Body Control (1), Speed Skill (1), Rage (2)&#x0a;Immunity (1)"
+                   ToolTip="Modifies:&#x0a;Dagger (1), HandToHand (2), Archery (1)&#x0a;Armour Skill (1), Attack (1), Parry (1), Warcry (1), Tactics (1), Surround Hit (1), Body Control (1), Speed Skill (1), Rage (2)&#x0a;Immunity (1)"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="7"
