@@ -14,79 +14,68 @@ namespace ATRoYStatCalc.Model
 
         #region "Skills"
         [JsonIgnore]
-        public Skill Sword { get; set; } = new Skill(false)
+        public Skill Sword { get; set; } = new Skill(Skill.Types.Sword)
         {
-            DisplayName = "Sword",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Archery { get; set; } = new Skill(false)
+        public Skill Archery { get; set; } = new Skill(Skill.Types.Archery)
         {
-            DisplayName = "Archery",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill ArmorSkill { get; set; } = new Skill(false)
+        public Skill ArmorSkill { get; set; } = new Skill(Skill.Types.ArmorSkill)
         {
-            DisplayName = "Armor Skill",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Attack { get; set; } = new Skill(false)
+        public Skill Attack { get; set; } = new Skill(Skill.Types.Attack)
         {
-            DisplayName = "Attack",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Parry { get; set; } = new Skill(false)
+        public Skill Parry { get; set; } = new Skill(Skill.Types.Parry)
         {
-            DisplayName = "Parry",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Warcry { get; set; } = new Skill(false)
+        public Skill Warcry { get; set; } = new Skill(Skill.Types.Warcry)
         {
-            DisplayName = "Warcry",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Tactics { get; set; } = new Skill(false)
+        public Skill Tactics { get; set; } = new Skill(Skill.Types.Tactics)
         {
-            DisplayName = "Tactics",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill SurroundHit { get; set; } = new Skill(false)
+        public Skill SurroundHit { get; set; } = new Skill(Skill.Types.SurroundHit)
         {
-            DisplayName = "Surround Hit",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill BodyControl { get; set; } = new Skill(false)
+        public Skill BodyControl { get; set; } = new Skill(Skill.Types.BodyControl)
         {
-            DisplayName = "Body Control",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill SpeedSkill { get; set; } = new Skill(false)
+        public Skill SpeedSkill { get; set; } = new Skill(Skill.Types.SpeedSkill)
         {
-            DisplayName = "Speed Skill",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Regenerate { get; set; } = new Skill(false)
+        public Skill Regenerate { get; set; } = new Skill(Skill.Types.Regenerate)
         {
-            DisplayName = "Regenerate",
             Start = 1,
             Base = 1,
             Cost = 1
@@ -129,28 +118,25 @@ namespace ATRoYStatCalc.Model
 
             base.CalculateAttributeBonuses();
 
-            Sword.AttributeBonus = (Intuition.Mod + Intuition.Mod + Agility.Mod) / 5;
-            Archery.AttributeBonus = (Intuition.Mod + Intuition.Mod + Strength.Mod) / 5;
-            ArmorSkill.AttributeBonus = (Agility.Mod + Agility.Mod + Strength.Mod) / 5;
-            Attack.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + tacBonus;
-            Parry.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + tacBonus;
-            Warcry.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + tacBonus;
-            Tactics.AttributeBonus = (Wisdom.Mod + Agility.Mod + Strength.Mod) / 5;
-            SurroundHit.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-            BodyControl.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-            SpeedSkill.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
+            foreach (Attribute attribute in Attributes)
+            {
+                attribute.LevelBonus = levelBonus;
+            }
 
-            Regenerate.AttributeBonus = (Strength.Mod + Strength.Mod + Strength.Mod) / 5;
-            Immunity.AttributeBonus = ((Intuition.Mod + Intuition.Mod + Strength.Mod) / 5) + tacImmBonus;
+            //these get tactics bonus so do separately
+            Attack.SetAttributeBonus(Attributes, tacBonus);
+            Parry.SetAttributeBonus(Attributes, tacBonus);
+            Warcry.SetAttributeBonus(Attributes, tacBonus);
+            Immunity.SetAttributeBonus(Attributes, tacImmBonus);
 
             foreach (Skill skill in Skills)
             {
                 skill.LevelBonus = levelBonus;
 
-                if (skill.DisplayName != "Hitpoints" &&
-                    skill.DisplayName != "Endurance" &&
-                    skill.DisplayName != "Mana" &&
-                    skill.DisplayName != "Profession")
+                if (skill.Type != Skill.Types.Hitpoints &&
+                    skill.Type != Skill.Types.Endurance &&
+                    skill.Type != Skill.Types.Mana &&
+                    skill.Type != Skill.Types.Profession)
                 {
                     skill.PtmBonus = ptmBonus;
                 }
@@ -164,7 +150,7 @@ namespace ATRoYStatCalc.Model
             Speed = ((Agility.Mod + Agility.Mod + Strength.Mod) / 5) + (AthleteBonus * 3) + (SpeedSkill.Mod / 2);
 
             WeaponValue = (BodyControl.Mod / 4);
-            ArmourValue = (BodyControl.Mod + ArmorSkill.Mod) * 0.25;
+            ArmorValue = (BodyControl.Mod + ArmorSkill.Mod) * 0.25;
 
             List<Skill> weaponSkills = new List<Skill>()
             {
@@ -176,10 +162,12 @@ namespace ATRoYStatCalc.Model
 
             int weaponSkillMod = weaponSkills.Max(s => s.Mod);
 
-            Offence = (Attack.Mod * 2) + weaponSkillMod + GetTacticsOffDefBonus();
-            Defence = (Parry.Mod * 2) + weaponSkillMod + GetTacticsOffDefBonus();
+            //Tactics bonus to off/def is always included
+            int tacOffDefBonus = (int)Math.Floor(Tactics.Mod * 0.375);
+            Offence = (Attack.Mod * 2) + weaponSkillMod + tacOffDefBonus;
+            Defence = (Parry.Mod * 2) + weaponSkillMod + tacOffDefBonus;
 
-            TacticsOffDefBonus = (int)Math.Floor(Tactics.Mod * 0.375);
+            TacticsOffDefBonus = tacOffDefBonus;
             TacticsSkillBonus = (int)Math.Floor((double)Tactics.Mod / 8);
             TacticsImmunityBonus = (int)Math.Floor(Tactics.Mod / 8.08);
         }
@@ -191,11 +179,6 @@ namespace ATRoYStatCalc.Model
                     ? (int)Math.Floor(Tactics.Mod / 8.08)
                     : (int)Math.Floor((double)Tactics.Mod / 8)
                 : 0;
-        }
-
-        private int GetTacticsOffDefBonus()
-        {
-            return IncludeTactics ? (int)Math.Floor(Tactics.Mod * 0.375) : 0;
         }
 
         public override int RaiseCost(Skill Skill, int NextLevel)

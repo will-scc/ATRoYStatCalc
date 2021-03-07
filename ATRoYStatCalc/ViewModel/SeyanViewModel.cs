@@ -16,9 +16,9 @@ namespace ATRoYStatCalc.ViewModel
     {
         public Seyan Seyan { get; set; } = new Seyan();
         public int EnemyDefence { get; set; } = 1000;
-        private Tuple<int, int> AccuracyAndArmour => HelperFuncs.GetAccuracyAndEffectiveArmour(Seyan.Offence - EnemyDefence);
-        public int Accuracy => AccuracyAndArmour.Item1;
-        public int EffectiveArmour => AccuracyAndArmour.Item2;
+        private Tuple<int, int> AccuracyAndArmor => HelperFuncs.GetAccuracyAndEffectiveArmor(Seyan.Offence - EnemyDefence);
+        public int Accuracy => AccuracyAndArmor.Item1;
+        public int EffectiveArmor => AccuracyAndArmor.Item2;
 
         public SeyanViewModel() { }
 
@@ -43,9 +43,9 @@ namespace ATRoYStatCalc.ViewModel
         public ICommand UpdateCharacter => _updateCharacter ??= new RelayCommand(() =>
         {
             Seyan.UpdateCharacter();
-            RaisePropertyChanged("AccuracyAndArmour");
+            RaisePropertyChanged("AccuracyAndArmor");
             RaisePropertyChanged("Accuracy");
-            RaisePropertyChanged("EffectiveArmour");
+            RaisePropertyChanged("EffectiveArmor");
         });
 
         private void Base_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

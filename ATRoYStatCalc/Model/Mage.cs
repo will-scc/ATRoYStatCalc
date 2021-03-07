@@ -13,79 +13,68 @@ namespace ATRoYStatCalc.Model
 
         #region "Skills"
         [JsonIgnore]
-        public Skill Mana { get; set; } = new Skill(false, true)
+        public Skill Mana { get; set; } = new Skill(Skill.Types.Mana)
         {
-            DisplayName = "Mana",
             Start = 10,
             Base = 10,
             Cost = 3
         };
-        public Skill Staff { get; set; } = new Skill(false)
+        public Skill Staff { get; set; } = new Skill(Skill.Types.Staff)
         {
-            DisplayName = "Staff",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Bless { get; set; } = new Skill(false)
+        public Skill Bless { get; set; } = new Skill(Skill.Types.Bless)
         {
-            DisplayName = "Bless",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Heal { get; set; } = new Skill(false)
+        public Skill Heal { get; set; } = new Skill(Skill.Types.Heal)
         {
-            DisplayName = "Heal",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Freeze { get; set; } = new Skill(false)
+        public Skill Freeze { get; set; } = new Skill(Skill.Types.Freeze)
         {
-            DisplayName = "Freeze",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill MagicShield { get; set; } = new Skill(false)
+        public Skill MagicShield { get; set; } = new Skill(Skill.Types.MagicShield)
         {
-            DisplayName = "Magic Shield",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Lightning { get; set; } = new Skill(false)
+        public Skill Lightning { get; set; } = new Skill(Skill.Types.Lightning)
         {
-            DisplayName = "Lightning",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Fire { get; set; } = new Skill(false)
+        public Skill Fire { get; set; } = new Skill(Skill.Types.Fire)
         {
-            DisplayName = "Fire",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Pulse { get; set; } = new Skill(false)
+        public Skill Pulse { get; set; } = new Skill(Skill.Types.Pulse)
         {
-            DisplayName = "Pulse",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Duration { get; set; } = new Skill(false)
+        public Skill Duration { get; set; } = new Skill(Skill.Types.Duration)
         {
-            DisplayName = "Duration",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Meditate { get; set; } = new Skill(false)
+        public Skill Meditate { get; set; } = new Skill(Skill.Types.Meditate)
         {
-            DisplayName = "Meditate",
             Start = 1,
             Base = 1,
             Cost = 1
@@ -139,7 +128,7 @@ namespace ATRoYStatCalc.Model
                 attribute.BlessBonus = 0;
             }
 
-            Bless.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+            Bless.SetAttributeBonus(Attributes);
             Bless.LevelBonus = levelBonus;
             Bless.PtmBonus = 0;
 
@@ -152,31 +141,18 @@ namespace ATRoYStatCalc.Model
                     attribute.BlessBonus = (int)Math.Ceiling((double)Bless.Mod / 4);
                 }
 
-                Bless.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+                Bless.SetAttributeBonus(Attributes);
 
                 foreach (Attribute attribute in Attributes)
                 {
                     attribute.BlessBonus = (int)Math.Ceiling((double)Bless.Mod / 4);
                 }
 
-                Bless.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5);
+                Bless.SetAttributeBonus(Attributes);
                 Bless.PtmBonus = ptmBonus;
             }
 
             base.CalculateAttributeBonuses();
-
-            Staff.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-
-            Bless.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Heal.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Freeze.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            MagicShield.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Lightning.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Fire.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Pulse.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-
-            Duration.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Strength.Mod) / 5;
-            Meditate.AttributeBonus = (Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5;
 
             //Arbitrary bonuses added for balance
             //Makes PTMs less linear
@@ -184,15 +160,15 @@ namespace ATRoYStatCalc.Model
             {
                 skill.LevelBonus = levelBonus;
 
-                if (skill.DisplayName == "Magic Shield" && CurrentLevel > 140)
+                if (skill.Type == Skill.Types.MagicShield && CurrentLevel > 140)
                 {
                     skill.LevelBonus -= 1;
                 }
 
-                if (skill.DisplayName != "Hitpoints" &&
-                    skill.DisplayName != "Endurance" &&
-                    skill.DisplayName != "Mana" &&
-                    skill.DisplayName != "Profession")
+                if (skill.Type != Skill.Types.Hitpoints &&
+                    skill.Type != Skill.Types.Endurance &&
+                    skill.Type != Skill.Types.Mana &&
+                    skill.Type != Skill.Types.Profession)
                 {
                     skill.PtmBonus = ptmBonus;
                 }
@@ -202,14 +178,14 @@ namespace ATRoYStatCalc.Model
         public override void CalculateAncillaryStats()
         {
             base.CalculateAncillaryStats();
-            
+
             Speed = ((Agility.Mod * 3) / 5) + (AthleteBonus * 3);
 
             WeaponValue = 0; //Mage only gets wv from wep
 
             double spellAvg = SpellsAverageMod();
 
-            ArmourValue = (spellAvg * 17.5) / 20;
+            ArmorValue = (spellAvg * 17.5) / 20;
 
             List<Skill> weaponSkills = new List<Skill>()
             {

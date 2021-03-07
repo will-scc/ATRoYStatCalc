@@ -778,13 +778,13 @@
                            Grid.Row="2"
                            Grid.Column="1" />
 
-                    <Label Content="Armour Value:"
+                    <Label Content="Armor Value:"
                            ToolTip="This is in addition to AV from equipment."
                            HorizontalAlignment="Right"
                            FontWeight="Bold"
                            Grid.Row="3"
                            Grid.Column="0" />
-                    <Label Content="{Binding Mage.ArmourValue, Mode=OneWay}"
+                    <Label Content="{Binding Mage.ArmorValue, Mode=OneWay}"
                            ToolTip="This is in addition to AV from equipment."
                            Grid.Row="3"
                            Grid.Column="1" />
@@ -970,8 +970,8 @@
                            ContentStringFormat="Accuracy: {0}%"
                            HorizontalAlignment="Right"
                            FontWeight="Bold" />
-                    <Label Content="{Binding EffectiveArmour, Mode=OneWay}"
-                           ContentStringFormat="Enemy Effective Armour: {0}%"
+                    <Label Content="{Binding EffectiveArmor, Mode=OneWay}"
+                           ContentStringFormat="Enemy Effective Armor: {0}%"
                            HorizontalAlignment="Right"
                            FontWeight="Bold" />
                 </StackPanel>

@@ -218,7 +218,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Rogue.Agility.DisplayName}"
-                   ToolTip="Modifies:&#x0a;Dagger (1), HandToHand (1), TwoHanded (2)&#x0a;Armour Skill (2), Attack (1), Parry (1), Warcry (1), Tactics (1), SurroundHit (1), Body Control (1), Speed Skill (1)&#x0a;Stealth (2)"
+                   ToolTip="Modifies:&#x0a;Dagger (1), HandToHand (1), TwoHanded (2)&#x0a;Armor Skill (2), Attack (1), Parry (1), Warcry (1), Tactics (1), SurroundHit (1), Body Control (1), Speed Skill (1)&#x0a;Stealth (2)"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="6"
@@ -248,7 +248,7 @@
                    Grid.Column="3"/>
 
             <Label Content="{Binding Rogue.Strength.DisplayName}"
-                   ToolTip="Modifies:&#x0a;Dagger (1), HandToHand (2), Archery (1)&#x0a;Armour Skill (1), Attack (1), Parry (1), Warcry (1), Tactics (1), Surround Hit (1), Body Control (1), Speed Skill (1), Rage (2)&#x0a;Immunity (1)"
+                   ToolTip="Modifies:&#x0a;Dagger (1), HandToHand (2), Archery (1)&#x0a;Armor Skill (1), Attack (1), Parry (1), Warcry (1), Tactics (1), Surround Hit (1), Body Control (1), Speed Skill (1), Rage (2)&#x0a;Immunity (1)"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="7"
@@ -855,17 +855,17 @@
                            Grid.Row="2"
                            Grid.Column="1" />
 
-                    <Label Content="Armour Value:"
+                    <Label Content="Armor Value:"
                            ToolTip="This is in addition to AV from equipment."
                            HorizontalAlignment="Right"
                            FontWeight="Bold"
                            Grid.Row="3"
                            Grid.Column="0" />
-                    <Label Content="{Binding Rogue.ArmourValue, Mode=OneWay}"
+                    <Label Content="{Binding Rogue.ArmorValue, Mode=OneWay}"
                            ToolTip="This is in addition to AV from equipment."
                            Grid.Row="3"
                            Grid.Column="1" />
-                    <n:DecimalUpDown Value="{Binding Rogue.ExtraArmourValue, Mode=TwoWay}"
+                    <n:DecimalUpDown Value="{Binding Rogue.ExtraArmorValue, Mode=TwoWay}"
                                      MinValue="0"
                                      StepSize="0.25"
                                      IsReadOnly="False"
@@ -883,7 +883,7 @@
                            ToolTip="This is in addition to WV from weapon."
                            Grid.Row="4"
                            Grid.Column="1" />
-                    <n:DecimalUpDown Value="{Binding Rogue.ExtraArmourValue, Mode=TwoWay}"
+                    <n:DecimalUpDown Value="{Binding Rogue.ExtraArmorValue, Mode=TwoWay}"
                                      MinValue="0"
                                      StepSize="0.25"
                                      IsReadOnly="False"
@@ -1061,8 +1061,8 @@
                            ContentStringFormat="Accuracy: {0}%"
                            HorizontalAlignment="Right"
                            FontWeight="Bold" />
-                    <Label Content="{Binding EffectiveArmour, Mode=OneWay}"
-                           ContentStringFormat="Enemy Effective Armour: {0}%"
+                    <Label Content="{Binding EffectiveArmor, Mode=OneWay}"
+                           ContentStringFormat="Enemy Effective Armor: {0}%"
                            HorizontalAlignment="Right"
                            FontWeight="Bold" />
                 </StackPanel>

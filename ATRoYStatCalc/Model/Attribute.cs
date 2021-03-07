@@ -1,16 +1,31 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ATRoYStatCalc.Model
 {
     public class Attribute : ObservableObject
     {
+        public enum Types
+        {
+            [Display(Name = "Wisdom")]
+            Wisdom,
+            [Display(Name = "Intuition")]
+            Intuition,
+            [Display(Name = "Agility")]
+            Agility,
+            [Display(Name = "Strength")]
+            Strength
+        }
+
         private readonly bool IsSeyan;
-        public Attribute(bool IsSeyan)
+        public Attribute(Types Type, bool IsSeyan = false)
         {
             this.IsSeyan = IsSeyan;
+            this.Type = Type;
         }
-        public string DisplayName { get; set; }
+        public Types Type { get; set; }
+        public string DisplayName => Type.GetDisplayName();
         public int Start { get; set; }
         public int Cost { get; set; }
         public int Base { get; set; }

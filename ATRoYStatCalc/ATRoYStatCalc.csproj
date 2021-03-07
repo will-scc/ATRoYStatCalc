@@ -27,22 +27,6 @@
 		</Content> 
 	</ItemGroup>
 
-
-	<ItemGroup>
-	  <Content Remove="BuildFiles\StandardMage36.bmag" />
-	  <Content Remove="BuildFiles\StandardRogue44.brog" />
-	  <Content Remove="BuildFiles\StandardSeyan92.bsey" />
-	  <Content Remove="BuildFiles\StandardWarrior64.bwar" />
-	</ItemGroup>
-
-
-	<ItemGroup>
-	  <EmbeddedResource Include="BuildFiles\StandardMage36.bmag" />
-	  <EmbeddedResource Include="BuildFiles\StandardRogue44.brog" />
-	  <EmbeddedResource Include="BuildFiles\StandardSeyan92.bsey" />
-	  <EmbeddedResource Include="BuildFiles\StandardWarrior64.bwar" />
-	</ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.6" />
     <PackageReference Include="Dirkster.NumericUpDownLib" Version="2.4.2.2" />
@@ -75,6 +59,10 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="BuildFiles\" />
   </ItemGroup>
 
 </Project>
