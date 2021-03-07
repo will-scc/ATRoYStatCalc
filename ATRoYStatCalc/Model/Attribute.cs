@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
 
 namespace ATRoYStatCalc.Model
 {
@@ -16,6 +18,25 @@ namespace ATRoYStatCalc.Model
             Agility,
             [Display(Name = "Strength")]
             Strength
+        }
+
+        public string Modifies => ModifyingSkills();
+        private string ModifyingSkills()
+        {
+            var sm = Skill.SkillModifiers.Where(x => x.Value.Contains(Type));
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Modifies:");
+            foreach (var dict in sm)
+            {
+                string skill = dict.Key.GetDisplayName();
+                int count = dict.Value.Where(x => x == Type).Count();
+                sb.AppendLine($"{skill} ({count})");
+            }
+            string ret = sb.ToString();
+            sb = null;
+            
+            return ret;
         }
 
         private readonly bool IsSeyan;
