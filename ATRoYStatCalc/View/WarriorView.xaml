@@ -158,7 +158,7 @@
                    Grid.Column="0"/>
 
             <Label Content="{Binding Warrior.Wisdom.DisplayName}"
-                   ToolTip="Modifies:&#x0a;Tactics (1)&#x0a;Bartering (1), Perception (1)"
+                   ToolTip="{Binding Warrior.Wisdom.Modifies}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="4"
@@ -188,7 +188,7 @@
                    Grid.Column="3"/>
 
             <Label Content="{Binding Warrior.Intuition.DisplayName}"
-                   ToolTip="Modifies:&#x0a;Dagger (1), Sword (2)&#x0a;Attack (1), Parry (1), Warcry (1), Tactics (1), Surround Hit (1), Speed Skill (1), Rage (1)&#x0a;Bartering (2), Perception (2), Stealth (1), Immunity (2)"
+                   ToolTip="{Binding Warrior.Intuition.Modifies}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="5"
@@ -218,7 +218,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Warrior.Agility.DisplayName}"
-                   ToolTip="Modifies:&#x0a;Dagger (1), HandToHand (1), TwoHanded (2)&#x0a;Armour Skill (2), Attack (1), Parry (1), Warcry (1), Tactics (1), SurroundHit (1), Body Control (1), Speed Skill (1)&#x0a;Stealth (2)"
+                   ToolTip="{Binding Warrior.Agility.Modifies}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="6"
@@ -248,7 +248,7 @@
                    Grid.Column="3"/>
 
             <Label Content="{Binding Warrior.Strength.DisplayName}"
-                   ToolTip="Modifies:&#x0a;Dagger (1), HandToHand (2), TwoHanded (1)&#x0a;Armour Skill (1), Attack (1), Parry (1), Warcry (1), Tactics (1), Surround Hit (1), Body Control (1), Speed Skill (1), Rage (2)&#x0a;Immunity (1)"
+                   ToolTip="{Binding Warrior.Strength.Modifies}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="7"
@@ -285,7 +285,7 @@
                    Grid.Column="0" />
 
             <Label Content="{Binding Warrior.Dagger.DisplayName}"
-                   ToolTip="Modified by Agility/Intuition/Strength"
+                   ToolTip="{Binding Warrior.Dagger.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="9"
@@ -315,7 +315,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Warrior.HandToHand.DisplayName}"
-                   ToolTip="Modified by Agility/Strength/Strength"
+                   ToolTip="{Binding Warrior.HandToHand.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="10"
@@ -345,7 +345,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Warrior.Sword.DisplayName}"
-                   ToolTip="Modified by Intuition/Intuition/Agility"
+                   ToolTip="{Binding Warrior.Sword.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="11"
@@ -375,7 +375,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Warrior.TwoHanded.DisplayName}"
-                   ToolTip="Modified by Agility/Agility/Strength"
+                   ToolTip="{Binding Warrior.TwoHanded.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="12"
@@ -412,7 +412,7 @@
                    Grid.Column="0" />
 
             <Label Content="{Binding Warrior.Rage.DisplayName}"
-                   ToolTip="Modified by Intuition/Strength/Strength"
+                   ToolTip="{Binding Warrior.Rage.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="14"
@@ -442,7 +442,7 @@
                    Grid.Column="3"/>
 
             <Label Content="{Binding Warrior.ArmorSkill.DisplayName}"
-                   ToolTip="Modified by Agility/Agility/Strength"
+                   ToolTip="{Binding Warrior.ArmorSkill.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="15"
@@ -472,7 +472,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Warrior.Attack.DisplayName}"
-                   ToolTip="Modified by Agility/Intuition/Strength"
+                   ToolTip="{Binding Warrior.Attack.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="16"
@@ -502,7 +502,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Warrior.Parry.DisplayName}"
-                   ToolTip="Modified by Agility/Intuition/Strength"
+                   ToolTip="{Binding Warrior.Parry.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="17"
@@ -532,7 +532,7 @@
                    Grid.Column="3"/>
 
             <Label Content="{Binding Warrior.Warcry.DisplayName}"
-                   ToolTip="Modified by Agility/Intuition/Strength"
+                   ToolTip="{Binding Warrior.Warcry.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="18"
@@ -562,7 +562,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Warrior.Tactics.DisplayName}"
-                   ToolTip="Modified by Wisdom/Agility/Strength"
+                   ToolTip="{Binding Warrior.Tactics.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="19"
@@ -592,7 +592,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Warrior.SurroundHit.DisplayName}"
-                   ToolTip="Modified by Agility/Intuition/Strength"
+                   ToolTip="{Binding Warrior.SurroundHit.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="20"
@@ -622,7 +622,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Warrior.BodyControl.DisplayName}"
-                   ToolTip="Modified by Agility/Intuition/Strength"
+                   ToolTip="{Binding Warrior.BodyControl.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="21"
@@ -652,7 +652,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Warrior.SpeedSkill.DisplayName}"
-                   ToolTip="Modified by Agility/Intuition/Strength"
+                   ToolTip="{Binding Warrior.SpeedSkill.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="22"
@@ -682,7 +682,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Warrior.Regenerate.DisplayName}"
-                   ToolTip="Modified by Strength/Strength/Strength"
+                   ToolTip="{Binding Warrior.Regenerate.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="23"
@@ -712,7 +712,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Warrior.Bartering.DisplayName}"
-                   ToolTip="Modified by Wisdom/Intuition/Intuition"
+                   ToolTip="{Binding Warrior.Bartering.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="24"
@@ -742,7 +742,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Warrior.Perception.DisplayName}"
-                   ToolTip="Modified by Wisdom/Intuition/Intuition"
+                   ToolTip="{Binding Warrior.Perception.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="25"
@@ -772,7 +772,7 @@
                    Grid.Column="4" />
 
             <Label Content="{Binding Warrior.Stealth.DisplayName}"
-                   ToolTip="Modified by Agility/Agility/Intuition"
+                   ToolTip="{Binding Warrior.Stealth.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="26"
@@ -802,7 +802,7 @@
                    Grid.Column="3" />
 
             <Label Content="{Binding Warrior.Immunity.DisplayName}"
-                   ToolTip="Modified by Intuition/Intuition/Strength"
+                   ToolTip="{Binding Warrior.Immunity.Modifiers}"
                    Margin="1"
                    VerticalAlignment="Center"
                    Grid.Row="27"
@@ -885,17 +885,17 @@
                            Grid.Row="2"
                            Grid.Column="1" />
 
-                    <Label Content="Armour Value:"
+                    <Label Content="Armor Value:"
                            ToolTip="This is in addition to AV from equipment."
                            HorizontalAlignment="Right"
                            FontWeight="Bold"
                            Grid.Row="3"
                            Grid.Column="0" />
-                    <Label Content="{Binding Warrior.ArmourValue, Mode=OneWay}"
+                    <Label Content="{Binding Warrior.ArmorValue, Mode=OneWay}"
                            ToolTip="This is in addition to AV from equipment."
                            Grid.Row="3"
                            Grid.Column="1" />
-                    <n:DecimalUpDown Value="{Binding Warrior.ExtraArmourValue, Mode=TwoWay}"
+                    <n:DecimalUpDown Value="{Binding Warrior.ExtraArmorValue, Mode=TwoWay}"
                                      MinValue="0"
                                      StepSize="0.25"
                                      IsReadOnly="False"
@@ -1091,8 +1091,8 @@
                            ContentStringFormat="Accuracy: {0}%"
                            HorizontalAlignment="Right"
                            FontWeight="Bold" />
-                    <Label Content="{Binding EffectiveArmour, Mode=OneWay}"
-                           ContentStringFormat="Enemy Effective Armour: {0}%"
+                    <Label Content="{Binding EffectiveArmor, Mode=OneWay}"
+                           ContentStringFormat="Enemy Effective Armor: {0}%"
                            HorizontalAlignment="Right"
                            FontWeight="Bold" />
                 </StackPanel>

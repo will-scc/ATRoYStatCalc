@@ -10,7 +10,7 @@
     <Description>A stat calculator for Astonia: The Return of Yendor by Belgarath</Description>
     <PackageProjectUrl>https://github.com/will-scc/ATRoYStatCalc</PackageProjectUrl>
     <NeutralLanguage />
-    <ApplicationIcon>iconfinder_calculator-math-tool-school_2824440.ico</ApplicationIcon>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
     <AssemblyName>ATRoYStatCalc</AssemblyName>
     <Copyright>Belgarath (will-scc) 2020</Copyright>
     <PackageIcon>iconfinder_calculator-math-tool-school_2824440.ico</PackageIcon>
@@ -20,6 +20,13 @@
     <Version>1.0.3</Version>
   </PropertyGroup>
 
+
+	<ItemGroup> 
+		<Content Include="BuildFiles\**"> 
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> 
+		</Content> 
+	</ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.6" />
     <PackageReference Include="Dirkster.NumericUpDownLib" Version="2.4.2.2" />
@@ -28,9 +35,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
-    <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
+    <PackageReference Include="MvvmLight" Version="5.4.1.1" />
+    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="PropertyChanged.Fody" Version="3.3.1" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.3.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,10 +62,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\..\Downloads\iconfinder_calculator-math-tool-school_2824440.ico">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
+    <Folder Include="BuildFiles\" />
   </ItemGroup>
 
 </Project>

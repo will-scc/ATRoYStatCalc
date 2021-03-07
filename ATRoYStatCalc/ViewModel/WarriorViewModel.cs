@@ -15,9 +15,9 @@ namespace ATRoYStatCalc.ViewModel
     {
         public Warrior Warrior { get; set; } = new Warrior();
         public int EnemyDefence { get; set; } = 1000;
-        private Tuple<int, int> AccuracyAndArmour => HelperFuncs.GetAccuracyAndEffectiveArmour(Warrior.Offence - EnemyDefence);
-        public int Accuracy => AccuracyAndArmour.Item1;
-        public int EffectiveArmour => AccuracyAndArmour.Item2;
+        private Tuple<int, int> AccuracyAndArmor => HelperFuncs.GetAccuracyAndEffectiveArmor(Warrior.Offence - EnemyDefence);
+        public int Accuracy => AccuracyAndArmor.Item1;
+        public int EffectiveArmor => AccuracyAndArmor.Item2;
         public WarriorViewModel() { }
 
         public void Setup()

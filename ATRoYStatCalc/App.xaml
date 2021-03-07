@@ -4,11 +4,16 @@
              xmlns:vm="clr-namespace:ATRoYStatCalc.ViewModel"
              xmlns:c="clr-namespace:ATRoYStatCalc.Converters"
              xmlns:local="clr-namespace:ATRoYStatCalc"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow.xaml"
+             Startup="Application_Startup"
+             xmlns:ui="http://schemas.modernwpf.com/2019">
     <Application.Resources>
         <ResourceDictionary>
-            <vm:ViewModelLocator x:Key="ViewModelLocator"/>
-            <c:MaxModColourConverter x:Key="BoolToRed"/>
+            <vm:ViewModelLocator x:Key="ViewModelLocator" />
+            <c:MaxModColourConverter x:Key="BoolToRed" />
+            <c:ClassToColourConverter x:Key="ClassToCol" />
+            <c:CountToVisibility x:Key="CountToVis" />
+            <c:CountToVisibilityInverse x:Key="CountToVisInv" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

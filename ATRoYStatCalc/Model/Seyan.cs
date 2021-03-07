@@ -18,8 +18,8 @@ namespace ATRoYStatCalc.Model
         public double CurrentLevel { get; set; }
         public double WeaponValue { get; set; }
         public double ExtraWeaponValue { get; set; }
-        public double ArmourValue { get; set; }
-        public double ExtraArmourValue { get; set; }
+        public double ArmorValue { get; set; }
+        public double ExtraArmorValue { get; set; }
         public int Speed { get; set; }
         public int ExtraSpeed { get; set; }
         public int Offence { get; set; }
@@ -39,30 +39,26 @@ namespace ATRoYStatCalc.Model
         #region "Attributes"
         [JsonIgnore]
         public List<Attribute> Attributes { get; set; } = new List<Attribute>();
-        public Attribute Wisdom { get; set; } = new Attribute(true)
+        public Attribute Wisdom { get; set; } = new Attribute(Attribute.Types.Wisdom, true)
         {
-            DisplayName = "Wisdom",
             Start = 10,
             Base = 10,
             Cost = 2
         };
-        public Attribute Intuition { get; set; } = new Attribute(true)
+        public Attribute Intuition { get; set; } = new Attribute(Attribute.Types.Intuition, true)
         {
-            DisplayName = "Intuition",
             Start = 10,
             Base = 10,
             Cost = 2
         };
-        public Attribute Agility { get; set; } = new Attribute(true)
+        public Attribute Agility { get; set; } = new Attribute(Attribute.Types.Agility, true)
         {
-            DisplayName = "Agility",
             Start = 10,
             Base = 10,
             Cost = 2
         };
-        public Attribute Strength { get; set; } = new Attribute(true)
+        public Attribute Strength { get; set; } = new Attribute(Attribute.Types.Strength, true)
         {
-            DisplayName = "Strength",
             Start = 10,
             Base = 10,
             Cost = 2
@@ -72,205 +68,176 @@ namespace ATRoYStatCalc.Model
         #region "Skills"
         [JsonIgnore]
         public List<Skill> Skills { get; set; } = new List<Skill>();
-        public Skill Hitpoints { get; set; } = new Skill(true, true)
+        public Skill Hitpoints { get; set; } = new Skill(Skill.Types.Hitpoints, true)
         {
-            DisplayName = "Hitpoints",
             Start = 10,
             Base = 10,
             Cost = 3
         };
-        public Skill Endurance { get; set; } = new Skill(true, true)
+        public Skill Endurance { get; set; } = new Skill(Skill.Types.Endurance, true)
         {
-            DisplayName = "Endurance",
             Start = 10,
             Base = 10,
             Cost = 3
         };
-        public Skill Mana { get; set; } = new Skill(true, true)
+        public Skill Mana { get; set; } = new Skill(Skill.Types.Mana, true)
         {
-            DisplayName = "Mana",
             Start = 10,
             Base = 10,
             Cost = 3
         };
-        public Skill Dagger { get; set; } = new Skill(true)
+        public Skill Dagger { get; set; } = new Skill(Skill.Types.Dagger, true)
         {
-            DisplayName = "Dagger",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill HandToHand { get; set; } = new Skill(true)
+        public Skill HandToHand { get; set; } = new Skill(Skill.Types.HandtoHand, true)
         {
-            DisplayName = "Hand to Hand",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Sword { get; set; } = new Skill(true)
+        public Skill Sword { get; set; } = new Skill(Skill.Types.Sword, true)
         {
-            DisplayName = "Sword",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill TwoHanded { get; set; } = new Skill(true)
+        public Skill TwoHanded { get; set; } = new Skill(Skill.Types.TwoHanded, true)
         {
-            DisplayName = "TwoHanded",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill ArmorSkill { get; set; } = new Skill(true)
+        public Skill ArmorSkill { get; set; } = new Skill(Skill.Types.ArmorSkill, true)
         {
-            DisplayName = "Armor Skill",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Attack { get; set; } = new Skill(true)
+        public Skill Attack { get; set; } = new Skill(Skill.Types.Attack, true)
         {
-            DisplayName = "Attack",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Parry { get; set; } = new Skill(true)
+        public Skill Parry { get; set; } = new Skill(Skill.Types.Parry, true)
         {
-            DisplayName = "Parry",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Warcry { get; set; } = new Skill(true)
+        public Skill Warcry { get; set; } = new Skill(Skill.Types.Warcry, true)
         {
-            DisplayName = "Warcry",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Tactics { get; set; } = new Skill(true)
+        public Skill Tactics { get; set; } = new Skill(Skill.Types.Tactics, true)
         {
-            DisplayName = "Tactics",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill SurroundHit { get; set; } = new Skill(true)
+        public Skill SurroundHit { get; set; } = new Skill(Skill.Types.SurroundHit, true)
         {
-            DisplayName = "Surround Hit",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill BodyControl { get; set; } = new Skill(true)
+        public Skill BodyControl { get; set; } = new Skill(Skill.Types.BodyControl, true)
         {
-            DisplayName = "Body Control",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill SpeedSkill { get; set; } = new Skill(true)
+        public Skill SpeedSkill { get; set; } = new Skill(Skill.Types.SpeedSkill, true)
         {
-            DisplayName = "Speed Skill",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Regenerate { get; set; } = new Skill(true)
+        public Skill Regenerate { get; set; } = new Skill(Skill.Types.Regenerate, true)
         {
-            DisplayName = "Regenerate",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Bless { get; set; } = new Skill(true)
+        public Skill Bless { get; set; } = new Skill(Skill.Types.Bless, true)
         {
-            DisplayName = "Bless",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Heal { get; set; } = new Skill(true)
+        public Skill Heal { get; set; } = new Skill(Skill.Types.Heal, true)
         {
-            DisplayName = "Heal",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Freeze { get; set; } = new Skill(true)
+        public Skill Freeze { get; set; } = new Skill(Skill.Types.Freeze, true)
         {
-            DisplayName = "Freeze",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill MagicShield { get; set; } = new Skill(true)
+        public Skill MagicShield { get; set; } = new Skill(Skill.Types.MagicShield, true)
         {
-            DisplayName = "Magic Shield",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Lightning { get; set; } = new Skill(true)
+        public Skill Lightning { get; set; } = new Skill(Skill.Types.Lightning, true)
         {
-            DisplayName = "Lightning",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Fire { get; set; } = new Skill(true)
+        public Skill Fire { get; set; } = new Skill(Skill.Types.Fire, true)
         {
-            DisplayName = "Fire",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Pulse { get; set; } = new Skill(true)
+        public Skill Pulse { get; set; } = new Skill(Skill.Types.Pulse, true)
         {
-            DisplayName = "Pulse",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Meditate { get; set; } = new Skill(true)
+        public Skill Meditate { get; set; } = new Skill(Skill.Types.Meditate, true)
         {
-            DisplayName = "Meditate",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Bartering { get; set; } = new Skill(true)
+        public Skill Bartering { get; set; } = new Skill(Skill.Types.Bartering, true)
         {
-            DisplayName = "Bartering",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Perception { get; set; } = new Skill(true)
+        public Skill Perception { get; set; } = new Skill(Skill.Types.Perception, true)
         {
-            DisplayName = "Perception",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Stealth { get; set; } = new Skill(true)
+        public Skill Stealth { get; set; } = new Skill(Skill.Types.Stealth, true)
         {
-            DisplayName = "Stealth",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Immunity { get; set; } = new Skill(true)
+        public Skill Immunity { get; set; } = new Skill(Skill.Types.Immunity, true)
         {
-            DisplayName = "Immunity",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Profession { get; set; } = new Skill(true)
+        public Skill Profession { get; set; } = new Skill(Skill.Types.Profession, true)
         {
-            DisplayName = "Profession",
             Start = 1,
             Base = 1,
             Cost = 3
@@ -368,7 +335,7 @@ namespace ATRoYStatCalc.Model
             }
 
             //Calculate bless mod from unblessed WIAS
-            Bless.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5) + tacBonus;
+            Bless.SetAttributeBonus(Attributes, tacBonus);
             Bless.LevelBonus = levelBonus;
             Bless.PtmBonus = 0;
             Tactics.LevelBonus = levelBonus;
@@ -382,7 +349,7 @@ namespace ATRoYStatCalc.Model
                 }
 
                 //Calculate bless mod from bless
-                Bless.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5) + tacBonus;
+                Bless.SetAttributeBonus(Attributes, tacBonus);
 
                 //Calculate attribute bonus from new bless mod
                 foreach (Attribute attribute in Attributes)
@@ -391,48 +358,36 @@ namespace ATRoYStatCalc.Model
                 }
 
                 //Calculate blessed bless mod for other skills
-                Bless.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5) + tacBonus;
+                Bless.SetAttributeBonus(Attributes, tacBonus);
                 Bless.PtmBonus = ptmBonus;
             }
 
-            Dagger.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-            HandToHand.AttributeBonus = (Agility.Mod + Strength.Mod + Strength.Mod) / 5;
-            Sword.AttributeBonus = (Intuition.Mod + Intuition.Mod + Agility.Mod) / 5;
-            TwoHanded.AttributeBonus = (Agility.Mod + Agility.Mod + Strength.Mod) / 5;
-
-            ArmorSkill.AttributeBonus = (Agility.Mod + Agility.Mod + Strength.Mod) / 5;
-            Attack.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + tacBonus;
-            Parry.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + tacBonus;
-            Warcry.AttributeBonus = ((Agility.Mod + Intuition.Mod + Strength.Mod) / 5) + tacBonus;
-            Tactics.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Strength.Mod) / 5;
-            SurroundHit.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-            BodyControl.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-            SpeedSkill.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-
-            Heal.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Freeze.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5) + tacBonus;
-            MagicShield.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Lightning.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5) + tacBonus;
-            Fire.AttributeBonus = ((Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5) + tacBonus;
-            Pulse.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-
-            Bartering.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Perception.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Stealth.AttributeBonus = (Agility.Mod + Agility.Mod + Intuition.Mod) / 5;
-            Regenerate.AttributeBonus = (Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5;
-            Meditate.AttributeBonus = (Wisdom.Mod + Wisdom.Mod + Wisdom.Mod) / 5;
-            Immunity.AttributeBonus = ((Intuition.Mod + Intuition.Mod + Strength.Mod) / 5) + tacImmBonus;
-
-            //Arbitrary bonuses added for balance
-            //Makes PTMs less linear
-            foreach (Skill skill in Skills)
+            foreach(Skill skill in Skills)
             {
                 skill.LevelBonus = levelBonus;
 
-                if (skill.DisplayName != "Hitpoints" &&
-                    skill.DisplayName != "Endurance" &&
-                    skill.DisplayName != "Mana" &&
-                    skill.DisplayName != "Profession")
+                if (skill.Type == Skill.Types.Attack ||
+                    skill.Type == Skill.Types.Parry ||
+                    skill.Type == Skill.Types.Warcry ||
+                    skill.Type == Skill.Types.Freeze ||
+                    skill.Type == Skill.Types.Lightning ||
+                    skill.Type == Skill.Types.Fire)
+                {
+                    skill.SetAttributeBonus(Attributes, tacBonus);
+                }
+                else if (skill.Type == Skill.Types.Immunity)
+                {
+                    skill.SetAttributeBonus(Attributes, tacImmBonus);
+                }
+                else
+                {
+                    skill.SetAttributeBonus(Attributes);
+                }
+
+                if (skill.Type != Skill.Types.Hitpoints &&
+                    skill.Type != Skill.Types.Endurance &&
+                    skill.Type != Skill.Types.Mana &&
+                    skill.Type != Skill.Types.Profession)
                 {
                     skill.PtmBonus = ptmBonus;
                 }
@@ -443,9 +398,9 @@ namespace ATRoYStatCalc.Model
         {
             Profession.Base = AthleteBonus + TimeWarriorBonus;
 
-            Speed = ((Agility.Mod + Agility.Mod + Strength.Mod) / 5) + (AthleteBonus * 3) + (SpeedSkill.Mod / 2) + ExtraSpeed; 
+            Speed = ((Agility.Mod + Agility.Mod + Strength.Mod) / 5) + (AthleteBonus * 3) + (SpeedSkill.Mod / 2) + ExtraSpeed;
             WeaponValue = ExtraWeaponValue + (BodyControl.Mod / 4);
-            ArmourValue = ExtraArmourValue + (BodyControl.Mod + ArmorSkill.Mod) * 0.25;
+            ArmorValue = ExtraArmorValue + (BodyControl.Mod + ArmorSkill.Mod) * 0.25;
 
             List<Skill> weaponSkills = new List<Skill>()
             {
@@ -457,8 +412,9 @@ namespace ATRoYStatCalc.Model
 
             int weaponSkillMod = weaponSkills.Max(s => s.Mod);
 
-            Offence = (Attack.Mod * 2) + weaponSkillMod + GetTacticsOffDefBonus();
-            Defence = (Parry.Mod * 2) + weaponSkillMod + GetTacticsOffDefBonus();
+            //Tactics bonus to off/def is always included
+            Offence = (Attack.Mod * 2) + weaponSkillMod + (int)Math.Floor(Tactics.Mod * 0.375);
+            Defence = (Parry.Mod * 2) + weaponSkillMod + (int)Math.Floor(Tactics.Mod * 0.375);
 
             TacticsOffDefBonus = (int)Math.Floor(Tactics.Mod * 0.375);
             TacticsSkillBonus = (int)Math.Floor((double)Tactics.Mod / 8);
@@ -478,10 +434,10 @@ namespace ATRoYStatCalc.Model
             foreach (Skill skill in Skills)
             {
                 //Should be a better way to identify these rather than by DisplayName
-                if (skill.DisplayName != "Hitpoints" &&
-                    skill.DisplayName != "Endurance" &&
-                    skill.DisplayName != "Mana" &&
-                    skill.DisplayName != "Profession")
+                if (skill.Type != Skill.Types.Hitpoints &&
+                    skill.Type != Skill.Types.Endurance &&
+                    skill.Type != Skill.Types.Mana &&
+                    skill.Type != Skill.Types.Profession)
                 {
                     if (skill.Base >= threshold) nStats++;
                     if (skill.Base >= start) diff += skill.Base - start;
@@ -509,11 +465,6 @@ namespace ATRoYStatCalc.Model
                     ? (int)Math.Floor(Tactics.Mod / 8.08)
                     : (int)Math.Floor((double)Tactics.Mod / 8)
                 : 0;
-        }
-
-        private int GetTacticsOffDefBonus()
-        {
-            return IncludeTactics ? (int)Math.Floor(Tactics.Mod * 0.375) : 0;
         }
 
         private int RaiseCost(Attribute Attribute, int NextLevel)

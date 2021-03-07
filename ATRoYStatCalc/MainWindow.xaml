@@ -9,9 +9,12 @@
         mc:Ignorable="d"
         DataContext="{Binding MainPage, Source={StaticResource ViewModelLocator}}"
         Title="Belgarath's Stat Calculator"
-        Height="800"
-        Width="530">
+        Height="500"
+        Width="600">
     <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:SplashScreenViewModel}">
+            <view:SplashScreenView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type vm:MageViewModel}">
             <view:MageView/>
         </DataTemplate>

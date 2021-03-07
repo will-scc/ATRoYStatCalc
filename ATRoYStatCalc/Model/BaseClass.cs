@@ -18,8 +18,8 @@ namespace ATRoYStatCalc.Model
         public double CurrentLevel { get; set; }
         public double WeaponValue { get; set; }
         public double ExtraWeaponValue { get; set; }
-        public double ArmourValue { get; set; }
-        public double ExtraArmourValue { get; set; }
+        public double ArmorValue { get; set; }
+        public double ExtraArmorValue { get; set; }
         public int Speed { get; set; }
         public int ExtraSpeed { get; set; }
         public int Offence { get; set; }
@@ -28,34 +28,30 @@ namespace ATRoYStatCalc.Model
         public int TimeWarriorBonus { get; set; }
         public int ClanWarriorBonus { get; set; }
         public bool MissingProfessionBases => Profession.Base < Profession.Mod;
-        
+
         #region "Attributes"
         [JsonIgnore]
         public List<Attribute> Attributes { get; set; } = new List<Attribute>();
-        public Attribute Wisdom { get; set; } = new Attribute(false)
+        public Attribute Wisdom { get; set; } = new Attribute(Attribute.Types.Wisdom)
         {
-            DisplayName = "Wisdom",
             Start = 10,
             Base = 10,
             Cost = 2
         };
-        public Attribute Intuition { get; set; } = new Attribute(false)
+        public Attribute Intuition { get; set; } = new Attribute(Attribute.Types.Intuition)
         {
-            DisplayName = "Intuition",
             Start = 10,
             Base = 10,
             Cost = 2
         };
-        public Attribute Agility { get; set; } = new Attribute(false)
+        public Attribute Agility { get; set; } = new Attribute(Attribute.Types.Agility)
         {
-            DisplayName = "Agility",
             Start = 10,
             Base = 10,
             Cost = 2
         };
-        public Attribute Strength { get; set; } = new Attribute(false)
+        public Attribute Strength { get; set; } = new Attribute(Attribute.Types.Strength)
         {
-            DisplayName = "Strength",
             Start = 10,
             Base = 10,
             Cost = 2
@@ -65,70 +61,61 @@ namespace ATRoYStatCalc.Model
         #region "Skills"
         [JsonIgnore]
         public List<Skill> Skills { get; set; } = new List<Skill>();
-        public Skill Hitpoints { get; set; } = new Skill(false, true)
+        public Skill Hitpoints { get; set; } = new Skill(Skill.Types.Hitpoints)
         {
-            DisplayName = "Hitpoints",
             Start = 10,
             Base = 10,
             Cost = 3
         };
-        public Skill Endurance { get; set; } = new Skill(false, true)
+        public Skill Endurance { get; set; } = new Skill(Skill.Types.Endurance)
         {
-            DisplayName = "Endurance",
             Start = 10,
             Base = 10,
             Cost = 3
         };
-        public Skill Dagger { get; set; } = new Skill(false)
+        public Skill Dagger { get; set; } = new Skill(Skill.Types.Dagger)
         {
-            DisplayName = "Dagger",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill HandToHand { get; set; } = new Skill(false)
+        public Skill HandToHand { get; set; } = new Skill(Skill.Types.HandtoHand)
         {
-            DisplayName = "Hand to Hand",
             Start = 1,
             Base = 1,
             Cost = 1,
         };
-        public Skill Bartering { get; set; } = new Skill(false)
+        public Skill Bartering { get; set; } = new Skill(Skill.Types.Bartering)
         {
-            DisplayName = "Bartering",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Perception { get; set; } = new Skill(false)
+        public Skill Perception { get; set; } = new Skill(Skill.Types.Perception)
         {
-            DisplayName = "Perception",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Stealth { get; set; } = new Skill(false)
+        public Skill Stealth { get; set; } = new Skill(Skill.Types.Stealth)
         {
-            DisplayName = "Stealth",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Immunity { get; set; } = new Skill(false)
+        public Skill Immunity { get; set; } = new Skill(Skill.Types.Immunity)
         {
-            DisplayName = "Immunity",
             Start = 1,
             Base = 1,
             Cost = 1
         };
-        public Skill Profession { get; set; } = new Skill(false)
+        public Skill Profession { get; set; } = new Skill(Skill.Types.Profession)
         {
-            DisplayName = "Profession",
             Start = 1,
             Base = 1,
             Cost = 3
         };
-        #endregion
+#endregion
 
         public BaseClass() { }
 
@@ -189,13 +176,15 @@ namespace ATRoYStatCalc.Model
         
         public virtual void CalculateAttributeBonuses()
         {
-            Dagger.AttributeBonus = (Agility.Mod + Intuition.Mod + Strength.Mod) / 5;
-            HandToHand.AttributeBonus = (Agility.Mod + Strength.Mod + Strength.Mod) / 5;
+            foreach (Attribute attribute in Attributes)
+            {
+                attribute.WarriorBonus = TimeWarriorBonus / 2;
+            }
 
-            Bartering.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Perception.AttributeBonus = (Wisdom.Mod + Intuition.Mod + Intuition.Mod) / 5;
-            Stealth.AttributeBonus = (Agility.Mod + Agility.Mod + Intuition.Mod) / 5;
-            Immunity.AttributeBonus = (Intuition.Mod + Intuition.Mod + Strength.Mod) / 5;
+            foreach (Skill skill in Skills)
+            {
+                skill.SetAttributeBonus(Attributes);
+            }
         }
 
         public virtual void CalculateAncillaryStats()
@@ -246,10 +235,10 @@ namespace ATRoYStatCalc.Model
 
             foreach (Skill skill in Skills)
             {
-                if (skill.DisplayName != "Hitpoints" &&
-                    skill.DisplayName != "Endurance" &&
-                    skill.DisplayName != "Mana" &&
-                    skill.DisplayName != "Profession")
+                if (skill.Type != Skill.Types.Hitpoints &&
+                    skill.Type != Skill.Types.Endurance &&
+                    skill.Type != Skill.Types.Mana &&
+                    skill.Type != Skill.Types.Profession)
                 {
                     if (skill.Base >= threshold) nStats++;
                     if (skill.Base >= start) diff += skill.Base - start;

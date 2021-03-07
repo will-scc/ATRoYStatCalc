@@ -1,16 +1,52 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
 
 namespace ATRoYStatCalc.Model
 {
     public class Attribute : ObservableObject
     {
+        public enum Types
+        {
+            [Display(Name = "Wisdom")]
+            Wisdom,
+            [Display(Name = "Intuition")]
+            Intuition,
+            [Display(Name = "Agility")]
+            Agility,
+            [Display(Name = "Strength")]
+            Strength
+        }
+
+        public string Modifies => ModifyingSkills();
+        private string ModifyingSkills()
+        {
+            var sm = Skill.SkillModifiers.Where(x => x.Value.Contains(Type));
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Modifies:");
+            foreach (var dict in sm)
+            {
+                string skill = dict.Key.GetDisplayName();
+                int count = dict.Value.Where(x => x == Type).Count();
+                sb.AppendLine($"{skill} ({count})");
+            }
+            string ret = sb.ToString();
+            sb = null;
+            
+            return ret;
+        }
+
         private readonly bool IsSeyan;
-        public Attribute(bool IsSeyan)
+        public Attribute(Types Type, bool IsSeyan = false)
         {
             this.IsSeyan = IsSeyan;
+            this.Type = Type;
         }
-        public string DisplayName { get; set; }
+        public Types Type { get; set; }
+        public string DisplayName => Type.GetDisplayName();
         public int Start { get; set; }
         public int Cost { get; set; }
         public int Base { get; set; }

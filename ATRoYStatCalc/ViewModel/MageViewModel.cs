@@ -15,9 +15,9 @@ namespace ATRoYStatCalc.ViewModel
     {
         public Mage Mage { get; set; } = new Mage();
         public int EnemyDefence { get; set; } = 1000;
-        private Tuple<int, int> AccuracyAndArmour => HelperFuncs.GetAccuracyAndEffectiveArmour(Mage.Offence - EnemyDefence);
-        public int Accuracy => AccuracyAndArmour.Item1;
-        public int EffectiveArmour => AccuracyAndArmour.Item2;
+        private Tuple<int, int> AccuracyAndArmor => HelperFuncs.GetAccuracyAndEffectiveArmor(Mage.Offence - EnemyDefence);
+        public int Accuracy => AccuracyAndArmor.Item1;
+        public int EffectiveArmor => AccuracyAndArmor.Item2;
 
         public MageViewModel() { }
 
