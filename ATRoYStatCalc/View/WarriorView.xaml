@@ -901,8 +901,14 @@
                                      IsReadOnly="False"
                                      Margin="1"
                                      Grid.Row="3"
-                                     Grid.Column="2" />
-                    
+                                     Grid.Column="2">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="ValueChanged">
+                                <i:InvokeCommandAction Command="{Binding UpdateCharacter}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </n:DecimalUpDown>
+
                     <Label Content="Weapon Value:"
                            ToolTip="This is in addition to WV from weapon."
                            HorizontalAlignment="Right"
@@ -919,7 +925,13 @@
                                      IsReadOnly="False"
                                      Margin="1"
                                      Grid.Row="4"
-                                     Grid.Column="2" />
+                                     Grid.Column="2">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="ValueChanged">
+                                <i:InvokeCommandAction Command="{Binding UpdateCharacter}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </n:DecimalUpDown>
 
                     <Label Content="Speed:"
                            HorizontalAlignment="Right"
@@ -934,7 +946,13 @@
                                       IsReadOnly="False"
                                       Margin="1"
                                       Grid.Row="5"
-                                      Grid.Column="2" />
+                                      Grid.Column="2">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="ValueChanged">
+                                <i:InvokeCommandAction Command="{Binding UpdateCharacter}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </n:UIntegerUpDown>
 
                     <Label Content="Offense:"
                            HorizontalAlignment="Right"

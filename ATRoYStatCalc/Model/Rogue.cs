@@ -147,10 +147,10 @@ namespace ATRoYStatCalc.Model
         {
             base.CalculateAncillaryStats();
 
-            Speed = ((Agility.Mod + Agility.Mod + Strength.Mod) / 5) + (AthleteBonus * 3) + (SpeedSkill.Mod / 2);
+            Speed = ((Agility.Mod + Agility.Mod + Strength.Mod) / 5) + (AthleteBonus * 3) + (SpeedSkill.Mod / 2) + ExtraSpeed;
 
-            WeaponValue = (BodyControl.Mod / 4);
-            ArmorValue = (BodyControl.Mod + ArmorSkill.Mod) * 0.25;
+            WeaponValue = ExtraWeaponValue + (BodyControl.Mod / 4);
+            ArmorValue = ExtraArmorValue + ((BodyControl.Mod + ArmorSkill.Mod) * 0.25);
 
             List<Skill> weaponSkills = new List<Skill>()
             {
