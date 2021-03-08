@@ -104,7 +104,7 @@ namespace ATRoYStatCalc.ViewModel
             {
                 OpenFileDialog ofd = new OpenFileDialog
                 {
-                    Filter = "Bel Build Files|*.bmag;*.bwar;*.bsey;*brog",
+                    Filter = "Bel Build Files|*.bmag;*.bwar;*.bsey;*.brog",
                     Multiselect = false
                 };
 
