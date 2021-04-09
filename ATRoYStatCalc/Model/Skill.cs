@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Linq;
 
 namespace ATRoYStatCalc.Model
@@ -160,7 +161,20 @@ namespace ATRoYStatCalc.Model
 
         public void SetAttributeBonus(List<Attribute> Attributes, int AdditionalBonus = 0)
         {
-            AttributeBonus = (Attributes.Where(x => SkillModifiers[Type].ToList().Contains(x.Type)).ToList().Sum(x => x.Mod) / 5) + AdditionalBonus;
+            var includedAttribs = new List<Attribute>();
+            foreach(var mod in SkillModifiers[Type].ToList())
+            {
+                includedAttribs.AddRange(Attributes.Where(attrib => mod == attrib.Type));
+            }
+
+            int bonus = 0;
+            foreach (var attr in includedAttribs)
+            {
+                bonus += attr.Mod;
+            }
+            bonus /= 5;
+
+            AttributeBonus = bonus + AdditionalBonus;
         }
     }
 }

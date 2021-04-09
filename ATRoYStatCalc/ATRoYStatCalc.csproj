@@ -12,12 +12,12 @@
     <NeutralLanguage />
     <ApplicationIcon>icon.ico</ApplicationIcon>
     <AssemblyName>ATRoYStatCalc</AssemblyName>
-    <Copyright>Belgarath (will-scc) 2020</Copyright>
+    <Copyright></Copyright>
     <PackageIcon>iconfinder_calculator-math-tool-school_2824440.ico</PackageIcon>
     <RepositoryUrl>https://github.com/will-scc/ATRoYStatCalc</RepositoryUrl>
     <SignAssembly>true</SignAssembly>
     <Company>will-scc</Company>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
   </PropertyGroup>
 
 
