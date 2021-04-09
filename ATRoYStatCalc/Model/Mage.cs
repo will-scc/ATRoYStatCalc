@@ -179,9 +179,9 @@ namespace ATRoYStatCalc.Model
         {
             base.CalculateAncillaryStats();
 
-            Speed = ((Agility.Mod * 3) / 5) + (AthleteBonus * 3);
+            Speed = ((Agility.Mod * 3) / 5) + (AthleteBonus * 3) + ExtraSpeed;
 
-            WeaponValue = 0; //Mage only gets wv from wep
+            WeaponValue = 0 + ExtraWeaponValue; //Mage only gets wv from wep
 
             double spellAvg = SpellsAverageMod();
 
