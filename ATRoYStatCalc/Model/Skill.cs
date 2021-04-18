@@ -147,7 +147,7 @@ namespace ATRoYStatCalc.Model
             if (Type != Types.Profession)
             {
                 newMod += Base;
-                newMod += Math.Max(IsResource ? 0 : 15, Math.Min(AttributeBonus, MaxAttributeMod));
+                newMod += Math.Max(IsResource ? 15 : 0, Math.Min(AttributeBonus, MaxAttributeMod));
                 newMod += Math.Min(EquipmentBonus, MaxEquipmentMod);
                 newMod += LevelBonus;
                 newMod += PtmBonus;
