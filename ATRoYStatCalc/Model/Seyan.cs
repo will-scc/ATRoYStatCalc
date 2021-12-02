@@ -1,8 +1,9 @@
-﻿using GalaSoft.MvvmLight;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Newtonsoft.Json;
+
 namespace ATRoYStatCalc.Model
 {
     public class Seyan : ObservableObject
@@ -295,7 +296,7 @@ namespace ATRoYStatCalc.Model
         {
             long totalSpentExp = 0;
 
-            foreach (Attribute attribute in Attributes)
+            foreach (var attribute in Attributes)
             {
                 int attributeExp = 0;
                 for (int i = attribute.Start; i < attribute.Base; i++)
@@ -305,7 +306,7 @@ namespace ATRoYStatCalc.Model
                 totalSpentExp += attributeExp;
             }
 
-            foreach (Skill skill in Skills)
+            foreach (var skill in Skills)
             {
                 int skillExp = 0;
                 for (int i = skill.Start; i < skill.Base; i++)
@@ -327,42 +328,33 @@ namespace ATRoYStatCalc.Model
             int tacImmBonus = GetTacticsSkillBonus(true); //will be 0 if not shown
 
             //Unblessed attributes (WIAS) used to calculate bless attribute mod
-            foreach (Attribute attribute in Attributes)
+            foreach (var attribute in Attributes)
             {
                 attribute.WarriorBonus = TimeWarriorBonus / 2;
                 attribute.LevelBonus = levelBonus;
                 attribute.BlessBonus = 0;
             }
 
+            Tactics.LevelBonus = levelBonus;
+            
             //Calculate bless mod from unblessed WIAS
-            Bless.SetAttributeBonus(Attributes, tacBonus);
             Bless.LevelBonus = levelBonus;
             Bless.PtmBonus = 0;
-            Tactics.LevelBonus = levelBonus;
-
+            Bless.SetAttributeBonus(Attributes, tacBonus);
+            
             if (Blessed)
             {
                 //Calculate attribute bonus from unblessed bless mod
-                foreach (Attribute attribute in Attributes)
+                foreach (var attribute in Attributes)
                 {
-                    attribute.BlessBonus = (int)Math.Ceiling((double)((Bless.Mod + (Tactics.Mod * 0.125)) / 4));
+                    attribute.BlessBonus = (int)((Bless.Mod + (Tactics.Mod * 0.125)) / 4);
                 }
 
                 //Calculate bless mod from bless
                 Bless.SetAttributeBonus(Attributes, tacBonus);
-
-                //Calculate attribute bonus from new bless mod
-                foreach (Attribute attribute in Attributes)
-                {
-                    attribute.BlessBonus = (int)Math.Ceiling((double)(Bless.Mod / 4));
-                }
-
-                //Calculate blessed bless mod for other skills
-                Bless.SetAttributeBonus(Attributes, tacBonus);
-                Bless.PtmBonus = ptmBonus;
             }
 
-            foreach(Skill skill in Skills)
+            foreach (var skill in Skills)
             {
                 skill.LevelBonus = levelBonus;
 
@@ -381,7 +373,14 @@ namespace ATRoYStatCalc.Model
                 }
                 else
                 {
-                    skill.SetAttributeBonus(Attributes);
+                    if (skill.Type == Skill.Types.Bless)
+                    {
+                        skill.SetAttributeBonus(Attributes, (int)(Tactics.Mod * 0.125));
+                    }
+                    else
+                    {
+                        skill.SetAttributeBonus(Attributes);
+                    }
                 }
 
                 if (skill.Type != Skill.Types.Hitpoints &&
@@ -402,7 +401,7 @@ namespace ATRoYStatCalc.Model
             WeaponValue = ExtraWeaponValue + (BodyControl.Mod / 4);
             ArmorValue = ExtraArmorValue + (BodyControl.Mod + ArmorSkill.Mod) * 0.25;
 
-            List<Skill> weaponSkills = new List<Skill>()
+            var weaponSkills = new List<Skill>()
             {
                 Dagger,
                 HandToHand,
@@ -433,7 +432,6 @@ namespace ATRoYStatCalc.Model
 
             foreach (Skill skill in Skills)
             {
-                //Should be a better way to identify these rather than by DisplayName
                 if (skill.Type != Skill.Types.Hitpoints &&
                     skill.Type != Skill.Types.Endurance &&
                     skill.Type != Skill.Types.Mana &&

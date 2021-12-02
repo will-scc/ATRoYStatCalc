@@ -1,6 +1,6 @@
 ﻿using ATRoYStatCalc.Model;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace ATRoYStatCalc.ViewModel
 {
-    public class WarriorViewModel : ViewModelBase
+    public class WarriorViewModel : ObservableRecipient
     {
         public Warrior Warrior { get; set; } = new Warrior();
         public int EnemyDefence { get; set; } = 1000;
@@ -35,24 +35,34 @@ namespace ATRoYStatCalc.ViewModel
             });
 
             Warrior.UpdateCharacter();
+            InferredProperiesChanged();
         }
 
         private ICommand _updateCharacter;
         public ICommand UpdateCharacter => _updateCharacter ??= new RelayCommand(() =>
         {
             Warrior.UpdateCharacter();
+            InferredProperiesChanged();
         });
         private void Base_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Base" || e.PropertyName == "EquipmentBonus")
             {
                 Warrior.UpdateCharacter();
+                InferredProperiesChanged();
             }
+        }
+
+        private void InferredProperiesChanged()
+        {
+            OnPropertyChanged(nameof(Accuracy));
+            OnPropertyChanged(nameof(AccuracyAndArmor));
+            OnPropertyChanged(nameof(EffectiveArmor));
         }
 
         public async Task Export()
         {
-            SaveFileDialog fileDialog = new SaveFileDialog
+            SaveFileDialog fileDialog = new()
             {
                 Filter = "Bel Build Files|*.bwar",
                 Title = "Save a Warrior Build File"

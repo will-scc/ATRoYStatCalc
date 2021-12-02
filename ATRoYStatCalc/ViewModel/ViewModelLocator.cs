@@ -1,6 +1,5 @@
-﻿using CommonServiceLocator;
-using GalaSoft.MvvmLight.Ioc;
-using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.DependencyInjection;
 
 namespace ATRoYStatCalc.ViewModel
 {
@@ -8,25 +7,26 @@ namespace ATRoYStatCalc.ViewModel
     {
         public ViewModelLocator()
         {
-            ServiceLocator.SetLocatorProvider(() => (IServiceLocator)SimpleIoc.Default);
-            SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<WarriorViewModel>();
-            SimpleIoc.Default.Register<MageViewModel>();
-            SimpleIoc.Default.Register<SeyanViewModel>();
-            SimpleIoc.Default.Register<RogueViewModel>();
-            SimpleIoc.Default.Register<SplashScreenViewModel>();
+            Ioc.Default.ConfigureServices(new ServiceCollection()
+                .AddSingleton<SplashScreenViewModel>()
+                .AddSingleton<MainViewModel>()
+                .AddSingleton<WarriorViewModel>()
+                .AddSingleton<MageViewModel>()
+                .AddSingleton<SeyanViewModel>()
+                .AddSingleton<RogueViewModel>()
+                .BuildServiceProvider());
         }
 
-        public MainViewModel MainPage => SimpleIoc.Default.GetInstance<MainViewModel>();
+        public static MainViewModel MainPage => Ioc.Default.GetService<MainViewModel>();
 
-        public WarriorViewModel WarriorView => SimpleIoc.Default.GetInstance<WarriorViewModel>();
+        public static WarriorViewModel WarriorView => Ioc.Default.GetService<WarriorViewModel>();
 
-        public MageViewModel MageView => SimpleIoc.Default.GetInstance<MageViewModel>();
+        public static MageViewModel MageView => Ioc.Default.GetService<MageViewModel>();
 
-        public SeyanViewModel SeyanView => SimpleIoc.Default.GetInstance<SeyanViewModel>();
+        public static SeyanViewModel SeyanView => Ioc.Default.GetService<SeyanViewModel>();
 
-        public RogueViewModel RogueView => SimpleIoc.Default.GetInstance<RogueViewModel>();
+        public static RogueViewModel RogueView => Ioc.Default.GetService<RogueViewModel>();
         
-        public SplashScreenViewModel SplashScreenView => SimpleIoc.Default.GetInstance<SplashScreenViewModel>();
+        public static SplashScreenViewModel SplashScreenView => Ioc.Default.GetService<SplashScreenViewModel>();
     }
 }

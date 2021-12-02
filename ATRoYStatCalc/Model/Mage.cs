@@ -121,42 +121,34 @@ namespace ATRoYStatCalc.Model
             int ptmBonus = GetPtmBonus();
 
             //Unblessed attributes (WIAS) used to calculate bless attribute mod
-            foreach (Attribute attribute in Attributes)
+            foreach (var attribute in Attributes)
             {
                 attribute.WarriorBonus = TimeWarriorBonus / 2;
                 attribute.LevelBonus = levelBonus;
                 attribute.BlessBonus = 0;
             }
 
-            Bless.SetAttributeBonus(Attributes);
             Bless.LevelBonus = levelBonus;
             Bless.PtmBonus = 0;
+            Bless.SetAttributeBonus(Attributes);
 
-            //Now apply bless mod to attributes for Skills
-            //This whole bit looks overly complicated but does give the right numbers...
             if (Blessed)
             {
-                foreach (Attribute attribute in Attributes)
+                //Calculate attribute bonus from unblessed bless mod
+                foreach (var attribute in Attributes)
                 {
-                    attribute.BlessBonus = (int)Math.Ceiling((double)Bless.Mod / 4);
+                    attribute.BlessBonus = (int)((double)Bless.Mod / 4);
                 }
 
+                //Calculate bless mod from bless
                 Bless.SetAttributeBonus(Attributes);
-
-                foreach (Attribute attribute in Attributes)
-                {
-                    attribute.BlessBonus = (int)Math.Ceiling((double)Bless.Mod / 4);
-                }
-
-                Bless.SetAttributeBonus(Attributes);
-                Bless.PtmBonus = ptmBonus;
             }
 
             base.CalculateAttributeBonuses();
 
             //Arbitrary bonuses added for balance
             //Makes PTMs less linear
-            foreach (Skill skill in Skills)
+            foreach (var skill in Skills)
             {
                 skill.LevelBonus = levelBonus;
 
@@ -179,15 +171,15 @@ namespace ATRoYStatCalc.Model
         {
             base.CalculateAncillaryStats();
 
-            Speed = ((Agility.Mod * 3) / 5) + (AthleteBonus * 3) + ExtraSpeed;
+            Speed = ((Agility.Mod * 2 + Strength.Mod) / 5) + (Agility.Mod * 3) + (AthleteBonus * 3) + ExtraSpeed;
 
-            WeaponValue = 0 + ExtraWeaponValue; //Mage only gets wv from wep
+            WeaponValue = 0 + ExtraWeaponValue; //Mage only gets wv from wep?
 
             double spellAvg = SpellsAverageMod();
 
-            ArmorValue = (spellAvg * 17.5) / 20;
+            ArmorValue = spellAvg * 17.5 / 20;
 
-            List<Skill> weaponSkills = new List<Skill>()
+            var weaponSkills = new List<Skill>()
             {
                 Dagger,
                 Staff,
