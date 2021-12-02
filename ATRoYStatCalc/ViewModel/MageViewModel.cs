@@ -1,17 +1,16 @@
 ﻿using ATRoYStatCalc.Model;
-using GalaSoft.MvvmLight;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Microsoft.Win32;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using System;
+using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 namespace ATRoYStatCalc.ViewModel
 {
-    public class MageViewModel : ViewModelBase
+    public class MageViewModel : ObservableRecipient
     {
         public Mage Mage { get; set; } = new Mage();
         public int EnemyDefence { get; set; } = 1000;
@@ -42,6 +41,10 @@ namespace ATRoYStatCalc.ViewModel
         public ICommand UpdateCharacter => _updateCharacter ??= new RelayCommand(() =>
         {
             Mage.UpdateCharacter();
+
+            OnPropertyChanged(nameof(Accuracy));
+            OnPropertyChanged(nameof(AccuracyAndArmor));
+            OnPropertyChanged(nameof(EffectiveArmor));
         });
 
         private void Base_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -54,7 +57,7 @@ namespace ATRoYStatCalc.ViewModel
 
         public async Task Export()
         {
-            SaveFileDialog fileDialog = new SaveFileDialog
+            SaveFileDialog fileDialog = new()
             {
                 Filter = "Bel Build Files|*.bmag",
                 Title = "Save a Mage Build File"

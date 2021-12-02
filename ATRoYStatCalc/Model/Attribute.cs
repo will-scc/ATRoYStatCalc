@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -25,7 +25,7 @@ namespace ATRoYStatCalc.Model
         {
             var sm = Skill.SkillModifiers.Where(x => x.Value.Contains(Type));
 
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.AppendLine("Modifies:");
             foreach (var dict in sm)
             {

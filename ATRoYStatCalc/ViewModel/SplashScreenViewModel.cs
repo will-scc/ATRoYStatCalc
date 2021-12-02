@@ -1,11 +1,10 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
-using GalaSoft.MvvmLight.Messaging;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Windows.Input;
 
@@ -19,7 +18,7 @@ namespace ATRoYStatCalc.ViewModel
         public DateTime DateAccessed { get; set; }
     }
 
-    public class SplashScreenViewModel : ViewModelBase
+    public class SplashScreenViewModel : ObservableRecipient
     {
         public string AppVersion { get; set; }
         public ObservableCollection<BuildFileSummary> BuildFiles { get; set; }
@@ -31,9 +30,9 @@ namespace ATRoYStatCalc.ViewModel
 
             if (Directory.Exists("BuildFiles"))
             {
-                DirectoryInfo dir = new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "BuildFiles"));
+                DirectoryInfo dir = new(Path.Combine(Environment.CurrentDirectory, "BuildFiles"));
 
-                List<BuildFileSummary> buildFileList = new List<BuildFileSummary>();
+                List<BuildFileSummary> buildFileList = new();
 
                 foreach (FileInfo file in dir.EnumerateFiles())
                 {
@@ -59,7 +58,7 @@ namespace ATRoYStatCalc.ViewModel
                                 break;
                         }
 
-                        BuildFileSummary buildFile = new BuildFileSummary
+                        BuildFileSummary buildFile = new()
                         {
                             Class = type,
                             FileName = Path.GetFileNameWithoutExtension(file.Name),
@@ -79,7 +78,7 @@ namespace ATRoYStatCalc.ViewModel
         private ICommand _import;
         public ICommand Import => _import ??= new RelayCommand(() =>
         {
-            Messenger.Default.Send(SelectedFile);
+            Messenger.Send(SelectedFile);
         }, Import_CanExecute);
 
         public bool Import_CanExecute()

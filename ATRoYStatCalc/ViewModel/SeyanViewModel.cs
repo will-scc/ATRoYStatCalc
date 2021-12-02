@@ -1,18 +1,16 @@
 ﻿using ATRoYStatCalc.Model;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace ATRoYStatCalc.ViewModel
 {
-    public class SeyanViewModel : ViewModelBase
+    public class SeyanViewModel : ObservableRecipient
     {
         public Seyan Seyan { get; set; } = new Seyan();
         public int EnemyDefence { get; set; } = 1000;
@@ -43,9 +41,10 @@ namespace ATRoYStatCalc.ViewModel
         public ICommand UpdateCharacter => _updateCharacter ??= new RelayCommand(() =>
         {
             Seyan.UpdateCharacter();
-            RaisePropertyChanged("AccuracyAndArmor");
-            RaisePropertyChanged("Accuracy");
-            RaisePropertyChanged("EffectiveArmor");
+
+            OnPropertyChanged(nameof(Accuracy));
+            OnPropertyChanged(nameof(AccuracyAndArmor));
+            OnPropertyChanged(nameof(EffectiveArmor));
         });
 
         private void Base_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -55,12 +54,16 @@ namespace ATRoYStatCalc.ViewModel
             if (e.PropertyName == "Base" || e.PropertyName == "EquipmentBonus")
             {
                 Seyan.UpdateCharacter();
+                
+                OnPropertyChanged(nameof(Accuracy));
+                OnPropertyChanged(nameof(AccuracyAndArmor));
+                OnPropertyChanged(nameof(EffectiveArmor));
             }
         }
 
         public async Task Export()
         {
-            SaveFileDialog fileDialog = new SaveFileDialog
+            SaveFileDialog fileDialog = new()
             {
                 Filter = "Bel Build Files|*.bsey",
                 Title = "Save a Seyan Build File"

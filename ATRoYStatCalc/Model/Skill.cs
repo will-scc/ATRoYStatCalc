@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -78,12 +78,12 @@ namespace ATRoYStatCalc.Model
             Warcry
         }
 
-        public static Dictionary<Types, Attribute.Types[]> SkillModifiers = new Dictionary<Types, Attribute.Types[]>()
+        public readonly static Dictionary<Types, Attribute.Types[]> SkillModifiers = new()
         {
-            {Types.Hitpoints, new Attribute.Types[] {} }, //no attribute bonus
-            {Types.Endurance, new Attribute.Types[] {} }, //no attribute bonus
-            {Types.Mana, new Attribute.Types[] {} }, //no attribute bonus
-            {Types.Profession, new Attribute.Types[] {} }, //no attribute bonus
+            {Types.Hitpoints, Array.Empty<Attribute.Types>() }, //no attribute bonus
+            {Types.Endurance, Array.Empty<Attribute.Types>() }, //no attribute bonus
+            {Types.Mana, Array.Empty<Attribute.Types>() }, //no attribute bonus
+            {Types.Profession, Array.Empty<Attribute.Types>() }, //no attribute bonus
             {Types.Archery, new Attribute.Types[] { Attribute.Types.Intuition, Attribute.Types.Intuition, Attribute.Types.Strength } },
             {Types.ArmorSkill, new Attribute.Types[] { Attribute.Types.Agility, Attribute.Types.Agility, Attribute.Types.Strength } },
             {Types.Attack, new Attribute.Types[] { Attribute.Types.Intuition, Attribute.Types.Agility, Attribute.Types.Strength } },
@@ -133,7 +133,7 @@ namespace ATRoYStatCalc.Model
         public int EquipmentBonus { get; set; }
         public int LevelBonus { get; set; }
         public int PtmBonus { get; set; }
-        public int MaxAttributeMod => Base * 2;
+        public int MaxAttributeMod => Math.Max(15, Base * 2);
         public int MaxEquipmentMod => IsSeyan
                     ? (int)Math.Floor(Base * 0.725)
                     : (int)Math.Floor(Base * 0.50);
@@ -147,8 +147,27 @@ namespace ATRoYStatCalc.Model
             if (Type != Types.Profession)
             {
                 newMod += Base;
-                newMod += Math.Max(IsResource ? 15 : 0, Math.Min(AttributeBonus, MaxAttributeMod));
-                newMod += Math.Min(EquipmentBonus, MaxEquipmentMod);
+
+                if (IsSeyan)
+                {
+                    if (!IsResource)
+                    {
+                        newMod += Math.Min(AttributeBonus + EquipmentBonus, MaxEquipmentMod);
+                    }
+                    else
+                    {
+                        newMod += Math.Min(EquipmentBonus, MaxEquipmentMod);
+                    }
+                }
+                else
+                {
+                    if (!IsResource)
+                    {
+                        newMod += Math.Min(AttributeBonus, MaxAttributeMod);
+                    }
+                    
+                    newMod += Math.Min(EquipmentBonus, MaxEquipmentMod);
+                }
                 newMod += LevelBonus;
                 newMod += PtmBonus;
             }
